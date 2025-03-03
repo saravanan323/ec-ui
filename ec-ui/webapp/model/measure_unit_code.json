@@ -1,0 +1,226 @@
+[
+  {
+    "code": "ZUN",
+    "value": "Unit"
+  },
+  {
+    "code": "ZTP",
+    "value": "Trip"
+  },
+  {
+    "code": "ZPV",
+    "value": "Provisional Order Value"
+  },
+  {
+    "code": "ZLN",
+    "value": "Length"
+  },
+  {
+    "code": "XTN",
+    "value": "Tin"
+  },
+  {
+    "code": "XSX",
+    "value": "Set"
+  },
+  {
+    "code": "XST",
+    "value": "Sheet"
+  },
+  {
+    "code": "XRO",
+    "value": "Roll"
+  },
+  {
+    "code": "XPX",
+    "value": "Pallet"
+  },
+  {
+    "code": "XPK",
+    "value": "Package"
+  },
+  {
+    "code": "XPA",
+    "value": "Packet"
+  },
+  {
+    "code": "XLT",
+    "value": "Lot"
+  },
+  {
+    "code": "XDR",
+    "value": "Drum"
+  },
+  {
+    "code": "XCY",
+    "value": "Cylinder"
+  },
+  {
+    "code": "XCX",
+    "value": "Can, cylindrical"
+  },
+  {
+    "code": "XCT",
+    "value": "Carton"
+  },
+  {
+    "code": "XCS",
+    "value": "Case"
+  },
+  {
+    "code": "XCR",
+    "value": "Crate"
+  },
+  {
+    "code": "XCL",
+    "value": "Coil"
+  },
+  {
+    "code": "XBX",
+    "value": "Box"
+  },
+  {
+    "code": "XBG",
+    "value": "Bag"
+  },
+  {
+    "code": "XBE",
+    "value": "Bundle"
+  },
+  {
+    "code": "LTR",
+    "value": "Liter"
+  },
+  {
+    "code": "GLL",
+    "value": "Gallon (US)"
+  },
+  {
+    "code": "GLI",
+    "value": "Gallon (UK)"
+  },
+  {
+    "code": "FTQ",
+    "value": "Cubic foot"
+  },
+  {
+    "code": "MTQ",
+    "value": "Cubic meter"
+  },
+  {
+    "code": "SEC",
+    "value": "Second [unit of time]"
+  },
+  {
+    "code": "MIN",
+    "value": "Minute [unit of time]"
+  },
+  {
+    "code": "HUR",
+    "value": "Hour(s)"
+  },
+  {
+    "code": "DAY",
+    "value": "Day(s)"
+  },
+  {
+    "code": "WEE",
+    "value": "Week"
+  },
+  {
+    "code": "MON",
+    "value": "Month"
+  },
+  {
+    "code": "ANN",
+    "value": "Year"
+  },
+  {
+    "code": "SET",
+    "value": "Set"
+  },
+  {
+    "code": "P1",
+    "value": "Percent"
+  },
+  {
+    "code": "PR",
+    "value": "Pair"
+  },
+  {
+    "code": "GRM",
+    "value": "Gram"
+  },
+  {
+    "code": "ONZ",
+    "value": "Ounce"
+  },
+  {
+    "code": "LBR",
+    "value": "Pound"
+  },
+  {
+    "code": "KGM",
+    "value": "Kilogram"
+  },
+  {
+    "code": "STN",
+    "value": "Ton (US) or short ton (UK/US)"
+  },
+  {
+    "code": "TNE",
+    "value": "Ton (metric ton)"
+  },
+  {
+    "code": "LS",
+    "value": "Lump sum"
+  },
+  {
+    "code": "INH",
+    "value": "Inch"
+  },
+  {
+    "code": "FOT",
+    "value": "Foot"
+  },
+  {
+    "code": "YRD",
+    "value": "Yard"
+  },
+  {
+    "code": "MTR",
+    "value": "Meter"
+  },
+  {
+    "code": "ZLM",
+    "value": "Linear Meter"
+  },
+  {
+    "code": "KMT",
+    "value": "Kilometer"
+  },
+  {
+    "code": "SMI",
+    "value": "Mile (statute mile)"
+  },
+  {
+    "code": "EA",
+    "value": "Each"
+  },
+  {
+    "code": "E49",
+    "value": "Working day(s)"
+  },
+  {
+    "code": "DZN",
+    "value": "Dozen"
+  },
+  {
+    "code": "MTK",
+    "value": "Square meter"
+  },
+  {
+    "code": "5B",
+    "value": "Batch"
+  }
+]

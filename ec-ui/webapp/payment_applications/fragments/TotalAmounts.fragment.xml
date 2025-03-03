@@ -1,0 +1,16 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+
+    <HBox justifyContent="End" class="sapUiTinyMarginTop">
+        <VBox>
+            <ObjectIdentifier title="Total Gross Amount:" />
+            <ObjectNumber number="{equipmentDemandDetailsMdl>total_gross_amount}" unit="AED" />
+
+            <ObjectIdentifier title="Total Retention:" class="sapUiTinyMarginTop" />
+            <ObjectNumber number="{equipmentDemandDetailsMdl>total_retention}" unit="AED" />
+
+            <ObjectIdentifier title="Total Net Amount:" class="sapUiTinyMarginTop" />
+            <ObjectNumber number="{equipmentDemandDetailsMdl>total_net_amount}" unit="AED" />
+        </VBox>
+    </HBox>
+</c:FragmentDefinition>

@@ -1,0 +1,291 @@
+{
+    "processing_status": [
+        {
+            "key": 0,
+            "text": "Created"
+        },
+        {
+            "key": 10,
+            "text": "Released"
+        },
+        {
+            "key": 12,
+            "text": "Partially Released"
+        },
+        {
+            "key": 20,
+            "text": "Locked"
+        },
+        {
+            "key": 5,
+            "text": "Completed"
+        },
+        {
+            "key": 6,
+            "text": "Closed"
+        }
+    ],
+    "purchase_order_status": [
+        {
+            "key": "02",
+            "text": "In Approval",
+            "state_color": "Information"
+        },
+        {
+            "key": "03",
+            "text": "Not Yet Sent",
+            "state_color": "Warning"
+        },
+        {
+            "key": "04",
+            "text": "Sent",
+            "state_color": ":Success"
+        },
+        {
+            "key": "05",
+            "text": "Follow-On Documents",
+            "state_color": "None"
+        },
+        {
+            "key": "09",
+            "text": "Expired",
+            "state_color": "Error"
+        },
+        {
+            "key": "10",
+            "text": "Deleted",
+            "state_color": "Error"
+        },
+        {
+            "key": "37",
+            "text": "Output Error",
+            "state_color": "Error"
+        },
+        {
+            "key": "38",
+            "text": "Rejected",
+            "state_color": "Error"
+        },
+        {
+            "key": "40",
+            "text": "Not Yet Relevant",
+            "state_color": "None"
+        }
+    ],
+    "sales_order_status": [
+        {
+            "key": "A",
+            "text": "Open",
+            "state_color": "None"
+        },
+        {
+            "key": "B",
+            "text": "In Process",
+            "state_color": "Information"
+        },
+        {
+            "key": "C",
+            "text": "Completed",
+            "state_color": "Success"
+        },
+        {
+            "key": "D",
+            "text": "Partially Delivered",
+            "state_color": "Warning"
+        },
+        {
+            "key": "E",
+            "text": "Delivered Not Invoiced",
+            "state_color": "Warning"
+        },
+        {
+            "key": "F",
+            "text": "Invoiced",
+            "state_color": "Success"
+        }
+    ],
+    "purchase_order_doc_types": [
+        {
+            "key": "NB",
+            "text": "Standard PO"
+        },
+        {
+            "key": "NB2",
+            "text": "Enh. Ret. to Supplier"
+        },
+        {
+            "key": "NBF2",
+            "text": "STO Advanced Return"
+        },
+        {
+            "key": "NBIC",
+            "text": "IC SiT STO"
+        },
+        {
+            "key": "NBTM",
+            "text": "Transport Services"
+        },
+        {
+            "key": "UB",
+            "text": "Stock Transp. Order"
+        },
+        {
+            "key": "UD",
+            "text": "StockTranspOrderDel"
+        },
+        {
+            "key": "UD2",
+            "text": "STO Del Return"
+        },
+        {
+            "key": "ZNB",
+            "text": "Z-STANDARD PO"
+        }
+    ],
+    "purchasing_group": [
+        {
+            "PurchasingGroup": "001",
+            "PurchasingGroupName": "Demo Pur. Grp."
+        },
+        {
+            "PurchasingGroup": "002",
+            "PurchasingGroupName": "Purchase Dept."
+        },
+        {
+            "PurchasingGroup": "003",
+            "PurchasingGroupName": "HR Dept."
+        },
+        {
+            "PurchasingGroup": "005",
+            "PurchasingGroupName": "Transportation Srv"
+        },
+        {
+            "PurchasingGroup": "006",
+            "PurchasingGroupName": "TM – Ext. Planning"
+        },
+        {
+            "PurchasingGroup": "007",
+            "PurchasingGroupName": "TM – Int. Planning"
+        },
+        {
+            "PurchasingGroup": "CP1",
+            "PurchasingGroupName": "Pur Grp CP1"
+        },
+        {
+            "PurchasingGroup": "CP2",
+            "PurchasingGroupName": "Pur Grp CP2"
+        },
+        {
+            "PurchasingGroup": "SUS",
+            "PurchasingGroupName": "SUS Pur Grp"
+        },
+        {
+            "PurchasingGroup": "Z01",
+            "PurchasingGroupName": "new purchase grp"
+        },
+        {
+            "PurchasingGroup": "Z02",
+            "PurchasingGroupName": "Pur Group Z02"
+        },
+        {
+            "PurchasingGroup": "Z09",
+            "PurchasingGroupName": "Mngr purchase grp"
+        },
+        {
+            "PurchasingGroup": "Z90",
+            "PurchasingGroupName": "Purch. Grp for RM"
+        },
+        {
+            "PurchasingGroup": "Z91",
+            "PurchasingGroupName": "Purch. Grp for TG"
+        },
+        {
+            "PurchasingGroup": "Z92",
+            "PurchasingGroupName": "Purch. Grp - Serv."
+        },
+        {
+            "PurchasingGroup": "ZSE",
+            "PurchasingGroupName": "SES Accruals"
+        }
+    ],
+    "processingStatus": [
+        {
+            "ProcessingStatus": "00",
+            "ProcessingStatusText": "Created"
+        },
+        {
+            "ProcessingStatus": "05",
+            "ProcessingStatusText": "In Contract Preparation"
+        },
+        {
+            "ProcessingStatus": "10",
+            "ProcessingStatusText": "Released"
+        },
+        {
+            "ProcessingStatus": "11",
+            "ProcessingStatusText": "Released (Processing has begun)"
+        },
+        {
+            "ProcessingStatus": "12",
+            "ProcessingStatusText": "Partially Released"
+        },
+        {
+            "ProcessingStatus": "20",
+            "ProcessingStatusText": "Locked"
+        },
+        {
+            "ProcessingStatus": "21",
+            "ProcessingStatusText": "Locked (Released First)"
+        },
+        {
+            "ProcessingStatus": "40",
+            "ProcessingStatusText": "Completed"
+        },
+        {
+            "ProcessingStatus": "41",
+            "ProcessingStatusText": "Canceled"
+        },
+        {
+            "ProcessingStatus": "42",
+            "ProcessingStatusText": "Closed"
+        },
+        {
+            "ProcessingStatus": "60",
+            "ProcessingStatusText": "Single-Step Role Staffing"
+        },
+        {
+            "ProcessingStatus": "70",
+            "ProcessingStatusText": "Staffing in Process"
+        },
+        {
+            "ProcessingStatus": "80",
+            "ProcessingStatusText": "Flagged for Archiving"
+        }
+    ],
+    "project_types": [
+        {
+            "text": "Customer Project",
+            "key": "CP"
+        },
+        {
+            "text": "Engineering Construction",
+            "key": "EC"
+        },
+        {
+            "text": "Internal Project",
+            "key": "IP"
+        },
+        {
+            "text": "General Type",
+            "key": "NG"
+        },
+        {
+            "text": "Professional service",
+            "key": "PS"
+        },
+        {
+            "text": "RD Projects",
+            "key": "RD"
+        }
+    ]
+}

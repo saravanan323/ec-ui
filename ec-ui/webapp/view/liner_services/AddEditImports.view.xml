@@ -1,0 +1,460 @@
+<mvc:View controllerName="com.ecui.controller.liner_services.AddEditImports"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" height="100%">
+    <uxap:ObjectPageLayout id="page_AddEditImports" showTitleInHeaderContent="true"
+        showHeaderContent="{=${ImportsMdl>/item}!==null}" alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true"
+        upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title text="{= ${ImportsMdl>/item}?${ImportsMdl>/item}:'New Import'}"
+                        wrapping="true" class="sapUiSmallMarginEnd" />
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center"
+                            class="sapUiTinyMarginEnd">
+                            <Title text="{= ${ImportsMdl>/item}?${ImportsMdl>/item}:'New Import'}"
+                                wrapping="true" class="sapUiSmallMarginEnd" />
+                        </FlexBox>
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:actions>
+                    <Button type="Emphasized" text="Save" />
+                    <Button type="Transparent" text="Save and Close" />
+                    <Button type="Transparent" text="Close" press="handleClose" />
+                </uxap:actions>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="Enter Full Screen Mode"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null}" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="Exit Full Screen Mode"
+                        visible="{parts:['/actionButtonsInfo/midColumn/exitFullScreen', 'ImportsMdl>/item'], formatter:'.formatter.showHideFullScreen'}" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="Close end column"
+                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <layout:HorizontalLayout allowWrapping="true">
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <ObjectAttribute title="Shipping Line" text="Hapag Lioyd" />
+                    <ObjectAttribute class="sapUiTinyMarginTop" title="Vessel ETA"
+                        text="11-Aug-2022" />
+                    <ObjectAttribute class="sapUiTinyMarginTop" title="Created On"
+                        text="01-Aug-2022" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout>
+                    <ObjectAttribute title="Vessel Index" text="12054" />
+                    <ObjectAttribute class="sapUiTinyMarginTop" title="Vessel ETS"
+                        text="11-Aug-2022" />
+                    <ObjectAttribute class="sapUiTinyMarginTop" title="Last Updated On"
+                        text="03-Aug-2022" />
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection titleUppercase="false" title="General">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin" backgroundDesign="Transparent">
+                            <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4"
+                                labelSpanL="4" labelSpanM="12" labelSpanS="12"
+                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+                                emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+                                columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="B/L Number" />
+                                    <Input />
+                                    <Label text="Shipment Number" />
+                                    <Input />
+                                    <Label text="Empty/Full Container" />
+                                    <ComboBox />
+                                    <Label text="THC Paid" />
+                                    <ComboBox />
+                                    <Label text="Shipping Line" />
+                                    <Input />
+                                    <Label text="Seaway Bill" />
+                                    <ComboBox />
+                                    <Label text="FCL/LCL" />
+                                    <ComboBox />
+                                    <Label text="Delivery Type" />
+                                    <ComboBox />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Shipper/Consignee">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table inset="false" items="{ImportsMdl>/consignee}" mode="Delete"
+                            delete="onPressDeleteItem" sticky="ColumnHeaders,HeaderToolbar"
+                            alternateRowColors="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Label design="Bold" text="Items({ImportsMdl>/consigneeCount})" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add" type="Ghost" press="onPressAddItem" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Begin">
+                                    <Text text="Type" />
+                                </Column>
+                                <Column hAlign="Begin">
+                                    <Text text="Code" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Name" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="City" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Postal Code" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Country" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <ComboBox selectedKey="{ImportsMdl>type}" />
+                                        <Input value="{ImportsMdl>code}" />
+                                        <Input value="{ImportsMdl>name}" />
+                                        <Input value="{ImportsMdl>city}" />
+                                        <Input value="{ImportsMdl>postalCode}" />
+                                        <ComboBox selectedKey="{ImportsMdl>country}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Vessel Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox backgroundDesign="Transparent">
+                            <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4"
+                                labelSpanL="4" labelSpanM="12" labelSpanS="12"
+                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+                                emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+                                columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <core:Title text="Feeder Vessel" />
+                                    <Label text="Vessel Code" />
+                                    <Input />
+                                    <Label text="Loading Port" />
+                                    <ComboBox />
+                                    <Label text="Vessel Arrival Date" />
+                                    <DatePicker />
+                                    <Label text="Vessel Name" />
+                                    <Input />
+                                    <Label text="Port Destination" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4"
+                                labelSpanL="4" labelSpanM="12" labelSpanS="12"
+                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+                                emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+                                columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <core:Title text="Trans-shipment Vessel" />
+                                    <Label text="Vessel Code" />
+                                    <Input />
+                                    <Label text="Port" />
+                                    <ComboBox />
+                                    <Label text="Vessel Name" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4"
+                                labelSpanL="4" labelSpanM="12" labelSpanS="12"
+                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+                                emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+                                columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <core:Title text="Ex Vessel" />
+                                    <Label text="Vessel Code" />
+                                    <Input />
+                                    <Label text="Loading Port" />
+                                    <ComboBox />
+                                    <Label text="Vessel Sail Date" />
+                                    <DatePicker />
+                                    <Label text="Vessel Name" />
+                                    <Input />
+                                    <Label text="Port of Receipt" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Container Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table inset="false" items="{ImportsMdl>/containerDetails}" mode="Delete"
+                            delete="onPressDeleteContainerItem" sticky="ColumnHeaders,HeaderToolbar"
+                            alternateRowColors="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Label design="Bold" text="Items({ImportsMdl>/containerCount})" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add" type="Ghost" press="onPressAddContainerItem" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Begin">
+                                    <Text text="Container No." />
+                                </Column>
+                                <Column hAlign="Begin">
+                                    <Text text="Seal No." />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Size/Type" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Cargo Wt" />
+                                </Column>
+                                <Column hAlign="Begin" width="3rem" minScreenWidth="Tablet"
+                                    demandPopin="true" popinDisplay="Inline">
+                                    <Text text="SOC" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Shipper Dest" />
+                                </Column>
+                                <Column hAlign="Begin" width="4rem" minScreenWidth="Tablet"
+                                    demandPopin="true" popinDisplay="Inline">
+                                    <Text text="IMCO" />
+                                </Column>
+                                <Column hAlign="Begin" width="3rem" minScreenWidth="Tablet"
+                                    demandPopin="true" popinDisplay="Inline">
+                                    <Text text="OOG" />
+                                </Column>
+                                <Column hAlign="Begin" width="5rem" minScreenWidth="Tablet"
+                                    demandPopin="true" popinDisplay="Inline">
+                                    <Text text="Damages" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Reefer Temp" />
+                                </Column>
+                                <Column hAlign="Begin" width="5rem" minScreenWidth="Tablet"
+                                    demandPopin="true" popinDisplay="Inline">
+                                    <Text text="Packages" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <Input value="{ImportsMdl>containerNo}" />
+                                        <Input value="{ImportsMdl>sealNo}" />
+                                        <Input value="{ImportsMdl>size}{ImportsMdl>type}" />
+                                        <Input value="{ImportsMdl>cargoWt}" />
+                                        <CheckBox selected="{ImportsMdl>soc}" />
+                                        <Input value="{ImportsMdl>shipperDest}" />
+                                        <Input value="{ImportsMdl>imco}" />
+                                        <Input value="{ImportsMdl>oog}" />
+                                        <CheckBox selected="{ImportsMdl>damages}" />
+                                        <Input value="{ImportsMdl>reeferTemp}" />
+                                        <Input value="{ImportsMdl>packages}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Cargo Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table inset="false" items="{ImportsMdl>/cargoDetails}" mode="Delete"
+                            delete="onPressDeleteCargoItem" sticky="ColumnHeaders,HeaderToolbar"
+                            alternateRowColors="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Label design="Bold" text="Items({ImportsMdl>/cargoCount})" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add" type="Ghost" press="onPressAddCargoItem" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Begin">
+                                    <Text text="Code" />
+                                </Column>
+                                <Column hAlign="Begin">
+                                    <Text text="Name" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Package Type" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Customs Code" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="IMCO" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="OOG" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Packages" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{ImportsMdl>code}" />
+                                        <Input value="{ImportsMdl>name}" />
+                                        <Input value="{ImportsMdl>packageType}" />
+                                        <Input value="{ImportsMdl>customsCode}" />
+                                        <Input value="{ImportsMdl>imco}" />
+                                        <Input value="{ImportsMdl>oog}" />
+                                        <Input value="{ImportsMdl>packages}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Freight Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table inset="false" items="{ImportsMdl>/freightDetails}" mode="Delete"
+                            delete="onPressDeleteFreightItem" sticky="ColumnHeaders,HeaderToolbar"
+                            alternateRowColors="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Label design="Bold" text="Items({ImportsMdl>/freightCount})" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add" type="Ghost" press="onPressAddFreightItem" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Begin">
+                                    <Text text="Chrg Code" />
+                                </Column>
+                                <Column hAlign="Begin">
+                                    <Text text="Chrg Name" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Currency" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Conversion" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="No. of Units" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Unit Rate" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="VAT" />
+                                </Column>
+                                <Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true"
+                                    popinDisplay="Inline">
+                                    <Text text="Total Amt" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{ImportsMdl>code}" />
+                                        <Input value="{ImportsMdl>name}" />
+                                        <Input value="{ImportsMdl>currency}" />
+                                        <Input value="{ImportsMdl>conversion}" />
+                                        <Input value="{ImportsMdl>noOfUnits}" />
+                                        <Input value="{ImportsMdl>unitRate}" />
+                                        <Input value="{ImportsMdl>vat}" />
+                                        <Input value="{ImportsMdl>totalAmt}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Attachments">
+                <uxap:ObjectPageSubSection>
+                    <upload:UploadSet id="UploadSet" instantUpload="true" showIcons="true"
+                        uploadEnabled="true" terminationEnabled="true" fileTypes="txt,doc,png"
+                        maxFileNameLength="30" maxFileSize="200"
+                        mediaTypes="text/plain,application/msword,image/png"
+                        uploadUrl="../../../../upload"
+                        items="{path: '/items', templateShareable: false}" mode="MultiSelect"
+                        selectionChanged="onSelectionChange" uploadCompleted="onUploadCompleted"
+                        afterItemRemoved="onAfterItemRemoved">
+                        <upload:toolbar>
+                            <OverflowToolbar>
+                                <Label id="lb_attachmentCount" design="Bold" text="Items(0)" />
+                                <ToolbarSpacer />
+                                <Button text="Add Link" press="onAddLinkDialog" />
+                                <upload:UploadSetToolbarPlaceholder />
+                            </OverflowToolbar>
+                        </upload:toolbar>
+                        <upload:items>
+                            <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}"
+                                url="{url}" thumbnailUrl="{thumbnailUrl}"
+                                markers="{path: 'markers', templateShareable: false}"
+                                statuses="{path: 'statuses', templateShareable: false}"
+                                uploadState="{uploadState}">
+                                <upload:markers>
+                                    <ObjectMarker type="{type}" visibility="{visibility}" />
+                                </upload:markers>
+                                <upload:statuses>
+                                    <ObjectStatus title="{title}" text="{text}" state="{state}"
+                                        icon="{icon}" active="{active}" />
+                                </upload:statuses>
+                            </upload:UploadSetItem>
+                        </upload:items>
+                    </upload:UploadSet>
+                </uxap:ObjectPageSubSection>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

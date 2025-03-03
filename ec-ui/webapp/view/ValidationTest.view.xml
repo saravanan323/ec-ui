@@ -1,0 +1,105 @@
+<mvc:View controllerName="com.ecui.controller.ValidationTest"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:card="sap.f.cards"
+    xmlns:core="sap.ui.core"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="validationPage" showHeader="false" showFooter="true" backgroundDesign="Transparent">
+        <content>
+            <form:SimpleForm class="sapUiSizeCompact" id="validatinForm" editable="true"
+                layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+                labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+                emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+                singleContainerFullSize="false">
+                <form:content>
+                    <Label text="Email" />
+                    <Input id="inpEmail" type="Email" class="sapUiSizeCozy"
+                        value="{
+                            path : 'validatinMdl>/email',
+                            type : 'sap.ui.model.type.String',
+                            constraints: {
+                            search: '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'}}"
+                        field:type="Input" />
+                    <Label text="Password" />
+                    <Input type="Password" required="true" id="inpPassword"
+                        value="{
+                            path : 'validatinMdl>/password',
+                            type : 'sap.ui.model.type.String',
+                            constraints: {
+                            search: '^(?=.*[0-9])(?=.*[!@#$%^&amp;*])[a-zA-Z0-9!@#$%^&amp;*]{6,16}$'}}"
+                        class="sapUiSizeCozy" field:type="Input" />
+                    <Label text="Company" required="true" />
+                    <ComboBox placeholder="Please select company" field:type="ComboBox">
+                        <core:Item key="1" text="Bhacker" />
+                        <core:Item key="2" text="Couple" />
+                    </ComboBox>
+                    <Label text="Country" required="true" />
+                    <Select selectedKey="-1" field:type="Select">
+                        <items>
+                            <core:Item text=" " key="-1" />
+                            <core:Item text="England" key="England" />
+                            <core:Item text="Germany" key="Germany" />
+                            <core:Item text="USA" key="USA" />
+                        </items>
+                    </Select>
+
+                    <Label text="MultiInput" labelFor="multiInput1" />
+                    <MultiInput id="multiInput1" value="{validatinMdl>/multiInput}"
+                        showValueHelp="false" showClearIcon="true" field:type="MultiInput">
+                        <core:Item text="England" key="England" />
+                        <core:Item text="Germany" key="Germany" />
+                        <core:Item text="USA" key="USA" />
+                    </MultiInput>
+                    <!-- <Label labelFor="stepInputId" text="StepInput"/>
+                    <StepInput id="stepInputId" value="{path:'validatinMdl>/stepInput'}" min="0" max="50"
+                    change="onChange" width="20%" field:type="StepInput"/> -->
+                    <Label text="Phone number" />
+                    <MaskInput mask="(999) 999 999999" value="{path : 'validatinMdl>/phoneNumber'}"
+                        placeholderSymbol="_" placeholder="Enter twelve-digit number"
+                        showClearIcon="true" field:type="MaskInput" />
+                    <Label labelFor="textAreaId" text="Text Area" />
+                    <TextArea id="textAreaId" growing="true"
+                        value="{path : 'validatinMdl>/textArea', 
+                            type : 'sap.ui.model.type.String',
+                            constraints: {
+                            search: '^.{50,300}$'}}"
+                        field:type="TextArea" />
+                    <Label text="MultiComboBox" />
+                    <MultiComboBox field:type="MultiComboBox">
+                        <core:Item text="England" key="England" />
+                        <core:Item text="Germany" key="Germany" />
+                        <core:Item text="USA" key="USA" />
+                    </MultiComboBox>
+                    <Label text="simple DatePicker" labelFor="DP1" />
+                    <DatePicker id="DP1" placeholder="Enter Date" change="handleChange"
+                        minDate="{validatinMdl>/min}" maxDate="{validatinMdl>/max}"
+                        class="sapUiSmallMarginBottom" field:type="DatePicker" />
+                    <Label text="Simple DateTimePicker" labelFor="DTP1" />
+                    <DateTimePicker id="DTP1" placeholder="Enter Date" change="handleChange"
+                        class="sapUiSmallMarginBottom" field:type="DateTimePicker" />
+                    <Label text="DateRangeSelection" labelFor="DRS2" />
+                    <DateRangeSelection id="DRS2" change="handleChange"
+                        field:type="DateRangeSelection" />
+                    <Label />
+                    <CheckBox class="sapUiNoContentPadding "
+                        text="Please agree the terms and conditions" field:type="CheckBox" />
+                </form:content>
+            </form:SimpleForm>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="validationPopBtn" visible="{=!!${errors>/}.length}"
+                        icon="sap-icon://error" type="Negative" text="Error"
+                        press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
+                </contentLeft>
+                <contentMiddle>
+                    <Button text="Save" type="Emphasized" press="onPressSave" />
+                </contentMiddle>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

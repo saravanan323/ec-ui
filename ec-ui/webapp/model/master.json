@@ -1,0 +1,1840 @@
+{
+    "projects": [
+        {
+            "projectUUID": "67fa11f9-dbf5-1edf-b88e-2942b1eac74a",
+            "projectInternalID": "00000124",
+            "project": "E.01.001",
+            "projectDescription": "EC Tower 1",
+            "enterpriseProjectType": "EC",
+            "projectStartDate": "/Date(1735689600000)/",
+            "projectEndDate": "/Date(1767139200000)/",
+            "processingStatus": "10",
+            "customerUUID": null,
+            "projectManagerUUID": "fa163e0e-be05-1eed-94bc-2b606212ce97",
+            "responsibleCostCenter": "10001000",
+            "companyCode": "1000",
+            "projectCurrency": "AED",
+            "createdByUser": null
+        },
+        {
+            "projectUUID": "67fa11f9-dbf5-1edf-b9db-733acae9276d",
+            "projectInternalID": "00000145",
+            "project": "E.01.002",
+            "projectDescription": "EC Tower2",
+            "enterpriseProjectType": "EC",
+            "projectStartDate": "/Date(1735689600000)/",
+            "projectEndDate": "/Date(1767139200000)/",
+            "processingStatus": "10",
+            "customerUUID": null,
+            "projectManagerUUID": "fa163e0e-be05-1eed-94bc-2b606212ce97",
+            "responsibleCostCenter": "10001000",
+            "companyCode": "1000",
+            "projectCurrency": "AED",
+            "createdByUser": null
+        },
+        {
+            "projectUUID": "67fa11f9-dbf5-1edf-baa3-7ad5ebe86779",
+            "projectInternalID": "00000149",
+            "project": "E.01.003",
+            "projectDescription": "EC Tower 3",
+            "enterpriseProjectType": "EC",
+            "projectStartDate": "/Date(1735689600000)/",
+            "projectEndDate": "/Date(1767139200000)/",
+            "processingStatus": "00",
+            "customerUUID": null,
+            "projectManagerUUID": "efa16aec-4e74-1ede-b5fa-745f8ff50310",
+            "responsibleCostCenter": "10001000",
+            "companyCode": "1000",
+            "projectCurrency": "AED",
+            "createdByUser": null
+        }
+    ],
+    "wbs": [
+        [
+            {
+                "WBSElementInternalID": "1057",
+                "WBSElement": "SITE WORK-01",
+                "WBSDescription": "Site Work-01",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "838",
+                "WBSElement": "E.01.001.08",
+                "WBSDescription": "Backfilling",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "837",
+                "WBSElement": "E.01.001.07",
+                "WBSDescription": "Excavation",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "850",
+                "WBSElement": "E.01.001.06.02",
+                "WBSDescription": "Hollow block walls 20 cm thk.",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "849",
+                "WBSElement": "E.01.001.06.01",
+                "WBSDescription": "Thermal block walls 20 cm thk.",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "836",
+                "WBSElement": "E.01.001.06",
+                "WBSDescription": "Masonry Work",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "835",
+                "WBSElement": "E.01.001.05",
+                "WBSDescription": "Concrete Work",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "834",
+                "WBSElement": "E.01.001.04",
+                "WBSDescription": "Site Work",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "843",
+                "WBSElement": "E.01.001.03.05",
+                "WBSDescription": "Slab on grade",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "842",
+                "WBSElement": "E.01.001.03.04",
+                "WBSDescription": "Ground beams",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "841",
+                "WBSElement": "E.01.001.03.03",
+                "WBSDescription": "Neck columns",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "840",
+                "WBSElement": "E.01.001.03.02",
+                "WBSDescription": "Pile Caps",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "839",
+                "WBSElement": "E.01.001.03.01",
+                "WBSDescription": "PIles",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "833",
+                "WBSElement": "E.01.001.03",
+                "WBSDescription": "Sub Structure",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "848",
+                "WBSElement": "E.01.001.02.05",
+                "WBSDescription": "Staircase",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "847",
+                "WBSElement": "E.01.001.02.04",
+                "WBSDescription": "Parapet",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "846",
+                "WBSElement": "E.01.001.02.03",
+                "WBSDescription": "Slab",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "845",
+                "WBSElement": "E.01.001.02.02",
+                "WBSDescription": "Beams",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "844",
+                "WBSElement": "E.01.001.02.01",
+                "WBSDescription": "Columns",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "832",
+                "WBSElement": "E.01.001.02",
+                "WBSDescription": "Super Structure",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "831",
+                "WBSElement": "E.01.001.01",
+                "WBSDescription": "Site Work",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            },
+            {
+                "WBSElementInternalID": "830",
+                "WBSElement": "E.01.001",
+                "WBSDescription": "EC Tower 1",
+                "ProjectInternalID": "124",
+                "Project": "E.01.001"
+            }
+        ]
+    ],
+    "customers": [
+        [
+            {
+                "Customer": "FI CUST",
+                "CustomerName": "Finance customer"
+            },
+            {
+                "Customer": "C20O0",
+                "CustomerName": "Company Code 2000 As customer"
+            },
+            {
+                "Customer": "C2000",
+                "CustomerName": "Company C2000"
+            },
+            {
+                "Customer": "C1001",
+                "CustomerName": "Company Code 1100 As customer"
+            },
+            {
+                "Customer": "C1000",
+                "CustomerName": "Company C1000"
+            },
+            {
+                "Customer": "100000002",
+                "CustomerName": "Treasury"
+            },
+            {
+                "Customer": "33300084",
+                "CustomerName": "Company 3QDCUST"
+            },
+            {
+                "Customer": "20002001",
+                "CustomerName": "CC 2000 as BP"
+            },
+            {
+                "Customer": "10402000",
+                "CustomerName": "ICO Customer 2000"
+            },
+            {
+                "Customer": "10401000",
+                "CustomerName": "ICO Supplier 1000"
+            },
+            {
+                "Customer": "1000629",
+                "CustomerName": "Off Taker"
+            },
+            {
+                "Customer": "1000627",
+                "CustomerName": "SPV Company"
+            },
+            {
+                "Customer": "1000626",
+                "CustomerName": "L Customer -02"
+            },
+            {
+                "Customer": "1000625",
+                "CustomerName": "Local Customer -01"
+            },
+            {
+                "Customer": "1000622",
+                "CustomerName": "Satish Test"
+            },
+            {
+                "Customer": "1000621",
+                "CustomerName": "ITS Test"
+            },
+            {
+                "Customer": "1000620",
+                "CustomerName": "ITS Test"
+            },
+            {
+                "Customer": "1000619",
+                "CustomerName": "Prateek M"
+            },
+            {
+                "Customer": "1000618",
+                "CustomerName": "Vivek S"
+            },
+            {
+                "Customer": "1000617",
+                "CustomerName": "Prateek test"
+            },
+            {
+                "Customer": "1000612",
+                "CustomerName": "ITS Test"
+            },
+            {
+                "Customer": "1000611",
+                "CustomerName": "ITS Test"
+            },
+            {
+                "Customer": "1000606",
+                "CustomerName": "Guru test"
+            },
+            {
+                "Customer": "1000604",
+                "CustomerName": "Sanjeev test"
+            },
+            {
+                "Customer": "1000603",
+                "CustomerName": "Prateek test"
+            },
+            {
+                "Customer": "1000602",
+                "CustomerName": "Gopi test"
+            },
+            {
+                "Customer": "1000601",
+                "CustomerName": "tenant test"
+            },
+            {
+                "Customer": "1000600",
+                "CustomerName": "tenant test"
+            },
+            {
+                "Customer": "1000599",
+                "CustomerName": "Owner Test"
+            },
+            {
+                "Customer": "1000596",
+                "CustomerName": "Tenant test"
+            },
+            {
+                "Customer": "1000595",
+                "CustomerName": "Owner test"
+            },
+            {
+                "Customer": "1000593",
+                "CustomerName": "ABC Substitution"
+            },
+            {
+                "Customer": "1000592",
+                "CustomerName": "Prateek Test"
+            },
+            {
+                "Customer": "1000580",
+                "CustomerName": "1100 plant as a supplier"
+            },
+            {
+                "Customer": "1000570",
+                "CustomerName": "Cost Transfer"
+            },
+            {
+                "Customer": "1000553",
+                "CustomerName": "Test Credit Management Company"
+            },
+            {
+                "Customer": "1000552",
+                "CustomerName": "Plant 2000 As Customer"
+            },
+            {
+                "Customer": "1000551",
+                "CustomerName": "SRH"
+            },
+            {
+                "Customer": "1000550",
+                "CustomerName": "1100 Supplier Plant"
+            },
+            {
+                "Customer": "1000544",
+                "CustomerName": "AK Telecom"
+            },
+            {
+                "Customer": "1000541",
+                "CustomerName": "IPP Customer"
+            },
+            {
+                "Customer": "1000540",
+                "CustomerName": "FRTA Customer"
+            },
+            {
+                "Customer": "1000534",
+                "CustomerName": "AR TEST"
+            },
+            {
+                "Customer": "1000532",
+                "CustomerName": "Wertex INC"
+            },
+            {
+                "Customer": "1000531",
+                "CustomerName": "Trend INC"
+            },
+            {
+                "Customer": "1000530",
+                "CustomerName": "NLG_T"
+            },
+            {
+                "Customer": "1000520",
+                "CustomerName": "ICP"
+            },
+            {
+                "Customer": "1000504",
+                "CustomerName": "Rajan Singh"
+            },
+            {
+                "Customer": "1000503",
+                "CustomerName": "Sanjeev Sankar"
+            },
+            {
+                "Customer": "1000502",
+                "CustomerName": "Mitchelle Edwards"
+            },
+            {
+                "Customer": "1000501",
+                "CustomerName": "Andrew Malt"
+            },
+            {
+                "Customer": "1000500",
+                "CustomerName": "Phiphs Salt"
+            },
+            {
+                "Customer": "1000492",
+                "CustomerName": "RU CUstomer"
+            },
+            {
+                "Customer": "1000491",
+                "CustomerName": "Sun Raise Constructions"
+            },
+            {
+                "Customer": "1000490",
+                "CustomerName": "Bright Constructions"
+            },
+            {
+                "Customer": "1000489",
+                "CustomerName": "Mukesh Kumar"
+            },
+            {
+                "Customer": "1000488",
+                "CustomerName": "Albert March"
+            },
+            {
+                "Customer": "1000487",
+                "CustomerName": "Albert Rose"
+            },
+            {
+                "Customer": "1000486",
+                "CustomerName": "Ramesh Kumar"
+            },
+            {
+                "Customer": "1000485",
+                "CustomerName": "Shri Ram"
+            },
+            {
+                "Customer": "1000484",
+                "CustomerName": "Harish RM"
+            },
+            {
+                "Customer": "1000483",
+                "CustomerName": "Susham sa"
+            },
+            {
+                "Customer": "1000482",
+                "CustomerName": "Rahul Sharma"
+            },
+            {
+                "Customer": "1000481",
+                "CustomerName": "ITS Test"
+            },
+            {
+                "Customer": "1000480",
+                "CustomerName": "PRD_RES"
+            },
+            {
+                "Customer": "1000472",
+                "CustomerName": "Hamleys LLC"
+            },
+            {
+                "Customer": "1000471",
+                "CustomerName": "Carrefour"
+            },
+            {
+                "Customer": "1000470",
+                "CustomerName": "Sharaf DG"
+            },
+            {
+                "Customer": "1000460",
+                "CustomerName": "Project & Service"
+            },
+            {
+                "Customer": "1000449",
+                "CustomerName": "1000 Plant As customer"
+            },
+            {
+                "Customer": "1000448",
+                "CustomerName": "S4/CX"
+            },
+            {
+                "Customer": "1000447",
+                "CustomerName": "AirZ Inc"
+            },
+            {
+                "Customer": "1000446",
+                "CustomerName": "SKY"
+            },
+            {
+                "Customer": "1000445",
+                "CustomerName": "CloudZ"
+            },
+            {
+                "Customer": "1000442",
+                "CustomerName": "1100 Plant As customer"
+            },
+            {
+                "Customer": "1000440",
+                "CustomerName": "RPFI Showroom"
+            },
+            {
+                "Customer": "1000431",
+                "CustomerName": "Sai ntiin"
+            },
+            {
+                "Customer": "1000430",
+                "CustomerName": "Intercompany MTO"
+            },
+            {
+                "Customer": "1000421",
+                "CustomerName": "Inflexion Inflexion"
+            },
+            {
+                "Customer": "1000420",
+                "CustomerName": "Harish Kanna"
+            },
+            {
+                "Customer": "1000416",
+                "CustomerName": "John Jacob"
+            },
+            {
+                "Customer": "1000415",
+                "CustomerName": "Digital Pom"
+            },
+            {
+                "Customer": "1000414",
+                "CustomerName": "Test Sales"
+            },
+            {
+                "Customer": "1000413",
+                "CustomerName": "React Group 1"
+            },
+            {
+                "Customer": "1000410",
+                "CustomerName": "FOC Cust"
+            },
+            {
+                "Customer": "1000408",
+                "CustomerName": "PTP Cust"
+            },
+            {
+                "Customer": "1000407",
+                "CustomerName": "PTP"
+            },
+            {
+                "Customer": "1000406",
+                "CustomerName": "Sanjay Raja"
+            },
+            {
+                "Customer": "1000405",
+                "CustomerName": "Notify Party"
+            },
+            {
+                "Customer": "1000403",
+                "CustomerName": "Sanjeev Sankar K"
+            },
+            {
+                "Customer": "1000402",
+                "CustomerName": "Rajan Dhanush"
+            },
+            {
+                "Customer": "1000400",
+                "CustomerName": "Chris Lyon"
+            },
+            {
+                "Customer": "1000399",
+                "CustomerName": "Dary Mitchelle"
+            },
+            {
+                "Customer": "1000398",
+                "CustomerName": "Mitchelle John"
+            },
+            {
+                "Customer": "1000397",
+                "CustomerName": "Rajeev Gandhi"
+            },
+            {
+                "Customer": "1000396",
+                "CustomerName": "Rajeev K"
+            },
+            {
+                "Customer": "1000395",
+                "CustomerName": "Albert May"
+            },
+            {
+                "Customer": "1000394",
+                "CustomerName": "Andy flower"
+            },
+            {
+                "Customer": "1000393",
+                "CustomerName": "STO CUSTOMER"
+            },
+            {
+                "Customer": "1000391",
+                "CustomerName": "Andrew Robert"
+            },
+            {
+                "Customer": "1000390",
+                "CustomerName": "Rajeev Test"
+            },
+            {
+                "Customer": "1000385",
+                "CustomerName": "Oman Test"
+            },
+            {
+                "Customer": "1000384",
+                "CustomerName": "Sanjeek test"
+            },
+            {
+                "Customer": "1000383",
+                "CustomerName": "Michell Dary"
+            },
+            {
+                "Customer": "1000381",
+                "CustomerName": "Prateek Test"
+            },
+            {
+                "Customer": "1000380",
+                "CustomerName": "RBA"
+            },
+            {
+                "Customer": "1000371",
+                "CustomerName": "Dhanush Rajan"
+            },
+            {
+                "Customer": "1000370",
+                "CustomerName": "Sanjeev test"
+            },
+            {
+                "Customer": "1000369",
+                "CustomerName": "rajeev Test"
+            },
+            {
+                "Customer": "1000368",
+                "CustomerName": "sarvana Test"
+            },
+            {
+                "Customer": "1000367",
+                "CustomerName": "Gopi Test"
+            },
+            {
+                "Customer": "1000366",
+                "CustomerName": "DG DFGD"
+            },
+            {
+                "Customer": "1000365",
+                "CustomerName": "Jahnavi Money"
+            },
+            {
+                "Customer": "1000364",
+                "CustomerName": "Jhanvi test"
+            },
+            {
+                "Customer": "1000363",
+                "CustomerName": "Dhanush Test 3"
+            },
+            {
+                "Customer": "1000362",
+                "CustomerName": "Dhanush Test 2"
+            },
+            {
+                "Customer": "1000361",
+                "CustomerName": "Dhanush Test"
+            },
+            {
+                "Customer": "1000360",
+                "CustomerName": "FPP"
+            },
+            {
+                "Customer": "1000352",
+                "CustomerName": "ICO 2000"
+            },
+            {
+                "Customer": "1000351",
+                "CustomerName": "ICO 1000"
+            },
+            {
+                "Customer": "1000350",
+                "CustomerName": "RPC - Test Customer"
+            },
+            {
+                "Customer": "1000340",
+                "CustomerName": "Intercompany Sold to Party"
+            },
+            {
+                "Customer": "1000331",
+                "CustomerName": "Tenant Test 2"
+            },
+            {
+                "Customer": "1000330",
+                "CustomerName": "Tenant Test"
+            },
+            {
+                "Customer": "1000326",
+                "CustomerName": "James M"
+            },
+            {
+                "Customer": "1000325",
+                "CustomerName": "James Frankline"
+            },
+            {
+                "Customer": "1000322",
+                "CustomerName": "Loose customer"
+            },
+            {
+                "Customer": "1000321",
+                "CustomerName": "FILL strategy  cust"
+            },
+            {
+                "Customer": "1000320",
+                "CustomerName": "Low priority cust"
+            },
+            {
+                "Customer": "1000319",
+                "CustomerName": "High priority cust Domestic Customer AE99"
+            },
+            {
+                "Customer": "1000318",
+                "CustomerName": "Gain customer Cust"
+            },
+            {
+                "Customer": "1000317",
+                "CustomerName": "Win customer Cust"
+            },
+            {
+                "Customer": "1000316",
+                "CustomerName": "Prateek M"
+            },
+            {
+                "Customer": "1000315",
+                "CustomerName": "Elbert Alein"
+            },
+            {
+                "Customer": "1000314",
+                "CustomerName": "Md Hussein"
+            },
+            {
+                "Customer": "1000313",
+                "CustomerName": "Michelle March"
+            },
+            {
+                "Customer": "1000312",
+                "CustomerName": "James March"
+            },
+            {
+                "Customer": "1000309",
+                "CustomerName": "Edward Role"
+            },
+            {
+                "Customer": "1000308",
+                "CustomerName": "ZPT"
+            },
+            {
+                "Customer": "1000307",
+                "CustomerName": "PRT"
+            },
+            {
+                "Customer": "1000306",
+                "CustomerName": "Frank"
+            },
+            {
+                "Customer": "1000305",
+                "CustomerName": "Petron Corporation"
+            },
+            {
+                "Customer": "1000303",
+                "CustomerName": "RPC Customer"
+            },
+            {
+                "Customer": "1000302",
+                "CustomerName": "PP"
+            },
+            {
+                "Customer": "1000301",
+                "CustomerName": "MRP"
+            },
+            {
+                "Customer": "1000300",
+                "CustomerName": "Michelle Edward"
+            },
+            {
+                "Customer": "1000289",
+                "CustomerName": "Pag Utopia"
+            },
+            {
+                "Customer": "1000288",
+                "CustomerName": "Pagani Zone2"
+            },
+            {
+                "Customer": "1000287",
+                "CustomerName": "Pag Zonda - Sales group1"
+            },
+            {
+                "Customer": "1000286",
+                "CustomerName": "Poco"
+            },
+            {
+                "Customer": "1000285",
+                "CustomerName": "Seduku"
+            },
+            {
+                "Customer": "1000284",
+                "CustomerName": "Black Rock"
+            },
+            {
+                "Customer": "1000283",
+                "CustomerName": "BenQ"
+            },
+            {
+                "Customer": "1000282",
+                "CustomerName": "Lenovo"
+            },
+            {
+                "Customer": "1000281",
+                "CustomerName": "DAIKIN"
+            },
+            {
+                "Customer": "1000280",
+                "CustomerName": "SANY"
+            },
+            {
+                "Customer": "1000278",
+                "CustomerName": "Jordan"
+            },
+            {
+                "Customer": "1000277",
+                "CustomerName": "Domestic Customer"
+            },
+            {
+                "Customer": "1000276",
+                "CustomerName": "dfe"
+            },
+            {
+                "Customer": "1000272",
+                "CustomerName": "Alice"
+            },
+            {
+                "Customer": "1000271",
+                "CustomerName": "Customer C4C 1"
+            },
+            {
+                "Customer": "1000261",
+                "CustomerName": "Vitarich"
+            },
+            {
+                "Customer": "1000259",
+                "CustomerName": "Customer - 1001 Plant"
+            },
+            {
+                "Customer": "1000258",
+                "CustomerName": "Customer - 1000 Plant"
+            },
+            {
+                "Customer": "1000257",
+                "CustomerName": "1001 plant"
+            },
+            {
+                "Customer": "1000256",
+                "CustomerName": "CMS - 11"
+            },
+            {
+                "Customer": "1000255",
+                "CustomerName": "CSM-10"
+            },
+            {
+                "Customer": "1000254",
+                "CustomerName": "CSM-9"
+            },
+            {
+                "Customer": "1000253",
+                "CustomerName": "DMC Customer"
+            },
+            {
+                "Customer": "1000252",
+                "CustomerName": "Credit Management Customer"
+            },
+            {
+                "Customer": "1000251",
+                "CustomerName": "Credit Management Customer"
+            },
+            {
+                "Customer": "1000250",
+                "CustomerName": "AMZ Customer"
+            },
+            {
+                "Customer": "1000249",
+                "CustomerName": "AMC Customer"
+            },
+            {
+                "Customer": "1000227",
+                "CustomerName": "cstomer group"
+            },
+            {
+                "Customer": "1000226",
+                "CustomerName": "Gold stars llc"
+            },
+            {
+                "Customer": "1000225",
+                "CustomerName": "Domestic Customer 5"
+            },
+            {
+                "Customer": "1000224",
+                "CustomerName": "TESTINg-02"
+            },
+            {
+                "Customer": "1000223",
+                "CustomerName": "TESTINGGGGGG"
+            },
+            {
+                "Customer": "1000213",
+                "CustomerName": "C4C Customer"
+            },
+            {
+                "Customer": "1000211",
+                "CustomerName": "RO"
+            },
+            {
+                "Customer": "1000199",
+                "CustomerName": "Prabhu Deva"
+            },
+            {
+                "Customer": "1000183",
+                "CustomerName": "Cust 4"
+            },
+            {
+                "Customer": "1000182",
+                "CustomerName": "Cust 3"
+            },
+            {
+                "Customer": "1000181",
+                "CustomerName": "Test 2"
+            },
+            {
+                "Customer": "1000180",
+                "CustomerName": "Cust 1"
+            },
+            {
+                "Customer": "1000178",
+                "CustomerName": "Customer B"
+            },
+            {
+                "Customer": "1000173",
+                "CustomerName": "Customer B"
+            },
+            {
+                "Customer": "1000172",
+                "CustomerName": "Customer B"
+            },
+            {
+                "Customer": "1000171",
+                "CustomerName": "Jameel Uddin"
+            },
+            {
+                "Customer": "1000167",
+                "CustomerName": "Jameel Uddin"
+            },
+            {
+                "Customer": "1000154",
+                "CustomerName": "ABC Company Ae(1000)"
+            },
+            {
+                "Customer": "1000153",
+                "CustomerName": "Saritha Dhasireddy"
+            },
+            {
+                "Customer": "1000152",
+                "CustomerName": "Saritha Dhasireddy"
+            },
+            {
+                "Customer": "1000151",
+                "CustomerName": "HR"
+            },
+            {
+                "Customer": "1000150",
+                "CustomerName": "Test Customer"
+            },
+            {
+                "Customer": "1000149",
+                "CustomerName": "Trading Customer"
+            },
+            {
+                "Customer": "1000148",
+                "CustomerName": "MTS Customer"
+            },
+            {
+                "Customer": "1000147",
+                "CustomerName": "MTO Customer"
+            },
+            {
+                "Customer": "1000145",
+                "CustomerName": "RP"
+            },
+            {
+                "Customer": "1000144",
+                "CustomerName": "Test Cust"
+            },
+            {
+                "Customer": "1000143",
+                "CustomerName": "CX Company Pvt Ltd"
+            },
+            {
+                "Customer": "1000142",
+                "CustomerName": "SH Company"
+            },
+            {
+                "Customer": "1000141",
+                "CustomerName": "HVMP Company"
+            },
+            {
+                "Customer": "1000140",
+                "CustomerName": "PMVH Company"
+            },
+            {
+                "Customer": "1000120",
+                "CustomerName": "CREDIT MANAGEMENT"
+            },
+            {
+                "Customer": "1000091",
+                "CustomerName": "Sanduyells PTE"
+            },
+            {
+                "Customer": "1000090",
+                "CustomerName": "DOMESTIC CUSTOER CO.CODE 1000"
+            },
+            {
+                "Customer": "1000081",
+                "CustomerName": "Customer Domestic"
+            },
+            {
+                "Customer": "1000080",
+                "CustomerName": "Domestic Customer AE9"
+            },
+            {
+                "Customer": "1000073",
+                "CustomerName": "US DOMESTIC CUSTOMER 6"
+            },
+            {
+                "Customer": "1000072",
+                "CustomerName": "Testing Cust"
+            },
+            {
+                "Customer": "1000071",
+                "CustomerName": "US DOMESTIC CUSTOMER 6-2000"
+            },
+            {
+                "Customer": "1000070",
+                "CustomerName": "Domestic Customer 3 -1000"
+            },
+            {
+                "Customer": "1000060",
+                "CustomerName": "Test Customer"
+            },
+            {
+                "Customer": "1000059",
+                "CustomerName": "US DOMESTIC CUSTOMER 6"
+            },
+            {
+                "Customer": "1000058",
+                "CustomerName": "US DOMESTIC CUSTOMER 5"
+            },
+            {
+                "Customer": "1000057",
+                "CustomerName": "US DOMESTIC CUSTOMER 4"
+            },
+            {
+                "Customer": "1000056",
+                "CustomerName": "US DOMESTIC CUSTOMER 3"
+            },
+            {
+                "Customer": "1000055",
+                "CustomerName": "US DOMESTIC CUSTOMER 2"
+            },
+            {
+                "Customer": "1000054",
+                "CustomerName": "Domestic Customer AE99"
+            },
+            {
+                "Customer": "1000051",
+                "CustomerName": "US DOMESTIC CUSTOMER 1"
+            },
+            {
+                "Customer": "1000050",
+                "CustomerName": "Domestic supplier AE99"
+            },
+            {
+                "Customer": "1000041",
+                "CustomerName": "AK Enterprises"
+            },
+            {
+                "Customer": "1000040",
+                "CustomerName": "Domestic Customer"
+            },
+            {
+                "Customer": "1000030",
+                "CustomerName": "Party Entitled to Dispose"
+            },
+            {
+                "Customer": "1000026",
+                "CustomerName": "Domestic MTO Customer"
+            },
+            {
+                "Customer": "1000025",
+                "CustomerName": "React Group"
+            },
+            {
+                "Customer": "1000024",
+                "CustomerName": "Domestic Customer 3"
+            },
+            {
+                "Customer": "1000022",
+                "CustomerName": "Domestic Customer 2"
+            },
+            {
+                "Customer": "1000021",
+                "CustomerName": "Domestic Customer 1"
+            },
+            {
+                "Customer": "1000011",
+                "CustomerName": "RSKSS Developers"
+            },
+            {
+                "Customer": "1000010",
+                "CustomerName": "Srinivas Thatikonda"
+            },
+            {
+                "Customer": "1000004",
+                "CustomerName": "Silverstar"
+            },
+            {
+                "Customer": "1000003",
+                "CustomerName": "1000 Plant As Supplier"
+            },
+            {
+                "Customer": "1000002",
+                "CustomerName": "ABC Company Private Limited"
+            },
+            {
+                "Customer": "36980",
+                "CustomerName": "BMW OWNER OF CAR"
+            },
+            {
+                "Customer": "2000",
+                "CustomerName": "ICO 2000 X"
+            },
+            {
+                "Customer": "1201",
+                "CustomerName": "1200 Company Customer"
+            },
+            {
+                "Customer": "1200",
+                "CustomerName": "1200 Almika Heating"
+            },
+            {
+                "Customer": "1100",
+                "CustomerName": "Innovate Plant"
+            },
+            {
+                "Customer": "1000",
+                "CustomerName": "ICO 1000 X"
+            }
+        ]
+    ],
+    "currencies": [
+        {
+            "code": "AED",
+            "value": "UAE Dirham"
+        },
+        {
+            "code": "AFN",
+            "value": "Afghani"
+        },
+        {
+            "code": "ALL",
+            "value": "Albanian Lek"
+        },
+        {
+            "code": "AMD",
+            "value": "Armenian Dram"
+        },
+        {
+            "code": "ANG",
+            "value": "N. Ant. Guilder"
+        },
+        {
+            "code": "AOA",
+            "value": "Angolan Kwanza"
+        },
+        {
+            "code": "ARS",
+            "value": "Argentine Peso"
+        },
+        {
+            "code": "AUD",
+            "value": "Austr. Dollar"
+        },
+        {
+            "code": "AWG",
+            "value": "Aruban Florin"
+        },
+        {
+            "code": "AZN",
+            "value": "Azerb. Manat"
+        },
+        {
+            "code": "BAM",
+            "value": "B. + H. C. Mark"
+        },
+        {
+            "code": "BBD",
+            "value": "Barbados Dollar"
+        },
+        {
+            "code": "BDT",
+            "value": "Bangladesh Taka"
+        },
+        {
+            "code": "BGN",
+            "value": "Bulgarian Lev"
+        },
+        {
+            "code": "BHD",
+            "value": "Bahrain Dinar"
+        },
+        {
+            "code": "BIF",
+            "value": "Burundi Franc"
+        },
+        {
+            "code": "BMD",
+            "value": "Bermudan Dollar"
+        },
+        {
+            "code": "BND",
+            "value": "Brunei Dollar"
+        },
+        {
+            "code": "BOB",
+            "value": "Boliviano"
+        },
+        {
+            "code": "BRL",
+            "value": "Brazilian Real"
+        },
+        {
+            "code": "BSD",
+            "value": "Bahaman Dollar"
+        },
+        {
+            "code": "BTN",
+            "value": "Bhutan Ngultrum"
+        },
+        {
+            "code": "BWP",
+            "value": "Botswana Pula"
+        },
+        {
+            "code": "BYN",
+            "value": "Belarus. Ruble"
+        },
+        {
+            "code": "BYR",
+            "value": "Belorus. Ruble"
+        },
+        {
+            "code": "BZD",
+            "value": "Belize Dollar"
+        },
+        {
+            "code": "CAD",
+            "value": "Canadian Dollar"
+        },
+        {
+            "code": "CDF",
+            "value": "Congolese Franc"
+        },
+        {
+            "code": "CHF",
+            "value": "Swiss Franc"
+        },
+        {
+            "code": "CLF",
+            "value": "Unidad Fomento"
+        },
+        {
+            "code": "CLP",
+            "value": "Chilean Peso"
+        },
+        {
+            "code": "CNY",
+            "value": "Chinese Yuan"
+        },
+        {
+            "code": "COP",
+            "value": "Colombian Peso"
+        },
+        {
+            "code": "CRC",
+            "value": "Cost.Rica Colon"
+        },
+        {
+            "code": "CUC",
+            "value": "Peso Convertib."
+        },
+        {
+            "code": "CUP",
+            "value": "Cuban Peso"
+        },
+        {
+            "code": "CVE",
+            "value": "Cape V. Escudo"
+        },
+        {
+            "code": "CZK",
+            "value": "Czech Krona"
+        },
+        {
+            "code": "DJF",
+            "value": "Djibouti Franc"
+        },
+        {
+            "code": "DKK",
+            "value": "Danish Krone"
+        },
+        {
+            "code": "DOP",
+            "value": "Dominican Peso"
+        },
+        {
+            "code": "DZD",
+            "value": "Algerian Dinar"
+        },
+        {
+            "code": "EGP",
+            "value": "Egyptian Pound"
+        },
+        {
+            "code": "ERN",
+            "value": "Eritrean Nafka"
+        },
+        {
+            "code": "ETB",
+            "value": "Ethiopian Birr"
+        },
+        {
+            "code": "EUR",
+            "value": "Euro"
+        },
+        {
+            "code": "FJD",
+            "value": "Fiji Dollar"
+        },
+        {
+            "code": "FKP",
+            "value": "Falkland Pound"
+        },
+        {
+            "code": "GBP",
+            "value": "British Pound"
+        },
+        {
+            "code": "GEL",
+            "value": "Georgian Lari"
+        },
+        {
+            "code": "GHS",
+            "value": "Ghanian Cedi"
+        },
+        {
+            "code": "GIP",
+            "value": "Gibraltar Pound"
+        },
+        {
+            "code": "GMD",
+            "value": "Gambian Dalasi"
+        },
+        {
+            "code": "GNF",
+            "value": "Guinean Franc"
+        },
+        {
+            "code": "GTQ",
+            "value": "Guatem. Quetzal"
+        },
+        {
+            "code": "GYD",
+            "value": "Guyana Dollar"
+        },
+        {
+            "code": "HKD",
+            "value": "H.K.Dollar"
+        },
+        {
+            "code": "HNL",
+            "value": "Hond. Lempira"
+        },
+        {
+            "code": "HRK",
+            "value": "Croatian Kuna"
+        },
+        {
+            "code": "HTG",
+            "value": "Haitian Gourde"
+        },
+        {
+            "code": "HUF",
+            "value": "Hung. Forint"
+        },
+        {
+            "code": "IDR",
+            "value": "ID Rupiah"
+        },
+        {
+            "code": "ILS",
+            "value": "Israel Shekel"
+        },
+        {
+            "code": "INR",
+            "value": "Indian Rupee"
+        },
+        {
+            "code": "IQD",
+            "value": "Iraqui Dinar"
+        },
+        {
+            "code": "IRR",
+            "value": "Iranian Rial"
+        },
+        {
+            "code": "ISK",
+            "value": "Iceland Krona"
+        },
+        {
+            "code": "JMD",
+            "value": "Jamaican Dollar"
+        },
+        {
+            "code": "JOD",
+            "value": "Jordanian Dinar"
+        },
+        {
+            "code": "JPY",
+            "value": "Japanese Yen"
+        },
+        {
+            "code": "KES",
+            "value": "Keny. Shilling"
+        },
+        {
+            "code": "KGS",
+            "value": "Kyrgyzstan Som"
+        },
+        {
+            "code": "KHR",
+            "value": "Cambodian Riel"
+        },
+        {
+            "code": "KMF",
+            "value": "Comoros Franc"
+        },
+        {
+            "code": "KPW",
+            "value": "N. Korean Won"
+        },
+        {
+            "code": "KRW",
+            "value": "S. Korean Won"
+        },
+        {
+            "code": "KWD",
+            "value": "Kuwaiti Dinar"
+        },
+        {
+            "code": "KYD",
+            "value": "Cayman Dollar"
+        },
+        {
+            "code": "KZT",
+            "value": "Kazakst. Tenge"
+        },
+        {
+            "code": "LAK",
+            "value": "Laotian Kip"
+        },
+        {
+            "code": "LBP",
+            "value": "Lebanese Pound"
+        },
+        {
+            "code": "LKR",
+            "value": "Sri Lanka Rupee"
+        },
+        {
+            "code": "LRD",
+            "value": "Liberian Dollar"
+        },
+        {
+            "code": "LSL",
+            "value": "Lesotho Loti"
+        },
+        {
+            "code": "LYD",
+            "value": "Libyan Dinar"
+        },
+        {
+            "code": "MAD",
+            "value": "Moroccan Dirham"
+        },
+        {
+            "code": "MDL",
+            "value": "Moldavian Leu"
+        },
+        {
+            "code": "MGA",
+            "value": "Madagasc.Ariary"
+        },
+        {
+            "code": "MKD",
+            "value": "Maced. Denar"
+        },
+        {
+            "code": "MMK",
+            "value": "Myanmar Kyat"
+        },
+        {
+            "code": "MNT",
+            "value": "Mong. Tugrik"
+        },
+        {
+            "code": "MOP",
+            "value": "Macao Pataca"
+        },
+        {
+            "code": "MRO",
+            "value": "Maurit. Ouguiya"
+        },
+        {
+            "code": "MRU",
+            "value": "Ouguiya"
+        },
+        {
+            "code": "MUR",
+            "value": "Mauritian Rupee"
+        },
+        {
+            "code": "MVR",
+            "value": "Maldive Rufiyaa"
+        },
+        {
+            "code": "MWK",
+            "value": "Malawi Kwacha"
+        },
+        {
+            "code": "MXN",
+            "value": "Mexican Pesos"
+        },
+        {
+            "code": "MXV",
+            "value": "Mexic Uni. Inv."
+        },
+        {
+            "code": "MYR",
+            "value": "Mal. Ringgit"
+        },
+        {
+            "code": "MZN",
+            "value": "Mozamb. Metical"
+        },
+        {
+            "code": "NAD",
+            "value": "Namibian Dollar"
+        },
+        {
+            "code": "NGN",
+            "value": "Nigerian Naira"
+        },
+        {
+            "code": "NIO",
+            "value": "Nicar. Cor. Oro"
+        },
+        {
+            "code": "NOK",
+            "value": "Norwegian Krone"
+        },
+        {
+            "code": "NPR",
+            "value": "Nepalese Rupee"
+        },
+        {
+            "code": "NZD",
+            "value": "N. Zeal. Dollar"
+        },
+        {
+            "code": "OMR",
+            "value": "Omani Rial"
+        },
+        {
+            "code": "PAB",
+            "value": "Panam. Balboa"
+        },
+        {
+            "code": "PEN",
+            "value": "Peruvian Sol"
+        },
+        {
+            "code": "PGK",
+            "value": "Papua NG Kina"
+        },
+        {
+            "code": "PHP",
+            "value": "Philippine Peso"
+        },
+        {
+            "code": "PKR",
+            "value": "Pakistani Rupee"
+        },
+        {
+            "code": "PLN",
+            "value": "Polish Zloty"
+        },
+        {
+            "code": "PYG",
+            "value": "Parag. Guarani"
+        },
+        {
+            "code": "QAR",
+            "value": "Qatar Rial"
+        },
+        {
+            "code": "RON",
+            "value": "Romanian Leu"
+        },
+        {
+            "code": "RSD",
+            "value": "Serbian Dinar"
+        },
+        {
+            "code": "RUB",
+            "value": "Russian Ruble"
+        },
+        {
+            "code": "RWF",
+            "value": "Rwandan Franc"
+        },
+        {
+            "code": "SAR",
+            "value": "Saudi Riyal"
+        },
+        {
+            "code": "SBD",
+            "value": "Sol.Isl. Dollar"
+        },
+        {
+            "code": "SCR",
+            "value": "Seychel. Rupee"
+        },
+        {
+            "code": "SDG",
+            "value": "Sudanese Pound"
+        },
+        {
+            "code": "SEK",
+            "value": "Swedish Krona"
+        },
+        {
+            "code": "SGD",
+            "value": "Sing. Dollar"
+        },
+        {
+            "code": "SHP",
+            "value": "St.Helena Pound"
+        },
+        {
+            "code": "SLE",
+            "value": "Leone"
+        },
+        {
+            "code": "SLL",
+            "value": "Sierra L. Leone"
+        },
+        {
+            "code": "SOS",
+            "value": "Soma. Shilling"
+        },
+        {
+            "code": "SRD",
+            "value": "Surinam Dollar"
+        },
+        {
+            "code": "SSP",
+            "value": "S. Sudan Pound"
+        },
+        {
+            "code": "STN",
+            "value": "Sao Tome Dobra"
+        },
+        {
+            "code": "SVC",
+            "value": "El Salv. Colon"
+        },
+        {
+            "code": "SYP",
+            "value": "Syrian Pound"
+        },
+        {
+            "code": "SZL",
+            "value": "Swaz. Lilangeni"
+        },
+        {
+            "code": "THB",
+            "value": "Baht"
+        },
+        {
+            "code": "TJS",
+            "value": "Tajik. Somoni"
+        },
+        {
+            "code": "TMT",
+            "value": "Turkmen. Manat"
+        },
+        {
+            "code": "TND",
+            "value": "Tunisian Dinar"
+        },
+        {
+            "code": "TOP",
+            "value": "Tongan Pa'anga"
+        },
+        {
+            "code": "TRY",
+            "value": "Turkish Lira"
+        },
+        {
+            "code": "TTD",
+            "value": "T. + T. Dollar"
+        },
+        {
+            "code": "TWD",
+            "value": "Taiwan Dollar"
+        },
+        {
+            "code": "TZS",
+            "value": "Tanz. Shilling"
+        },
+        {
+            "code": "UAH",
+            "value": "Hryvnia"
+        },
+        {
+            "code": "UGX",
+            "value": "Ugan. Shilling"
+        },
+        {
+            "code": "USD",
+            "value": "US Dollar"
+        },
+        {
+            "code": "UYU",
+            "value": "Uruguayan Peso"
+        },
+        {
+            "code": "UZS",
+            "value": "Uzbekistan Som"
+        },
+        {
+            "code": "VEF",
+            "value": "Venez. Bolivar"
+        },
+        {
+            "code": "VES",
+            "value": "Bolivar Sober."
+        },
+        {
+            "code": "VND",
+            "value": "Vietnamese Dong"
+        },
+        {
+            "code": "VUV",
+            "value": "Vanuatu Vatu"
+        },
+        {
+            "code": "WST",
+            "value": "Samoan Tala"
+        },
+        {
+            "code": "XAF",
+            "value": "CFA Franc BEAC"
+        },
+        {
+            "code": "XCD",
+            "value": "E. Carrib. Doll"
+        },
+        {
+            "code": "XCG",
+            "value": "Car. Guilder"
+        },
+        {
+            "code": "XOF",
+            "value": "CFA Franc BCEAO"
+        },
+        {
+            "code": "XPF",
+            "value": "CFP Franc"
+        },
+        {
+            "code": "YER",
+            "value": "Yemeni Ryal"
+        },
+        {
+            "code": "ZAR",
+            "value": "S. Africa Rand"
+        },
+        {
+            "code": "ZMW",
+            "value": "Zambian Kwacha"
+        },
+        {
+            "code": "ZWG",
+            "value": "Zimbabwe Gold"
+        },
+        {
+            "code": "ZWL",
+            "value": "Zimbabwe Dollar"
+        }
+    ]
+}

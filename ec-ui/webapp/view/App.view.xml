@@ -1,7 +1,9 @@
 <mvc:View controllerName="com.ecui.controller.App"
-    displayBlock="true"
-    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <App id="app">
+    <!-- <Shell> -->
+    <App id="app" width="100%">
+
     </App>
+    <!-- </Shell> -->
 </mvc:View>

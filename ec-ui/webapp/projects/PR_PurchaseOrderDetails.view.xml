@@ -1,0 +1,243 @@
+<mvc:View controllerName="com.ecui.projects.PR_PurchaseOrderDetails"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"
+	xmlns:u="sap.uxap" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<u:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false" showFooter="{visible>/footer}">
+
+		<u:headerTitle>
+			<u:ObjectPageDynamicHeaderTitle>
+				<u:expandedHeading>
+					<Title text="{PurchaseOrderMdl>/projectDescription}" wrapping="true" />
+				</u:expandedHeading>
+
+				<u:snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="sap-icon://capital-projects" backgroundColor="Random"
+							class="sapUiTinyMarginEnd" />
+						<Title text="{PurchaseOrderMdl>/projectDescription}" wrapping="true" />
+					</m:FlexBox>
+				</u:snappedHeading>
+
+				<u:expandedContent>
+					<Text text="{PurchaseOrderMdl>/project}" />
+				</u:expandedContent>
+
+				<u:snappedContent>
+					<Text text="{PurchaseOrderMdl>/project}" />
+				</u:snappedContent>
+
+				<u:snappedTitleOnMobile>
+					<Title text="{PurchaseOrderMdl>/project}" />
+				</u:snappedTitleOnMobile>
+
+				<!-- <u:actions>
+                    <Button text="Edit" type="Emphasized"/>
+                </u:actions> -->
+
+				<u:navigationActions>
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+						press="handleFullScreen" id="enterFullScreenBtn"
+						tooltip="{i18n>ms_enterFullScreenMode}"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+						press="handleExitFullScreen" id="exitFullScreenBtn"
+						tooltip="{i18n>ms_exitFullScreenMode}"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+						press="handleClose" tooltip="{i18n>ms_closeMiddleColumn}" visible="true" />
+				</u:navigationActions>
+			</u:ObjectPageDynamicHeaderTitle>
+		</u:headerTitle>
+
+		<u:headerContent>
+
+			<m:FlexBox wrap="Wrap">
+				<m:Avatar src="sap-icon://capital-projects" backgroundColor="Random" displaySize="L"
+					class="sapUiTinyMarginEnd" />
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Start Date" text="01-01-2025 End Date : 01-12-2025" />
+
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Manager" text="{PurchaseOrderMdl>/projectManagerName}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Company"
+						text="{PurchaseOrderMdl>/companyName} ({PurchaseOrderMdl>/companyCode})" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Currency" text="{PurchaseOrderMdl>/currency}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Profile" text="{PurchaseOrderMdl>/projectProfile}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Type" text="{PurchaseOrderMdl>/enterpriseProjectType}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Stock" text="{PurchaseOrderMdl>/projectStock}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Status" />
+					<ObjectStatus text="{PurchaseOrderMdl>/StatusText}"
+						state="{PurchaseOrderMdl>/StatusState}" />
+					<!-- <ObjectStatus text="{PurchaseOrderMdl>/priority}"
+						state="{PurchaseOrderMdl>/priorityState}" /> -->
+				</layout:VerticalLayout>
+
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Priority" />
+					<!-- <ObjectStatus text="{PurchaseOrderMdl>/StatusText}"
+						state="{PurchaseOrderMdl>/StatusState}" /> -->
+					<ObjectStatus text="{PurchaseOrderMdl>/priority}"
+						state="{PurchaseOrderMdl>/priorityState}" />
+				</layout:VerticalLayout>
+			</m:FlexBox>
+
+
+		</u:headerContent>
+		<u:sections>
+			<u:ObjectPageSection titleUppercase="false" title="Order Details">
+				<u:subSections>
+					<u:ObjectPageSubSection>
+						<VBox>
+							<HBox justifyContent="End">
+								<Button enabled="{= !${visible>/footer}}"
+									text="Customer Contract Mapping" type="Ghost"
+									press="onCustomerContractMappingButtonPress" />
+							</HBox>
+							<form:SimpleForm editable="false" layout="ColumnLayout" columnsL="4"
+								columnsM="3" columnsXL="6">
+								<form:content>
+									<Label text="Order ID" />
+									<Text text="{PurchaseOrderMdl>/purchaseOrders/PurchaseOrder}" />
+									<Label text="Status" />
+									<ObjectStatus text="{PurchaseOrderMdl>/purchaseOrders/Status}"
+										state="{PurchaseOrderMdl>/purchaseOrders/StatusState}" />
+									<!-- <Label text="Purchasing Doc. Type" />
+									<Text text="{parts:[{path:'PurchaseOrderMdl>/purchaseOrderType'},
+									{path:'masterDataMdl>/purchase_order_doc_types'}],
+									formatter:'.docTypeFormatter'}" /> -->
+									<Label text="Supplier" />
+									<Link text="{PurchaseOrderMdl>/purchaseOrders/Supplier}" />
+									<Label text="Purchase Order Date" />
+									<Text
+										text="{PurchaseOrderMdl>/purchaseOrders/PurchaseOrderDate}" />
+									<!-- <Label text="Purchasing Group"/>
+									<Text text="{parts:[{path:'PurchaseOrderMdl>/purchasingGroup'},
+									{path:'masterDataMdl>/purchasing_group'}],
+									formatter:'.formatter.sectionTitleFormatter'}"/> -->
+									<!-- <Label text="Purchasing Organization"/>
+									<Text text="{PurchaseOrderMdl>/purchaseOrders/purchasingOrgName}"/> -->
+									<Label text="Company" />
+									<Text text="{PurchaseOrderMdl>/purchaseOrders/CompanyName}" />
+									<Label text="Net Value" />
+									<ObjectNumber
+										number="{PurchaseOrderMdl>/purchaseOrders/NetOrderValue}"
+										unit="{PurchaseOrderMdl>/purchaseOrders/Currency}" />
+									<Label text="Created By" />
+									<Link text="{PurchaseOrderMdl>/purchaseOrders/CreatedBy}" />
+									<!-- <Label text="Approval Status"/>
+									<Text text="Approved automatically" />
+									<Label text="Approver Name"/>
+									<Text text="Approved automatically" /> -->
+								</form:content>
+							</form:SimpleForm>
+						</VBox>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+			<u:ObjectPageSection titleUppercase="false" title="Items">
+				<u:subSections>
+					<u:ObjectPageSubSection>
+						<Table sticky="ColumnHeaders,HeaderToolbar"
+							items="{PurchaseOrderMdl>/purchaseOrders/items}"
+							itemPress="onPurchaseOrderPress">
+							<infoToolbar>
+								<Toolbar>
+									<Label
+										text="Items ({= ${PurchaseOrderMdl>/purchaseOrders/items}.length})" />
+								</Toolbar>
+							</infoToolbar>
+
+							<columns>
+								<Column width="10rem">
+									<Text text="Item ID" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Product" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Quantity" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+									<Text text="Net Value" />
+								</Column>
+								<Column>
+									<Text text="Sales Contract" />
+								</Column>
+								<Column>
+									<Text text="Sales Contract Item" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<ObjectIdentifier title="{PurchaseOrderMdl>Item}" />
+										<Text text="{PurchaseOrderMdl>Material}" />
+										<ObjectNumber number="{PurchaseOrderMdl>OrderQuantity}"
+											unit="{PurchaseOrderMdl>OrderQuantityUOM}"
+											change="totalCalculation" />
+										<ObjectNumber number="{PurchaseOrderMdl>NetOrderValue}"
+											unit="{PurchaseOrderMdl>Currency}"
+											change="totalCalculation" />
+										<Input id="inputSalesOrder"
+											value="{PurchaseOrderMdl>SalesOrder}"
+											editable="{visible>/editable}"
+											suggestionItems="{PurchaseOrderMdl>/salesOrder}"
+											showSuggestion="true" showValueHelp="true"
+											valueHelpRequest="onValueHelpRequestSalesOrder">
+											<suggestionItems>
+												<core:Item key="{PurchaseOrderMdl>salesOrder}"
+													text="{PurchaseOrderMdl>salesOrder}" />
+											</suggestionItems>
+										</Input>
+
+										<Input value="{PurchaseOrderMdl>sales_item}"
+											editable="{visible>/editable}"
+											suggestionItems="{PurchaseOrderMdl>/sales_orders/0/items}"
+											showSuggestion="true" showValueHelp="true"
+											valueHelpRequest="onValueHelpRequestItems">
+											<suggestionItems>
+												<core:Item key="{PurchaseOrderMdl>item}"
+													text="{PurchaseOrderMdl>product} ({PurchaseOrderMdl>item})"></core:Item>
+											</suggestionItems>
+										</Input>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+		</u:sections>
+		<u:footer>
+			<OverflowToolbar>
+
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="Save" type="Emphasized" press="onSaveButtonPress" />
+				<Button text="{i18n>btn_cancel}" type="Ghost" press="onPressCancel" />
+			</OverflowToolbar>
+		</u:footer>
+	</u:ObjectPageLayout>
+
+</mvc:View>

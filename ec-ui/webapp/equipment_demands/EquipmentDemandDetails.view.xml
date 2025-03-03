@@ -1,0 +1,214 @@
+<mvc:View controllerName="com.ecui.equipment_demands.EquipmentDemandDetails"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <uxap:ObjectPageLayout id="page_eqdDetails" showHeaderContent="true" showFooter="true" useIconTabBar="true" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+
+                <uxap:expandedHeading>
+                    <Title text="Equipment Demand Details" />
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <Title text="Equipment Demand Details" />
+                </uxap:snappedHeading>
+
+                <!--    <uxap:expandedContent>
+                    <ObjectAttribute title="ID" text="{propertyObjectHierarchiesMdl>/id}" />
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <ObjectAttribute title="ID" text="{propertyObjectHierarchiesMdl>/id}" />
+                </uxap:snappedContent> -->
+
+                <uxap:snappedTitleOnMobile>
+                    <Title text="{propertyObjectHierarchiesMdl>/name}: {propertyObjectHierarchiesMdl>/id}"/>
+                </uxap:snappedTitleOnMobile>
+                <!--  <uxap:actions>
+                    <Button type="Emphasized" text="Save"/>
+                    <Button type="Transparent" text="Save and Close" />
+                    <Button type="Transparent" text="Close" press="handleClose"/>
+                </uxap:actions> -->
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null}"/>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{parts:['/actionButtonsInfo/midColumn/exitFullScreen', 'equipmentDemandDetailsMdl>/item'], formatter:'.formatter.showHideFullScreen'}"/>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="Close end column" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <HBox justifyContent="Start" wrap="Wrap">
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Demand ID" />
+                    <ObjectStatus text="10" />
+
+                    <ObjectIdentifier title="Demand Name" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="equipment cost" />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="WBS Element" />
+                    <ObjectStatus text="Design" />
+
+                    <ObjectIdentifier title="WBS Element" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="Design" />
+
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Activity Type" />
+                    <ObjectStatus text="Machine (MACHIN)" />
+
+                    <ObjectIdentifier title="Planned Effort" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="9.000 H" />
+
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Cost Center" />
+                    <ObjectStatus text="Testing cost center (10001000)" />
+
+                    <ObjectIdentifier title="Date Alignment" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="No Alignment" />
+
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Demand Start Date" />
+                    <ObjectStatus text="09/01/2023" />
+
+                    <ObjectIdentifier title="Demand End Date" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="09/01/2023" />
+
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Demand Status" />
+                    <ObjectStatus text="Created" />
+                </layout:VerticalLayout>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Confirm Equipment Utilization" titleUppercase="false">
+                <uxap:subSections>
+
+                    <uxap:ObjectPageSubSection title="Confirm Equipment Utilization" mode="Expanded" titleUppercase="false">
+                        <uxap:blocks>
+                            <!-- <VBox>
+                                <table:TreeTable id="table_propertyHierarchy" selectionBehavior="Row" rowActionCount="1" rows="{path:'propertyObjectHierarchiesMdl>/propertyHierarchy', parameters: {arrayNames:['children']}}" selectionMode="Single" rowSelectionChange="onSelectRow" toggleOpenState="handleToggleOpenState" enableSelectAll="false" ariaLabelledBy="title">
+                                    <table:extension>
+                                        <Bar class="sapUiNoContentPadding">
+                                            <contentLeft>
+                                            </contentLeft>
+                                            <contentRight>
+                                                <Button visible="{visible>/edit}" id="btn_addObject" text="Add" press="onAddPropertyDialog" />
+                                                <Button visible="{visible>/edit}" id="btn_editObject" text="Edit" enabled="false" press="onPressEditProperty" />
+                                                <Button text="Collapse All" press="onCollapseAll" />
+                                                <Button text="Expand All" press="onExpandFirstLevel" />
+                                            </contentRight>
+                                        </Bar>
+                                    </table:extension>
+                                    <table:noData>
+                                        <FlexBox justifyContent="Center" alignItems="Center" fitContainer="true">
+                                            <Text text="To add new node, choose &quot;Add&quot;."/>
+                                        </FlexBox>
+                                    </table:noData>
+                                    <table:rowActionTemplate >
+                                        <table:RowAction>
+                                            <table:RowActionItem visible="{visible>/edit}" icon="sap-icon://decline" press="onPressDeleteProperty"/>
+                                        </table:RowAction>
+                                    </table:rowActionTemplate>
+                                    <table:columns>
+                                        <table:Column>
+                                            <Label text="Equipment" />
+                                            <table:template>
+                                                <Text text="{propertyObjectHierarchiesMdl>name}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <Label text="Description" />
+                                            <table:template>
+                                                <Text text="{propertyObjectHierarchiesMdl>description}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <Label text="Planned / Staffed / Actual" />
+                                            <table:template>
+                                                <Image src="../images/planned.png" height="100px"/>
+                                            </table:template>
+                                        </table:Column>
+                                    </table:columns>
+                                </table:TreeTable>
+                            </VBox> -->
+                            <Table id="table_eqdDetails" inset="false" items="{equipmentDemandDetailsMdl>/utilization}" mode="None" sticky="ColumnHeaders,HeaderToolbar">
+                                <noData>
+                                    <Text text="To start, set the relevant filters and choose &quot;Go&quot;."/>
+                                </noData>
+                                <columns>
+                                    <Column hAlign="Begin">
+                                        <Text text="Equipment" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                                        <Text text="Description" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Begin">
+                                        <Text text="{i18n>eqd_plannedStaffedActual}" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                                        <Text text="Confirmed Hours" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" width="5em" demandPopin="true" hAlign="Center">
+                                        <Text text="Actions" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" type="Active" press=".onListItemPress">
+                                        <cells>
+                                            <ObjectIdentifier title="10001"/>
+                                            <Text text="Cranes are tall birds with long legs, necks and usually long bills." />
+                                            <micro:ComparisonMicroChart size="S" scale=" " press="press">
+                                                <micro:data>
+                                                    <micro:ComparisonMicroChartData title="Planned Effort" value="5" color="Neutral" />
+                                                    <micro:ComparisonMicroChartData title="Actual Effort" value="0" color="Neutral"/>
+                                                    <micro:ComparisonMicroChartData title="Remaining Effort" value="0" color="Neutral"/>
+                                                </micro:data>
+                                            </micro:ComparisonMicroChart>
+                                            <VBox >
+                                                <Text text="Date: 02-12-2023" />
+                                                <Text text="Hours: 12:00" />
+                                                <Link text="View More..." press="onPressView"/>
+                                            </VBox>
+                                            <VBox>
+                                                <HBox justifyContent="Center" width="100%">
+                                                    <Button type="Ghost" icon="sap-icon://add" press="onPressAdd"/>
+                                                </HBox>
+                                            </VBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Save" width="70px" press="onPressSave" />
+                <Button type="Ghost" text="Discard" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

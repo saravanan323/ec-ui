@@ -1,0 +1,435 @@
+<mvc:View controllerName="com.ecui.payment_certifcate.PaymentCertifcateDetails"
+    xmlns:uxap="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true" height="100%" busyIndicatorDelay="0"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <uxap:ObjectPageLayout id="pageSystemDetail" showTitleInHeaderContent="true"
+        useIconTabBar="true" upperCaseAnchorBar="false" showFooter="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title id="titleId" text="{equipmentDemandDetailsMdl>/application_no}"
+                        class="sapUiSmallMarginBottom" />
+
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <Title text="{equipmentDemandDetailsMdl>/application_no}" wrapping="true" />
+                </uxap:snappedHeading>
+
+                <uxap:expandedContent>
+                    <Text text="ABC Suppliers Ltd." />
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <Text text="ABC Suppliers Ltd." />
+                </uxap:snappedContent>
+
+                <uxap:snappedTitleOnMobile>
+                    <Title text="ABC Suppliers Ltd." />
+                </uxap:snappedTitleOnMobile>
+
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="{i18n>ms_enterFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="{i18n>ms_exitFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="{i18n>ms_closemiddlecolumn}"
+                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+                </uxap:navigationActions>
+
+                <!-- <uxap:actions>
+                    <Button icon="sap-icon://edit" tooltip="{i18n>btn_edit}" type="Transparent"
+                enabled="{visible>/view}" press="onPressEdit" />
+                </uxap:actions> -->
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+
+            <HBox justifyContent="SpaceBetween">
+
+
+                <layout:VerticalLayout class="sapUiLargeMarginEnd">
+                    <FlexBox justifyContent="Start" alignItems="Start">
+                        <Image
+                            src="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.getImageSource'}"
+                            height="150px" width="190px" />
+                    </FlexBox>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Start Date" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/start_date}" />
+
+                    <ObjectIdentifier title="PA Start" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/pa_start}" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Due Date" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/due_date}" />
+
+                    <ObjectIdentifier title="PA End" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/pa_end}" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Order Number" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/po_number}" />
+
+                    <ObjectIdentifier title="Order Type" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="Standard PO" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Supplier" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/supplier_name}" />
+
+                    <ObjectIdentifier title="Retention" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/retention} %" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <!-- <ObjectIdentifier title="Status" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/pa_status}" /> -->
+
+                    <ObjectIdentifier title="Overall Status" />
+                    <ObjectStatus
+                        text="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusText'}"
+                        state="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusState'}"
+                        icon="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusIcon'}" />
+                </layout:VerticalLayout>
+
+                <HBox justifyContent="SpaceBetween">
+
+                    <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                        <ObjectIdentifier title="Revised Contract Value" />
+                        <ObjectStatus text="{equipmentDemandDetailsMdl>/revised_contract_value}" />
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout class="sapUiSmallMarginBegin">
+                        <ObjectIdentifier title="Total Gross Amount" />
+                        <ObjectStatus text=" 15334.00 AED" />
+
+                        <ObjectIdentifier title="Total Retention" class="sapUiTinyMarginTop" />
+                        <ObjectStatus text="2500.00 AED" />
+
+                        <ObjectIdentifier title="Total Net Amount" class="sapUiTinyMarginTop" />
+                        <ObjectStatus text="17345.00 AED" />
+                    </layout:VerticalLayout>
+                </HBox>
+            </HBox>
+        </uxap:headerContent>
+
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Previous">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <Panel id="id_Previos">
+                                <content>
+                                    <t:Table id="Table_Previos"
+                                        rows="{equipmentDemandDetailsMdl>/previous}"
+                                        visibleRowCount="5" selectionMode="None">
+
+                                        <t:columns>
+                                            <t:Column>
+                                                <Label text="Item" />
+                                                <t:template>
+                                                    <Text text="{equipmentDemandDetailsMdl>item_id}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Product" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>product_id}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Quantity" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>quantity}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Total NetValue" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>total_netvalue}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Current Period Quantity" />
+                                                <t:template>
+                                                    <HBox>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>current_period_qty}" />
+
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Current Period Amount" />
+                                                <t:template>
+                                                    <HBox>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>current_period_amount}" />
+
+
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="% Progress Completion" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>process_completion}"
+                                                        justifyContent="Center"
+                                                        class="sapUiTinyMarginBeginEnd" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Remarks" />
+                                                <t:template>
+                                                    <HBox justifyContent="Center"
+                                                        class="sapUiTinyMarginBeginEnd">
+                                                        <Button icon="sap-icon://comment"
+                                                            class="sapUiTinyMarginEnd" />
+                                                        <!-- <u:FileUploader
+                                                        icon="sap-icon://upload" iconOnly="true"
+                                                        tooltip="Upload File" /> -->
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                        </t:columns>
+                                    </t:Table>
+                                </content>
+                            </Panel>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+
+            <uxap:ObjectPageSection title="Current to Date">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <Panel id="id_CurrenttoDate">
+                                <content>
+                                    <t:Table id="Table_CurrenttoDate"
+                                        rows="{equipmentDemandDetailsMdl>/current_to_date}"
+                                        visibleRowCount="5" selectionMode="None">
+                                        <t:columns>
+                                            <t:Column>
+                                                <Label text="Item" />
+                                                <t:template>
+                                                    <Text text="{equipmentDemandDetailsMdl>item_id}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Product" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>product_id}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Quantity" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>quantity}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Total NetValue" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>total_netvalue}" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Current Period Quantity" />
+                                                <t:template>
+                                                    <HBox>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>current_period_qty}" />
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Current Period Amount" />
+                                                <t:template>
+                                                    <HBox>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>current_period_amount}" />
+
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="% Progress Completion" />
+                                                <t:template>
+                                                    <Text
+                                                        text="{equipmentDemandDetailsMdl>process_completion}"
+                                                        justifyContent="Center"
+                                                        class="sapUiTinyMarginBeginEnd" />
+                                                </t:template>
+                                            </t:Column>
+                                            <t:Column>
+                                                <Label text="Remarks" />
+                                                <t:template>
+                                                    <HBox justifyContent="Center"
+                                                        class="sapUiTinyMarginBeginEnd">
+                                                        <Button icon="sap-icon://comment"
+                                                            class="sapUiTinyMarginEnd" />
+                                                        <!-- <u:FileUploader
+                                                        icon="sap-icon://upload" iconOnly="true"
+                                                        tooltip="Upload File" /> -->
+                                                    </HBox>
+                                                </t:template>
+                                            </t:Column>
+                                        </t:columns>
+                                    </t:Table>
+                                </content>
+                            </Panel>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+
+            <uxap:ObjectPageSection title="Current Period">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox justifyContent="SpaceBetween" width="100%">
+                                <!-- Table Panel -->
+                                <Panel id="id_CurrentPeriod">
+                                    <content>
+                                        <t:Table id="Table_CurrentPeriod"
+                                            rows="{equipmentDemandDetailsMdl>/current_period}"
+                                            visibleRowCount="5" selectionMode="None">
+                                            <t:columns>
+                                                <t:Column>
+                                                    <Label text="Item" />
+                                                    <t:template>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>item_id}" />
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Product" />
+                                                    <t:template>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>product_id}" />
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Quantity" />
+                                                    <t:template>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>quantity}" />
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Total NetValue" />
+                                                    <t:template>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>total_netvalue}" />
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Current Period Quantity" />
+                                                    <t:template>
+                                                        <HBox>
+                                                            <Text
+                                                                text="{equipmentDemandDetailsMdl>current_period_qty}" />
+                                                        </HBox>
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Current Period Amount" />
+                                                    <t:template>
+                                                        <HBox>
+                                                            <Text
+                                                                text="{equipmentDemandDetailsMdl>current_period_amount}" />
+                                                        </HBox>
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="% Progress Completion" />
+                                                    <t:template>
+                                                        <Text
+                                                            text="{equipmentDemandDetailsMdl>process_completion}"
+                                                            justifyContent="Center"
+                                                            class="sapUiTinyMarginBeginEnd" />
+                                                    </t:template>
+                                                </t:Column>
+                                                <t:Column>
+                                                    <Label text="Remarks" />
+                                                    <t:template>
+                                                        <HBox justifyContent="Center"
+                                                            class="sapUiTinyMarginBeginEnd">
+                                                            <Button icon="sap-icon://comment"
+                                                                class="sapUiTinyMarginEnd" />
+                                                        </HBox>
+                                                    </t:template>
+                                                </t:Column>
+                                            </t:columns>
+                                        </t:Table>
+                                    </content>
+                                </Panel>
+
+
+                                <!-- <FlexBox justifyContent="End" width="100%">
+                                    <VBox class="sapUiSmallMarginEnd" width="18%">
+                                        <ObjectStatus design="Bold" title="Total Gross Amount : 15334.00 AED"/>
+                                        <ObjectStatus design="Bold" title="Total Retention : 2500.00 AED" />
+                                        <ObjectStatus design="Bold" title="Total Net Amount : 17345.00 AED" />
+                                    </VBox>
+                                </FlexBox> -->
+
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+        </uxap:sections>
+
+
+        <!-- <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Save" width="70px" press="onPressSave" />
+                <Button type="Ghost" text="Discard" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </uxap:footer> -->
+    </uxap:ObjectPageLayout>
+
+</mvc:View>

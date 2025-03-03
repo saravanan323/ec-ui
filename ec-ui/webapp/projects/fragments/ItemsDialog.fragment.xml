@@ -1,0 +1,31 @@
+<!-- <c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog noDataText="No Projects Found" title="Select Item" contentHeight="50%"
+search=".onSearch" confirm=".onDialogItemClose" cancel=".onDialogClose" items="{
+			path: 'PurchaseOrderMdl>/sales_orders/0/items'
+		}">
+        <StandardListItem title="{PurchaseOrderMdl>product}" description="{PurchaseOrderMdl>item}"
+info="{PurchaseOrderMdl>net_value}" iconDensityAware="false" iconInset="false" type="Active" />
+    </SelectDialog>
+</c:FragmentDefinition> -->
+
+
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog
+        noDataText="No Projects Found"
+        title="Select Sales Oders Items"
+        contentHeight="50%"
+        search="onProjectSearch"
+        confirm=".onDialogItemClose"
+        cancel=".onDialogClose"
+        items="{salesOrderItemsMdl>/}">
+
+        <StandardListItem
+            title="{salesOrderItemsMdl>salesOrderItem}"
+            description="{salesOrderItemsMdl>salesOrderItemText}"
+            info="{salesOrderItemsMdl>salesOrderItemCategory}"
+            type="Active" />
+    </SelectDialog>
+
+</c:FragmentDefinition>

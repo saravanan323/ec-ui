@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <ViewSettingsDialog title="Advanced Settings" sortItems="{/mockData/Products}"
+        groupItems="{/mockData/Products}" confirm="onCloseAFSettings">
+        <sortItems items="{/mockData}">
+            <ViewSettingsItem text="{Name}" key="1" />
+        </sortItems>
+        <groupItems>
+            <ViewSettingsItem text="{Name}" key="1" />
+        </groupItems>
+        <filterItems>
+            <ViewSettingsFilterItem text="Name" key="1" items="{/mockData/Products}">
+                <items>
+                    <ViewSettingsItem text="{Name}" />
+                </items>
+            </ViewSettingsFilterItem>
+            <ViewSettingsFilterItem text="Quantity" key="2" items="{/mockData/Products}">
+                <items>
+                    <ViewSettingsItem text="{Quantity}" />
+                </items>
+            </ViewSettingsFilterItem>
+            <ViewSettingsFilterItem text="Price" key="3" items="{/mockData/Products}">
+                <items>
+                    <ViewSettingsItem text="{Price}" />
+                </items>
+            </ViewSettingsFilterItem>
+        </filterItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

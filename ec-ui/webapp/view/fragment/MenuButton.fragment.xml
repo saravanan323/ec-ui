@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <ActionSheet id="actionSheet"
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core" core:require="{ MessageToast: 'sap/m/MessageToast' }"
+        title="Choose Your Action" showCancelButton="true" placement="Bottom">
+        <Button text="Settings" icon="sap-icon://action-settings" press="onPressUserSetting" />
+        <Button text="Logout" icon="sap-icon://log" press="onPressLogOut" />
+    </ActionSheet>
+</core:FragmentDefinition>

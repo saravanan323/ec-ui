@@ -1,0 +1,284 @@
+<mvc:View controllerName="com.ecui.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:w="sap.ui.integration.widgets"
+    xmlns:cssgrid="sap.ui.layout.cssgrid"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:u="sap.uxap"
+    xmlns:tnt="sap.tnt"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <Page showHeader="true" enableScrolling="false" titleAlignment="Center" showFooter="false">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Image src="./images/logo.png" height="35px" class="sapUiSmallMarginBegin" />
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://hint" type="Transparent" />
+                    <Button press="onNotificationOpen" icon="sap-icon://bell" type="Transparent" />
+                    <Avatar initials="I" displaySize="XS" press=".onMenuPopoverOpen" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <VBox>
+                <IconTabHeader mode="Inline" selectedKey="{iconTabNavigation>/selectedKey}"
+                    items="{path: 'iconTabNavigation>/navigation'}" select="onTabSelect">
+                    <items>
+                        <IconTabFilter key="{iconTabNavigation>key}"
+                            text="{iconTabNavigation>title}" />
+                    </items>
+                </IconTabHeader>
+            </VBox>
+            <NavContainer id="pageContainer" initialPage="my_home">
+                <pages>
+                    <Page id="my_home" showHeader="false" class="sapUiResponsiveContentPadding">
+
+                        <Panel backgroundDesign="Transparent">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Applications" />
+                                    <ToolbarSpacer />
+                                    <Link text="Edit" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <content>
+                                <f:GridList items="{dashboardData>/applications}" id="appGridList">
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout layoutChange="onLayoutChange">
+                                            <grid:layoutS>
+                                                <grid:GridSettings
+                                                    gridTemplateColumns="repeat(auto-fit, 12rem)"
+                                                    gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings
+                                                    gridTemplateColumns="repeat(auto-fit, 12rem)"
+                                                    gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings
+                                                    gridTemplateColumns="repeat(auto-fit, 12rem)"
+                                                    gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings
+                                                    gridTemplateColumns="repeat(auto-fit, 12rem)"
+                                                    gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>
+                                    <f:GridListItem type="Active" press="onAppItemPress">
+                                        <f:Card class="appCardBackground">
+                                            <f:content>
+                                                <VBox width="100%" height="110px"
+                                                    class="sapUiTinyMargin" alignItems="Center"
+                                                    justifyContent="Center">
+                                                    <core:Icon src="{dashboardData>icon}"
+                                                        size="2rem" class="sapUiTinyMargin"
+                                                        color="#fff" />
+                                                    <ObjectIdentifier class="appTitle"
+                                                        title="{dashboardData>title}" />
+                                                    <Text class="fontColor"
+                                                        text="{dashboardData>sub_title}" />
+                                                </VBox>
+                                            </f:content>
+                                        </f:Card>
+                                    </f:GridListItem>
+                                </f:GridList>
+                            </content>
+                        </Panel>
+                        <Panel backgroundDesign="Transparent">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Activities" />
+                                    <ToolbarSpacer />
+                                    <Link text="Edit" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <content>
+                                <IconTabBar headerBackgroundDesign="Transparent"
+                                    expanded="{device>/isNoPhone}">
+                                    <items>
+                                        <IconTabFilter text="Favorites">
+                                            <f:GridContainer
+                                                items="{dashboardData>/activities/favourite}"
+                                                columnsChange=".onGridColumnsChange">
+                                                <f:layout>
+                                                    <f:GridContainerSettings rowSize="25px"
+                                                        columnSize="250px" gap="12px" />
+                                                </f:layout>
+                                                <f:layoutXS>
+                                                    <f:GridContainerSettings rowSize="25px"
+                                                        columnSize="250px" gap="12px" />
+                                                </f:layoutXS>
+                                                <f:Card>
+                                                    <f:content>
+                                                        <HBox width="100%" class="sapUiTinyMargin"
+                                                            alignItems="Center"
+                                                            justifyContent="SpaceBetween">
+                                                            <core:Icon src="{dashboardData>icon}"
+                                                                size="2rem"
+                                                                class="sapUiTinyMarginEnd" />
+                                                            <HBox width="80%">
+                                                                <ObjectIdentifier
+                                                                    title="{dashboardData>title}"
+                                                                    titleActive="true"
+                                                                    titlePress=".onPressTile" />
+                                                            </HBox>
+                                                        </HBox>
+                                                    </f:content>
+                                                </f:Card>
+                                            </f:GridContainer>
+                                            <IllustratedMessage
+                                                visible="{= ${dashboardData>/activities/favourite}.length===0}"
+                                                illustrationSize="Dot"
+                                                illustrationType="sapIllus-SimpleEmptyDoc"
+                                                enableVerticalResponsiveness="true"
+                                                title="Nothing here yet?"
+                                                description="You can add your favorite app to this section.">
+                                            </IllustratedMessage>
+                                        </IconTabFilter>
+                                        <IconTabFilter text="Recent Activities">
+                                            <IllustratedMessage illustrationSize="Dot"
+                                                illustrationType="sapIllus-SimpleEmptyDoc"
+                                                enableVerticalResponsiveness="true"
+                                                title="Nothing here yet?"
+                                                description="You can add your favorite app to this section.">
+                                            </IllustratedMessage>
+                                        </IconTabFilter>
+                                        <IconTabFilter text="Frequently Used" key="notes">
+                                            <IllustratedMessage illustrationSize="Dot"
+                                                illustrationType="sapIllus-SimpleEmptyDoc"
+                                                enableVerticalResponsiveness="true"
+                                                title="Nothing here yet?"
+                                                description="You can add your favorite app to this section.">
+                                            </IllustratedMessage>
+                                        </IconTabFilter>
+                                    </items>
+                                </IconTabBar>
+                            </content>
+                        </Panel>
+                        <!-- <Panel backgroundDesign="Transparent">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Insights"/>
+                                    <ToolbarSpacer/>
+                                    <Link text="Edit"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <content>
+                                <f:GridContainer columnsChange=".onGridColumnsChange">
+                                    <f:layout>
+                                        <f:GridContainerSettings rowSize="25px" columnSize="70px" gap="12px" />
+                                    </f:layout>
+                                    <f:layoutXS>
+                                        <f:GridContainerSettings rowSize="25px" columnSize="70px" gap="12px" />
+                                    </f:layoutXS>
+                                    <w:Card manifest="{manifests>/stack1}" baseUrl="./" action="onAction" height="500px">
+                                        <w:layoutData>
+                                            <f:GridContainerItemLayoutData columns="4" />
+                                        </w:layoutData>
+                                    </w:Card>
+                                    <w:Card manifest="{manifests>/stack2}" baseUrl="./" action="onAction" height="500px">
+                                        <w:layoutData>
+                                            <f:GridContainerItemLayoutData columns="4" />
+                                        </w:layoutData>
+                                    </w:Card>
+                                </f:GridContainer>
+                            </content>
+                        </Panel> -->
+                    </Page>
+                    <Page id="equipments" showHeader="false" class="sapUiResponsiveContentPadding">
+                        <content>
+                            <f:GridContainer items="{dashboardData>/equipments}"
+                                class="sapUiSmallMargin" columnsChange=".onGridColumnsChange">
+                                <f:layout>
+                                    <f:GridContainerSettings rowSize="84px" columnSize="84px"
+                                        gap="12px" />
+                                </f:layout>
+                                <f:layoutXS>
+                                    <f:GridContainerSettings rowSize="70px" columnSize="70px"
+                                        gap="12px" />
+                                </f:layoutXS>
+                                <GenericTile press="onPressTile" header="{dashboardData>title}"
+                                    subheader="{dashboardData>sub_title}" sizeBehavior="Responsive">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                                    </layoutData>
+                                    <TileContent footer="{dashboardData>footer}">
+                                        <NumericContent withMargin="false"
+                                            value="{dashboardData>number}"
+                                            icon="{dashboardData>icon}" />
+                                    </TileContent>
+                                </GenericTile>
+                            </f:GridContainer>
+                        </content>
+                    </Page>
+                    <Page id="ecPayflow" showHeader="false" class="sapUiResponsiveContentPadding">
+                        <content>
+                            <f:GridContainer items="{dashboardData>/ecPayflow}"
+                                class="sapUiSmallMargin" columnsChange=".onGridColumnsChange">
+                                <f:layout>
+                                    <f:GridContainerSettings rowSize="84px" columnSize="84px"
+                                        gap="12px" />
+                                </f:layout>
+                                <f:layoutXS>
+                                    <f:GridContainerSettings rowSize="70px" columnSize="70px"
+                                        gap="12px" />
+                                </f:layoutXS>
+                                <GenericTile press="onPressTile" header="{dashboardData>title}"
+                                    subheader="{dashboardData>sub_title}" sizeBehavior="Responsive">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                                    </layoutData>
+                                    <TileContent footer="{dashboardData>footer}">
+                                        <NumericContent withMargin="false"
+                                            value="{dashboardData>number}"
+                                            icon="{dashboardData>icon}" />
+                                    </TileContent>
+                                </GenericTile>
+                            </f:GridContainer>
+                        </content>
+                    </Page>
+                    <Page id="ecTools" showHeader="false" class="sapUiResponsiveContentPadding">
+                        <content>
+                            <f:GridContainer items="{dashboardData>/ecTools}"
+                                class="sapUiSmallMargin" columnsChange=".onGridColumnsChange">
+                                <f:layout>
+                                    <f:GridContainerSettings rowSize="84px" columnSize="84px"
+                                        gap="12px" />
+                                </f:layout>
+                                <f:layoutXS>
+                                    <f:GridContainerSettings rowSize="70px" columnSize="70px"
+                                        gap="12px" />
+                                </f:layoutXS>
+                                <GenericTile press="onPressTile" header="{dashboardData>title}"
+                                    subheader="{dashboardData>sub_title}" sizeBehavior="Responsive">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                                    </layoutData>
+                                    <TileContent footer="{dashboardData>footer}">
+                                        <NumericContent withMargin="false"
+                                            value="{dashboardData>number}"
+                                            icon="{dashboardData>icon}" />
+                                    </TileContent>
+                                </GenericTile>
+                            </f:GridContainer>
+                        </content>
+                    </Page>
+                </pages>
+            </NavContainer>
+        </content>
+    </Page>
+
+</mvc:View>

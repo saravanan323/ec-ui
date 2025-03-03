@@ -1,0 +1,146 @@
+<mvc:View controllerName="com.ecui.controller.liner_services.UploadManifest"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:u="sap.ui.unified"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" height="100%">
+    <uxap:ObjectPageLayout id="page_AddEditVoyages" showTitleInHeaderContent="true"
+        alwaysShowContentHeader="true" preserveHeaderStateOnScroll="true"
+        headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title text="Upload Manifest" wrapping="true" class="sapUiSmallMarginEnd" />
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center"
+                            class="sapUiTinyMarginEnd">
+                            <Title text="Upload Manifest" wrapping="true"
+                                class="sapUiSmallMarginEnd" />
+                        </FlexBox>
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:actions>
+                    <Button type="Transparent" text="Upload &amp; Make Corrections" />
+                    <Button type="Emphasized" text="Upload" />
+                    <Button type="Transparent" text="Cancel" />
+                </uxap:actions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="2"
+                labelSpanL="1" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false"
+                emptySpanXL="1" emptySpanL="5" emptySpanM="2" emptySpanS="0" columnsXL="3"
+                columnsL="1" columnsM="1" singleContainerFullSize="false">
+                <form:content>
+                    <Label text="File Type" />
+                    <ComboBox width="400px" />
+                    <Label text="File" />
+                    <u:FileUploader icon="sap-icon://browse-folder" iconOnly="true" width="400px"
+                        uploadUrl="upload/" tooltip="Upload your file to the local server"
+                        uploadComplete="handleUploadComplete" />
+                </form:content>
+            </form:SimpleForm>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection titleUppercase="false" title="Voyage">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin" backgroundDesign="Transparent">
+                            <form:SimpleForm class="sapUiSmallMarginTop formPadding" editable="true"
+                                layout="ColumnLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="12"
+                                labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+                                emptySpanL="3" emptySpanM="0" emptySpanS="0" columnsXL="2"
+                                columnsL="2" columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Shipping Line" />
+                                    <ComboBox />
+                                    <Label text="Voyage In" />
+                                    <Input />
+                                    <Label text="Vessel Name" />
+                                    <Input />
+                                    <Label text="Port Call" />
+                                    <DateTimePicker displayFormat="dd-MM-yyyy HH:mm:ss"
+                                        valueFormat="yyyy-MM-dd HH:mm:ss" placeholder=" "
+                                        change="handleChange" />
+                                    <Label text="Voyage Index" />
+                                    <Input />
+                                    <Label text="Vessel Index" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm
+                                class="sapUiNoContentPadding sapUiSmallMarginBottom formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="3"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="3" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Vessel ETA" />
+                                    <DateTimePicker displayFormat="dd-MM-yyyy HH:mm:ss"
+                                        valueFormat="yyyy-MM-dd HH:mm:ss" placeholder=" "
+                                        change="handleChange" />
+                                    <Label text="Vessel ETS" />
+                                    <DateTimePicker displayFormat="dd-MM-yyyy HH:mm:ss"
+                                        valueFormat="yyyy-MM-dd HH:mm:ss" placeholder=" "
+                                        change="handleChange" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="List of B/L">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table items="{blListMdl>/}" mode="MultiSelect"
+                            sticky="ColumnHeaders,HeaderToolbar" inset="false" growing="true"
+                            growingThreshold="10">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <Label design="Bold" text="Items({=${blListMdl>/}.length})" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Begin">
+                                    <Text text="S.No." />
+                                </Column>
+                                <Column hAlign="Begin">
+                                    <Text text="Line" />
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Begin">
+                                    <Text text="B/L No." />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <Text text="{blListMdl>sNo}" />
+                                        <Text text="{blListMdl>line}" />
+                                        <Text text="{blListMdl>blNo}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

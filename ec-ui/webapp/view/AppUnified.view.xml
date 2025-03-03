@@ -1,0 +1,96 @@
+<mvc:View controllerName="com.ecui.controller.AppUnified"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt" height="100%">
+    <Page id="page_appUnified" showHeader="true" enableScrolling="false" titleAlignment="Center"
+        showFooter="false">
+        <customHeader>
+            <!-- <Bar>
+                <contentLeft>
+                    <Button id="toggleMenuBtn" visible="true" iconFirst="true" icon="sap-icon://menu2" tooltip="Menu"
+            type="Transparent" press="handleMenuPress">
+                        <layoutData>
+                            <OverflowToolbarLayoutData priority="NeverOverflow" />
+                        </layoutData>
+                    </Button>
+                    <Image src="./images/logo.png" height="35px" press="onPressLogo"/>
+
+                    <Title titleStyle="H5" text="{path:'sideNavigation>/selectedSectionKey', formatter:'.getNavTitle'}"
+            textAlign="Center" visible="{device>/system/desktop}"/>
+
+                </contentLeft>
+                <contentMiddle>
+                      <Title text="{/genericTitle}"/>
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://hint" type="Transparent" />
+                    <Button icon="sap-icon://bell" type="Transparent" />
+                    <Avatar initials="S" displaySize="XS" press=".menuPopoverOpen" />
+                </contentRight>
+            </Bar> -->
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://navigation-left-arrow" tooltip="Back" type="Ghost"
+                        press="onNavBack" />
+                    <Image src="./images/logo.png" height="35px" press="onPressLogo" />
+                    <Title titleStyle="H6" text="{/genericTitle}" textAlign="Center"
+                        visible="{device>/system/desktop}" />
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="{/genericTitle}" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://hint" type="Transparent" />
+                    <Button icon="sap-icon://bell" type="Transparent" />
+                    <Avatar initials="I" displaySize="XS" press=".onMenuPopoverOpen" />
+                </contentRight>
+            </Bar>
+
+        </customHeader>
+        <content>
+            <tnt:ToolPage id="toolPage">
+                <tnt:sideContent>
+                    <tnt:SideNavigation visible="false" expanded="false"
+                        selectedKey="{/selectedKey}">
+                        <tnt:NavigationList items="{sideNavigation>/navigation}"
+                            itemSelect=".onItemSelect">
+                            <tnt:NavigationListItem text="{sideNavigation>title}"
+                                icon="{sideNavigation>icon}" enabled="{sideNavigation>enabled}"
+                                expanded="{sideNavigation>expanded}" items="{sideNavigation>items}"
+                                key="{sideNavigation>key}" visible="{sideNavigation>visible}">
+                                <tnt:NavigationListItem text="{sideNavigation>title}"
+                                    key="{sideNavigation>key}" enabled="{sideNavigation>enabled}" />
+                            </tnt:NavigationListItem>
+                        </tnt:NavigationList>
+                        <tnt:fixedItem>
+                            <tnt:NavigationList items="{path: 'sideNavigation>/fixedNavigation'}"
+                                itemSelect=".onItemSelect">
+                                <tnt:NavigationListItem text="{sideNavigation>title}"
+                                    icon="{sideNavigation>icon}" key="{sideNavigation>key}"
+                                    enabled="{sideNavigation>enabled}" />
+                            </tnt:NavigationList>
+                        </tnt:fixedItem>
+                    </tnt:SideNavigation>
+                </tnt:sideContent>
+                <tnt:mainContents>
+                    <!-- <NavContainer id="pageContainer">
+                        <pages />
+                    </NavContainer> -->
+                    <f:FlexibleColumnLayout id="fcl" stateChange=".onStateChanged"
+                        backgroundDesign="Solid" layout="{/layout}" />
+                </tnt:mainContents>
+            </tnt:ToolPage>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <!-- {=!!${errorMessage>/errors}.length} -->
+                <Button id="messagePopoverBtn" visible="{=!!${errors>/}.length}"
+                    icon="sap-icon://error" type="Negative" text="Error"
+                    press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

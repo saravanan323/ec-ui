@@ -1,0 +1,156 @@
+[
+    {
+      "WBSElementInternalID": "1057",
+      "WBSElement": "SITE WORK-01",
+      "WBSDescription": "Site Work-01",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "838",
+      "WBSElement": "E.01.001.08",
+      "WBSDescription": "Backfilling",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "837",
+      "WBSElement": "E.01.001.07",
+      "WBSDescription": "Excavation",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "850",
+      "WBSElement": "E.01.001.06.02",
+      "WBSDescription": "Hollow block walls 20 cm thk.",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "849",
+      "WBSElement": "E.01.001.06.01",
+      "WBSDescription": "Thermal block walls 20 cm thk.",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "836",
+      "WBSElement": "E.01.001.06",
+      "WBSDescription": "Masonry Work",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "835",
+      "WBSElement": "E.01.001.05",
+      "WBSDescription": "Concrete Work",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "834",
+      "WBSElement": "E.01.001.04",
+      "WBSDescription": "Site Work",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "843",
+      "WBSElement": "E.01.001.03.05",
+      "WBSDescription": "Slab on grade",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "842",
+      "WBSElement": "E.01.001.03.04",
+      "WBSDescription": "Ground beams",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "841",
+      "WBSElement": "E.01.001.03.03",
+      "WBSDescription": "Neck columns",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "840",
+      "WBSElement": "E.01.001.03.02",
+      "WBSDescription": "Pile Caps",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "839",
+      "WBSElement": "E.01.001.03.01",
+      "WBSDescription": "PIles",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "833",
+      "WBSElement": "E.01.001.03",
+      "WBSDescription": "Sub Structure",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "848",
+      "WBSElement": "E.01.001.02.05",
+      "WBSDescription": "Staircase",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "847",
+      "WBSElement": "E.01.001.02.04",
+      "WBSDescription": "Parapet",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "846",
+      "WBSElement": "E.01.001.02.03",
+      "WBSDescription": "Slab",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "845",
+      "WBSElement": "E.01.001.02.02",
+      "WBSDescription": "Beams",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "844",
+      "WBSElement": "E.01.001.02.01",
+      "WBSDescription": "Columns",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "832",
+      "WBSElement": "E.01.001.02",
+      "WBSDescription": "Super Structure",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "831",
+      "WBSElement": "E.01.001.01",
+      "WBSDescription": "Site Work",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    },
+    {
+      "WBSElementInternalID": "830",
+      "WBSElement": "E.01.001",
+      "WBSDescription": "EC Tower 1",
+      "ProjectInternalID": "124",
+      "Project": "E.01.001"
+    }
+  ]

@@ -1,0 +1,301 @@
+<mvc:View controllerName="com.ecui.projects.CreateProject"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:m="sap.m"
+    xmlns:u="sap.uxap" displayBlock="true" height="100%" busyIndicatorDelay="0">
+    <u:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" useIconTabBar="true"
+        upperCaseAnchorBar="false" showFooter="true">
+        <u:headerTitle>
+            <u:ObjectPageDynamicHeaderTitle>
+                <u:expandedHeading>
+                    <Title text="New Project" wrapping="true" />
+                </u:expandedHeading>
+
+                <u:snappedHeading>
+                    <Title text="New Project" wrapping="true" />
+                </u:snappedHeading>
+
+                <u:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="{i18n>ms_enterFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="{i18n>ms_exitFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="{i18n>ms_closeMiddleColumn}"
+                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+                </u:navigationActions>
+            </u:ObjectPageDynamicHeaderTitle>
+        </u:headerTitle>
+
+        <!-- <u:headerContent>
+            <layout:HorizontalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectStatus title="Processing Status" text="Created"/>
+                    <ObjectStatus title="Project Responsible" text="ZIA"/>
+                    <ObjectStatus title="Customer Name" text="ABC Corp"/>
+                    <ObjectStatus title="Customer PO No." text="PO123432"/>
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectStatus title="Contract Amount" text="120,000.00 AED"/>
+                    <ObjectStatus title="Variation Order Amount" text="5,000.00 AE"/>
+                    <ObjectStatus title="Project Amount" text="125,000.00 AED"/>
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectStatus title="Customer Advance" text="20,000.00 AED"/>
+                    <ObjectStatus title="Customer Retention" text="6,000 AED"/>
+                    <ObjectStatus title="Suppliers Advance" text="20,000.00 AED"/>
+                    <ObjectStatus title="Suppliers Retention" text="6,000 AED"/>
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+        </u:headerContent> -->
+
+        <u:sections>
+            <u:ObjectPageSection titleUppercase="false" title="General">
+                <u:subSections>
+                    <u:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin">
+                            <form:SimpleForm editable="true" layout="ColumnLayout" columnsL="3"
+                                columnsXL="4">
+                                <form:content>
+                                    <Label text="Name" />
+                                    <Input />
+                                    <Label text="Processing Status" />
+                                    <ComboBox>
+                                        <core:Item text="Created"></core:Item>
+                                        <core:Item text="In-Process"></core:Item>
+                                    </ComboBox>
+                                    <Label text="Project Responsible" />
+                                    <ComboBox>
+                                        <core:Item text="Bhupesh Akkineni"></core:Item>
+                                        <core:Item text="Mohamed Ziyaul Haqi"></core:Item>
+                                    </ComboBox>
+                                    <Label text="Customer Name" />
+                                    <Input />
+                                    <Label text="Customer PO No" />
+                                    <Input />
+                                    <Label text="Contract Amount" />
+                                    <Input type="Number" />
+                                    <Label text="Variation Order Amount" />
+                                    <Input type="Number" />
+                                    <Label text="Project Amount" />
+                                    <Input type="Number" />
+                                    <Label text="Customer Advance" />
+                                    <Input type="Number" />
+                                    <Label text="Retention" />
+                                    <Input type="Number" />
+                                    <Label text="Suppliers Advance" />
+                                    <Input type="Number" />
+                                    <Label text="Suppliers Retention" />
+                                    <Input type="Number" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+            <u:ObjectPageSection titleUppercase="false" title="Contracts">
+                <u:subSections>
+                    <u:ObjectPageSubSection title="Project Contaracts">
+                        <HBox alignItems="End" wrap="NoWrap">
+                            <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                                <SearchField></SearchField>
+                            </HBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="WBS Elements:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="Custom:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="Sales Order:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <Button text="Go" />
+                        </HBox>
+                    </u:ObjectPageSubSection>
+                    <u:ObjectPageSubSection title="Sales Documents">
+                        <VBox>
+                            <Table sticky="ColumnHeaders,HeaderToolbar">
+
+                                <columns>
+                                    <Column>
+                                        <Text text="Contract Number" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="Customer" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <Text text="Contract Description" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"
+                                        hAlign="Center">
+                                        <Text text="Status" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Contract Amount" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" type="None"
+                                        press="onListItemPress">
+                                        <cells>
+                                            <ObjectIdentifier title="1899" />
+                                            <Text text="Domestic Customer 1(1000021) " />
+                                            <Text text="EC - Construction" />
+                                            <ObjectStatus text="In Process" state="Warning" />
+                                            <ObjectNumber number="605484.50 AED" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+            <u:ObjectPageSection titleUppercase="false" title="Purchase Orders">
+                <u:subSections>
+                    <u:ObjectPageSubSection title="Project Purchase Orders">
+                        <HBox alignItems="End" wrap="NoWrap">
+                            <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                                <SearchField></SearchField>
+                            </HBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="WBS Elements:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="Custom:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <VBox alignItems="Start" class="sapUiTinyMarginEnd">
+                                <Label text="Purchase Order:"></Label>
+                                <ComboBox></ComboBox>
+                            </VBox>
+                            <Button text="Go" />
+                        </HBox>
+                    </u:ObjectPageSubSection>
+                    <u:ObjectPageSubSection title="Purchasing Documents">
+                        <VBox>
+                            <Table sticky="ColumnHeaders,HeaderToolbar">
+
+                                <columns>
+                                    <Column>
+                                        <Text text="Purchase Order" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="Vendor" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <Text text="Description" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true"
+                                        hAlign="Center">
+                                        <Text text="Status" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Contract Amount" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Variation Contract Amount" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Customer Contract Mapping" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" type="None"
+                                        press="onListItemPress">
+                                        <cells>
+                                            <ObjectIdentifier title="4500000736" />
+                                            <Text text="Domestic Supplier 2" />
+                                            <Text text="EC-Tower 1" />
+                                            <ObjectStatus text="In Process" state="Warning" />
+                                            <ObjectNumber number="55700.00 AED " />
+                                            <ObjectNumber number="5000 AED" />
+                                            <CheckBox selected="true"></CheckBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+            <!--  <u:ObjectPageSection titleUppercase="false" title="BOM">
+                <u:subSections>
+                    <u:ObjectPageSubSection >
+                        <u:blocks>
+                            <Table sticky="ColumnHeaders,HeaderToolbar">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <content>
+                                            <Label design="Bold" text="{=${projectsMdl>/}.length ? 'Projects' + ' (' + ${projectsMdl>/}.length
+            + ')' : 'Projects'}" />
+                                            <ToolbarSpacer />
+
+                                            <Button text="Add" press="onPressNavCreate"/>
+                                            <ToolbarSeparator />
+                                            <Button icon="sap-icon://upload" />
+                                            <Button icon="sap-icon://download" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column >
+                                        <Text text="Item" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="Product" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <Text text="PO Quantity" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Net Price" />
+                                    </Column>
+                                    <Column >
+                                        <Text text="WBS Element" />
+                                    </Column>
+
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" type="None" press="onListItemPress">
+                                        <cells>
+                                            <Input />
+                                            <Input />
+                                            <Input />
+                                            <Input />
+                                            <Input />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </u:blocks>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection> -->
+        </u:sections>
+        <u:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer></ToolbarSpacer>
+                <Button text="{i18n>btn_save}" icon="sap-icon://save" type="Transparent"
+                    press="onPressSave" />
+                <Button text="{i18n>btn_cancel}" icon="sap-icon://sys-cancel" type="Transparent"
+                    press="onPressCancel" />
+            </OverflowToolbar>
+        </u:footer>
+    </u:ObjectPageLayout>
+
+</mvc:View>

@@ -1,0 +1,227 @@
+<mvc:View controllerName="com.ecui.projects.PR_SalesOrderDetails"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"
+	xmlns:u="sap.uxap" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<u:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false" showFooter="false">
+
+		<u:headerTitle>
+			<u:ObjectPageDynamicHeaderTitle>
+				<u:expandedHeading>
+					<Title text="{salesOrderDetailsMdl>/projectDescription}" wrapping="true" />
+				</u:expandedHeading>
+
+				<u:snappedHeading>
+
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="sap-icon://capital-projects" backgroundColor="Random"
+							class="sapUiTinyMarginEnd" />
+						<Title text="{salesOrderDetailsMdl>/projectDescription} " wrapping="true" />
+					</m:FlexBox>
+				</u:snappedHeading>
+
+				<u:expandedContent>
+					<Text text="{salesOrderDetailsMdl>/project}" />
+				</u:expandedContent>
+
+				<u:snappedContent>
+					<Text text="{salesOrderDetailsMdl>/project}" />
+				</u:snappedContent>
+
+				<u:snappedTitleOnMobile>
+					<Title text="{salesOrderDetailsMdl>/project}" />
+				</u:snappedTitleOnMobile>
+
+				<u:actions>
+					<!-- <Button text="Edit" type="Emphasized"/> -->
+				</u:actions>
+
+				<u:navigationActions>
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+						press="handleFullScreen" id="enterFullScreenBtn"
+						tooltip="{i18n>ms_enterFullScreenMode}"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+						press="handleExitFullScreen" id="exitFullScreenBtn"
+						tooltip="{i18n>ms_exitFullScreenMode}"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+					<OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+						press="handleClose" tooltip="{i18n>ms_closeMiddleColumn}" visible="true" />
+				</u:navigationActions>
+			</u:ObjectPageDynamicHeaderTitle>
+		</u:headerTitle>
+
+		<u:headerContent>
+
+			<m:FlexBox wrap="Wrap">
+				<m:Avatar src="sap-icon://capital-projects" backgroundColor="Random" displaySize="L"
+					class="sapUiTinyMarginEnd" />
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="WBS Element" class="sapUiTinyMarginTop" />
+					<ObjectStatus text="Super Structure (E.01.001.02)" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Start Date" text="01-01-2025 End Date : 01-12-2025" />
+
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Manager"
+						text="{salesOrderDetailsMdl>/projectManagerName}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Company"
+						text="{salesOrderDetailsMdl>/companyName} ({salesOrderDetailsMdl>/companyCode})" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Currency" text="{salesOrderDetailsMdl>/currency}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Profile" text="{salesOrderDetailsMdl>/projectProfile}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Type"
+						text="{salesOrderDetailsMdl>/enterpriseProjectType}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Stock" text="{salesOrderDetailsMdl>/projectStock}" />
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Status" />
+					<ObjectStatus text="{salesOrderDetailsMdl>/StatusText}"
+						state="{salesOrderDetailsMdl>/StatusState}" />
+
+				</layout:VerticalLayout>
+
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectIdentifier title="Priority" />
+					<!-- <ObjectStatus text="{PurchaseOrderMdl>/StatusText}"
+						state="{PurchaseOrderMdl>/StatusState}" /> -->
+					<ObjectStatus text="{salesOrderDetailsMdl>/priority}"
+						state="{salesOrderDetailsMdl>/priorityState}" />
+				</layout:VerticalLayout>
+			</m:FlexBox>
+
+
+		</u:headerContent>
+		<!-- End Sales Order General Informion -->
+
+		<u:sections>
+			<u:ObjectPageSection titleUppercase="false" title="Order Details">
+				<u:subSections>
+					<u:ObjectPageSubSection titleUppercase="false">
+						<form:SimpleForm editable="false" layout="ColumnLayout" columnsL="4"
+							columnsM="3" columnsXL="6">
+							<form:content>
+								<!-- Order Information -->
+								<core:Title text="Order Information" />
+								<Label text="Order ID" />
+								<Text text="{salesOrderDetailsMdl>/salesOrders/SalesOrder}" />
+
+								<!-- Partner Information -->
+								<core:Title text="Partner" />
+								<Label text="Sold-to Party" />
+								<Link text="{salesOrderDetailsMdl>/salesOrders/Sold-toParty}" />
+
+								<Label text="Ship-to Party" />
+								<Link text="{salesOrderDetailsMdl>/salesOrders/Sold-toParty}" />
+
+								<!-- Status Information -->
+								<core:Title text="Status" />
+								<Label text="Overall Status" />
+								<ObjectStatus
+									text="{salesOrderDetailsMdl>/salesOrders/OverallStatus}"
+									state="{salesOrderDetailsMdl>/salesOrders/StatusState}" />
+
+								<Label text="Customer Reference" />
+								<ObjectStatus
+									text="{salesOrderDetailsMdl>/salesOrders/CustomerReference}" />
+
+								<!-- Value Information -->
+								<core:Title text="Transaction Summary" />
+								<Label text="Net Value" />
+								<ObjectNumber number="{salesOrderDetailsMdl>/salesOrders/NetValue}"
+									unit="{salesOrderDetailsMdl>/salesOrders/Currency}" />
+							</form:content>
+						</form:SimpleForm>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+			<u:ObjectPageSection titleUppercase="false" title="Items">
+				<u:subSections>
+					<u:ObjectPageSubSection>
+						<Table sticky="ColumnHeaders,HeaderToolbar"
+							items="{salesOrderDetailsMdl>/salesOrders/items/}"
+							itemPress="onSalesOrderPress">
+							<infoToolbar>
+								<Toolbar>
+									<Label
+										text="Items ({= ${{salesOrderDetailsMdl>/salesOrders/items}.length})" />
+								</Toolbar>
+							</infoToolbar>
+							<columns>
+								<Column width="10rem">
+									<Text text="Item ID" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Requested Delivery Date" />
+								</Column>
+
+
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Product" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Requested Quantity " />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Confirmed Quantity" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Tax Amount" />
+								</Column>
+								<Column hAlign="End">
+									<Text text="Net Value" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle" type="None">
+									<cells>
+										<ObjectIdentifier title="{salesOrderDetailsMdl>Item}" />
+										<Text text="{salesOrderDetailsMdl>RequestedDeliveryDate}" />
+										<Text text="{salesOrderDetailsMdl>Product}" />
+
+										<ObjectNumber
+											number="{salesOrderDetailsMdl>RequestedQuantity}"
+											unit="{salesOrderDetailsMdl>RequestedQuantityUOM}" />
+										<ObjectNumber
+											number="{salesOrderDetailsMdl>ConfirmedQuantity}"
+											unit="{salesOrderDetailsMdl>ConfirmedQuantityUOM}" />
+										<ObjectNumber number="{salesOrderDetailsMdl>TaxAmount}"
+											unit="{salesOrderDetailsMdl>NetValueCurrency}" />
+										<ObjectNumber number="{salesOrderDetailsMdl>NetValue}"
+											unit="{salesOrderDetailsMdl>NetValueCurrency}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+		</u:sections>
+		<u:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button type="Emphasized" text="{i18n>btn_save}" width="70px" press="onPressSave" />
+				<Button type="Ghost" text="{i18n>btn_discard}" width="70px" press="handleClose" />
+			</OverflowToolbar>
+		</u:footer>
+	</u:ObjectPageLayout>
+
+</mvc:View>

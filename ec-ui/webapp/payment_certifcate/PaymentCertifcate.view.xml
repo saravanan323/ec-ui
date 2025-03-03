@@ -1,0 +1,255 @@
+<mvc:View controllerName="com.ecui.payment_certifcate.PaymentCertifcate"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <f:DynamicPage id="page_equipmentDemand" toggleHeaderOnTitleClick="false"
+        preserveHeaderStateOnScroll="true" showTitleInHeaderContent="true" headerExpanded="true">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>pc_paymentCertificate}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <fb:FilterBar id="filterbar" showFilterConfiguration="true"
+                        filterBarExpanded="true" filterChange="handleFilterChange"
+                        showRestoreOnFB="false" reset="onResetAdaptFilter" clear="clearSearchFilter"
+                        search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true">
+                        <fb:filterItems>
+                            <fb:FilterGroupItem name="J" label="" groupName="Group1"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <SearchField />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="A" label="Application No" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input value="{advancedSearchMdl>/application_no}"
+                                        placeholder="Please enter Application No" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="B" label="{i18n>pc_company}" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="inputCompany" class="sapUiSmallMarginEnd" type="Text"
+                                        showValueHelp="true"
+                                        value="{advancedSearchMdl>/company_id}"
+                                        placeholder="Please select Company"
+                                        valueHelpRequest="handleValueHelp" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="C" label="{i18n>pc_project}" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+
+                                    <Input id="inputProject" value="{advancedFilterMdl>/project}"
+                                        placeholder="Please select Project" showValueHelp="true"
+                                        valueHelpRequest="handleValueHelpProject"
+                                        showSuggestion="true" suggestionItems="{projectsMdl>/}">
+                                        <suggestionItems>
+                                            <core:Item text="{projectsMdl>project}" />
+                                        </suggestionItems>
+                                    </Input>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="I" label="WBS Element" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="inputWBSElement"
+                                        placeholder="Please select the WBS Element."
+                                        value="{advancedFilterMdl>/wbs_element}"
+                                        showValueHelp="true"
+                                        valueHelpRequest="onValueHelpRequestWBS"
+                                        showSuggestion="true" suggestionItems="{dummyMdl>/}">
+                                        <suggestionItems>
+                                            <core:Item text="{dummyMdl>text}" />
+                                        </suggestionItems>
+                                    </Input>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="E" label="Invocie" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input class="sapUiSmallMarginEnd" type="Text" enabled="true"
+                                        editable="true" value="{advancedSearchMdl>/invoice}"
+                                        placeholder="Please select Invoice" showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="handleValueHelpInvoice" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <!-- <fb:FilterGroupItem name="F" label="Status" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <ComboBox items="{masterdataMdl>/status}"
+                                        selectedKey="{advancedFilterMdl>/status}"
+                                        showSecondaryValues="true">
+                                        <core:ListItem key="{masterdataMdl>key}"
+                                            text="{masterdataMdl>text}" />
+                                    </ComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem> -->
+                            <fb:FilterGroupItem name="Due Date" label="Due Date" groupName="Group1"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <DatePicker valueFormat="dd-MM-yyyy"
+                                        value="{advancedSearchMdl>/due_date}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="Submitted Date" label="Submitted Date"
+                                groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <DatePicker valueFormat="dd-MM-yyyy"
+                                        value="{advancedSearchMdl>/submitted_date}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="table_equipment_demand" inset="false"
+                items="{equipmentDemandsMdl>/utilization}" mode="None"
+                sticky="ColumnHeaders,HeaderToolbar" autoPopinMode="true">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://download" press="onPressNavCreate" />
+                            <ToolbarSeparator />
+                            <Button type="Transparent" press="handleExport"
+                                icon="sap-icon://excel-attachment" tooltip="Export To Excel"
+                                enabled="false" />
+                            <ToolbarSeparator />
+                            <Button type="Transparent" press="clearSearchFilter"
+                                icon="sap-icon://refresh" tooltip="Refresh" enabled="true" />
+
+                            <Button type="Transparent" press="handleSortButtonPressed"
+                                icon="sap-icon://sort" tooltip="Sort" enabled="true" />
+
+                            <Button type="Transparent" press="handlePersoButtonPressed"
+                                icon="sap-icon://action-settings" tooltip="Personalization"
+                                enabled="true" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <infoToolbar>
+                    <Toolbar>
+                        <Label design="Bold"
+                            text="{=${equipmentDemandsMdl>/utilization}.length ? ${i18n>pc_paymentCertificate} + ' (' + ${equipmentDemandsMdl>/utilization}.length + ')' : ${i18n>pc_paymentCertificate}}" />
+
+                    </Toolbar>
+                </infoToolbar>
+                <noData>
+                    <Text id="txt_noData"
+                        text="To start, set the relevant filters and choose &quot;Go&quot;." />
+                </noData>
+                <columns>
+                    <Column hAlign="Begin">
+                        <Text text="{i18n>pc_application_no}" />
+                    </Column>
+                    <Column hAlign="Begin">
+                        <Text text="Orginal PA Amount" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Project" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Company" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Updated PA Amount" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Invoice" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Invoice Amount" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Due Date" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Submitted Date" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Status" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="Manage" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle" type="Navigation"
+                        navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'equipmentDemandsMdl>id'
+						],
+						formatter: '.formatter.isNavigated'
+					}"
+                        press=".onListItemPress">
+                        <cells>
+                            <ObjectIdentifier title="{equipmentDemandsMdl>application_no}" />
+
+                            <Text text="8000.00  AED" />
+                            <Text text="{equipmentDemandsMdl>project}" />
+                            <Text
+                                text="{= ${equipmentDemandsMdl>company_id} + ' -  ' + ${equipmentDemandsMdl>company} }" />
+
+                            <Text text="7500.00 AED" />
+                            <Text text="{equipmentDemandsMdl>invoice}" />
+
+                            <Text text="9500.00 AED" />
+                            <Text text="{equipmentDemandsMdl>due_date}" />
+                            <Text text="{equipmentDemandsMdl>submitted_date}" />
+                            <ObjectStatus
+                                text="{path: 'equipmentDemandsMdl>status',formatter: '.formatter.statusFormatterText'}"
+                                state="{path: 'equipmentDemandsMdl>status',formatter: '.formatter.statusFormatterState'}"
+                            />
+
+                            <HBox justifyContent="Start" class="sapUiTinyMarginBeginEnd">
+                                <items>
+                                    <Button
+                                        icon="sap-icon://BusinessSuiteInAppSymbols/icon-milestone"
+                                        press="onCertificatePress" />
+                                </items>
+                            </HBox>
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+        <f:footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="btnErr_equpmentDemand" class="sapUiTinyMarginTop"
+                        visible="{=!!${errors>/}.length}" icon="sap-icon://error" type="Negative"
+                        text="Error" press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
+                </contentLeft>
+            </Bar>
+
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

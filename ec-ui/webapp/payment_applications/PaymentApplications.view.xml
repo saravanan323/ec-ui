@@ -1,0 +1,274 @@
+<mvc:View controllerName="com.ecui.payment_applications.PaymentApplications"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:plugins="sap.m.plugins"
+	xmlns:columnmenu="sap.m.table.columnmenu"
+	xmlns:sap.ui.fl="sap.ui.fl"
+	xmlns:sap.ui.dt="sap.ui.dt"
+	xmlns:vm="sap.ui.fl.variants"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:c="sap.ui.core" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<f:DynamicPage toggleHeaderOnTitleClick="false" preserveHeaderStateOnScroll="true">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Procurment Payment" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<fb:FilterBar id="filter_system" showFilterConfiguration="true"
+						filterBarExpanded="true" filterChange="handleFilterChange"
+						showRestoreOnFB="false" reset="onResetAdaptFilter" clear="onClear"
+						search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true">
+
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem name="J" label="" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<SearchField search="onPaymentApplicationFilter" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Application No" label="Application No"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input value="{advancedFilterMdl>/applicationNo}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Name" label="Orginal PA Amount"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input value="{advancedFilterMdl>/orginal_PA_Value}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Description" label="Updated PA Amount"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input value="{advancedFilterMdl>/updated_PA_Value}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="A" label="Project" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="id_inputProject" value="{advancedFilterMdl>/project}"
+										showValueHelp="true"
+										valueHelpRequest="onValueHelpRequestProject"
+										showSuggestion="true" suggestionItems="{projectsMdl>/}">
+										<suggestionItems>
+											<core:Item text="{projectsMdl>project}" />
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="B" label="Supplier" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="inputCustomer" value="{advancedFilterMdl>/customer}"
+										showValueHelp="true"
+										valueHelpRequest="onValueHelpRequestCustomer"
+										showSuggestion="true" suggestionItems="{projectsMdl>/}">
+										<suggestionItems>
+											<core:Item text="{projectsMdl>customer}" />
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Invoice" label="Invoice" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+
+									<Input class="sapUiSmallMarginEnd" type="Text"
+										value="{advancedSearchMdl>/invoice}"
+										placeholder="Please select Invoice" showValueHelp="true"
+										valueHelpOnly="true"
+										valueHelpRequest="valueHelpDialogActivityType" />
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem name="Due Date" label="Due Date" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker valueFormat="dd-MM-yyyy"
+										value="{advancedFilterMdl>/due_Date}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Submitted Date" label="Submitted Date"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker valueFormat="dd-MM-yyyy"
+										value="{advancedFilterMdl>/submitted_Date}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Status" label="Status" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<ComboBox items="{masterdataMdl>/status}"
+										selectedKey="{advancedFilterMdl>/status}"
+										showSecondaryValues="true">
+										<core:ListItem key="{masterdataMdl>key}"
+											text="{masterdataMdl>text}" />
+									</ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+
+
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table id="table_PaymentApplications" mode="SingleSelectMaster"
+				itemPress="onListItemPress" inset="false" items="{path:'paymentApplicationsMdl>/'}"
+				class="sapFDynamicPageAlignContent" width="auto" autoPopinMode="true"
+				contextualWidth="Auto" sticky="ColumnHeaders">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<ToolbarSpacer />
+							<Button press=".handleResizablePopoverPress" text="Create"
+								ariaHasPopup="Dialog" />
+
+							<Button type="Transparent" press="handleExport"
+								icon="sap-icon://excel-attachment" tooltip="Export To Excel"
+								enabled="false" />
+							<ToolbarSeparator />
+							<Button type="Transparent" press="clearSearchFilter"
+								icon="sap-icon://refresh" tooltip="Refresh" enabled="true" />
+
+							<Button type="Transparent" press="handleSortButtonPressed"
+								icon="sap-icon://sort" tooltip="Sort" enabled="true" />
+							<!--  <Button type="Transparent" press="handleGroupButtonPressed"
+							icon="sap-icon://group-2" tooltip="Group" enabled="true" /> -->
+							<Button type="Transparent" press="handlePersoButtonPressed"
+								icon="sap-icon://action-settings" tooltip="Personalization"
+								enabled="true" />
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar>
+						<Label design="Bold"
+							text="{=${paymentApplicationsMdl>/}.length ? 'Procurment Payments' + ' (' + ${paymentApplicationsMdl>/}.length + ')' : 'Procurment Payments'}" />
+					</Toolbar>
+				</infoToolbar>
+				<noData>
+					<Text id="txt_noData"
+						text="To start, set the relevant filters and choose &quot;Go&quot;." />
+				</noData>
+				<dependents>
+					<plugins:ColumnResizer columnResize="onColumnResize" />
+					<columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
+						<columnmenu:QuickSort change="onSort">
+							<columnmenu:items>
+								<columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+							</columnmenu:items>
+						</columnmenu:QuickSort>
+						<columnmenu:QuickGroup change="onGroup">
+							<columnmenu:items>
+								<columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
+							</columnmenu:items>
+						</columnmenu:QuickGroup>
+
+					</columnmenu:Menu>
+				</dependents>
+				<columns>
+					<Column id="app_col" width="6rem" headerMenu="menu" hAlign="Left"
+						importance="High">
+						<Text text="Application No" />
+					</Column>
+
+					<Column id="orginal_col" importance="Medium" headerMenu="menu">
+						<Text text="Orginal PA Amount" />
+					</Column>
+					<Column id="updated_col" importance="Medium" headerMenu="menu">
+						<Text text="Updated PA Amount" />
+					</Column>
+					<Column id="invoice_col" importance="Medium" headerMenu="menu">
+						<Text text="Invoice" />
+					</Column>
+					<Column id="project_col" importance="Medium" headerMenu="menu">
+						<Text text="Project" />
+					</Column>
+					<Column id="customer_col" importance="Medium" headerMenu="menu">
+						<Text text="Customer" />
+					</Column>
+					<Column id="company_col" importance="Medium" headerMenu="menu">
+						<Text text="Company" />
+					</Column>
+					<Column id="invoicevalue_col" importance="Medium" visible="false"
+						headerMenu="menu">
+						<Text text="Invoice Amount" />
+					</Column>
+					<Column id="due_col" importance="Low" headerMenu="menu">
+						<Text text="Due Date" />
+					</Column>
+					<Column id="submitted_col" importance="Low" headerMenu="menu">
+						<Text text="Submitted Date" />
+					</Column>
+					<Column id="status_col" importance="High" headerMenu="menu">
+						<Text text="Status" />
+					</Column>
+					<Column id="manage_col" importance="Low" hAlign="Left" headerMenu="menu">
+						<Text text="Manage" />
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{paymentApplicationsMdl>applicationNo}" />
+
+							<Text text="{paymentApplicationsMdl>orginal_PA_Value}" />
+							<Text text="{paymentApplicationsMdl>updated_PA_Value}" />
+							<Text text="{paymentApplicationsMdl>invoice}" />
+							<Text text="{paymentApplicationsMdl>projects}" />
+							<Text text="{paymentApplicationsMdl>customer}" />
+							<Text text="{paymentApplicationsMdl>company}" />
+							<Text text="{paymentApplicationsMdl>invoice_Value}" />
+							<Text text="{paymentApplicationsMdl>due_Date}" />
+							<Text text="{paymentApplicationsMdl>submitted_Date}" />
+							<ObjectStatus
+								text="{path:'paymentApplicationsMdl>status', formatter:'.statusFormatter'}"
+								state="{path:'paymentApplicationsMdl>status', formatter:'.statusFormatterState'}"
+								icon="{path:'paymentApplicationsMdl>status', formatter:'.statusFormatterIcon'}" />
+							<HBox justifyContent="Start" class="sapUiTinyMarginBeginEnd">
+								<items>
+									<Button icon="sap-icon://discussion"
+										press="openChatHistoryDialog" class="sapUiTinyMarginEnd" />
+									<Button icon="sap-icon://upload" press="openUploadDialog"
+										class="sapUiTinyMarginEnd" />
+									<Button
+										icon="sap-icon://BusinessSuiteInAppSymbols/icon-milestone"
+										visible="{= ${paymentApplicationsMdl>status} === 1 }"
+										press="onCertificatePress" />
+
+
+								</items>
+							</HBox>
+
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button type="Accept" text="{i18n>ms_accept}" />
+				<Button type="Reject" text="{i18n>ms_reject}" />
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

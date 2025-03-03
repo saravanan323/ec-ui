@@ -1,0 +1,567 @@
+<mvc:View controllerName="com.ecui.payment_applications.PaymentApplicationsDetails"
+    xmlns:uxap="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+    xmlns:layout="sap.ui.layout"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" displayBlock="true"
+    height="100%" busyIndicatorDelay="0">
+    <uxap:ObjectPageLayout id="pagePaymentApplicationDetails" showTitleInHeaderContent="true"
+        useIconTabBar="true" upperCaseAnchorBar="false" showFooter="{visible>/edit}"
+        sectionChange="onOplSectionChange">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title id="titleId" text="1" class="sapUiSmallMarginBottom" />
+
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <Title text="1" class="sapUiSmallMarginBottom" />
+                </uxap:snappedHeading>
+
+                <!-- <uxap:expandedContent>
+                    <Text text="Standard PO"/>
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <Text text="Standard PO"/>
+                </uxap:snappedContent>
+
+                <uxap:snappedTitleOnMobile>
+                    <Title text="Standard PO"/>
+                </uxap:snappedTitleOnMobile> -->
+
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="{i18n>ms_enterFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="{i18n>ms_exitFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="{i18n>ms_closeMiddleColumn}" visible="true" />
+                </uxap:navigationActions>
+
+                <uxap:actions>
+                    <Button id="btnEdit" icon="sap-icon://edit" tooltip="{i18n>btn_edit}"
+                        type="Transparent" press="onPressEdit"
+                        enabled="{= ${equipmentDemandDetailsMdl>/pa_status} !== '1' }" />
+
+                </uxap:actions>
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <HBox justifyContent="SpaceBetween">
+                <layout:VerticalLayout class="sapUiLargeMarginEnd">
+                    <FlexBox justifyContent="Start" alignItems="Start">
+                        <Image
+                            src="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.getImageSource'}"
+                            height="150px" width="190px" />
+                    </FlexBox>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Start Date" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/start_date}" />
+
+                    <ObjectIdentifier title="PA Start" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/pa_start}" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Due Date" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/due_date}" />
+
+                    <ObjectIdentifier title="PA End" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/pa_end}" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Order Number" />
+                    <ObjectStatus text="4500000736" />
+
+                    <ObjectIdentifier title="Order Type" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="Standard PO" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                    <ObjectIdentifier title="Supplier" />
+                    <ObjectStatus text="Customer 123" />
+
+                    <ObjectIdentifier title="Retention" class="sapUiTinyMarginTop" />
+                    <ObjectStatus text="{equipmentDemandDetailsMdl>/retention} %" />
+                </layout:VerticalLayout>
+
+                <HBox justifyContent="SpaceBetween">
+
+                    <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                        <!-- <ObjectIdentifier title="Status" />
+                    <ObjectStatus text="Released" /> -->
+
+                        <ObjectIdentifier title="Overall Status" />
+                        <ObjectStatus
+                            text="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusText'}"
+                            state="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusState'}"
+                            icon="{path: 'equipmentDemandDetailsMdl>/pa_status', formatter: '.formatter.getStatusIcon'}" />
+
+
+                        <ObjectIdentifier title="Revised Contract Amount" class="sapUiTinyMarginTop" />
+                        <ObjectNumber number="{equipmentDemandDetailsMdl>/revised_contract_value}" />
+                    </layout:VerticalLayout>
+
+                    <!-- <layout:VerticalLayout class="sapUiSmallMarginEnd">
+                        <ObjectIdentifier title="Total Gross Amount" />
+                        <ObjectNumber number="15,334.00" unit="AED" />
+
+                        <ObjectIdentifier title="Total Retention" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="2,500.00" unit="AED" />
+
+                        <ObjectIdentifier title="Total Net Amount" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="17,345.00" unit="AED" />
+                    </layout:VerticalLayout> -->
+
+                </HBox>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Previous" id="opsPrevious">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <Table items="{equipmentDemandDetailsMdl>/previous}" inset="false"
+                                    mode="None">
+                                    <columns>
+                                        <Column>
+                                            <header>
+                                                <Label text="Item" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Product" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Quantity" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Total NetValue" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Current Period Quantity" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Current Period Amount" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <header>
+                                                <Label text="% Progress Completion" />
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="Remarks" />
+                                            </header>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{equipmentDemandDetailsMdl>item_id}" />
+                                                <Text text="{equipmentDemandDetailsMdl>product_id}" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>quantity}"
+                                                    unit="EA" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>total_netvalue}"
+                                                    unit="AED" />
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_qty}"
+                                                        editable="false" class="sapUiTinyMarginEnd" />
+                                                    <ComboBox selectedKey="EA" editable="false"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <items>
+                                                            <core:Item key="M3" text="M3 (Each)" />
+                                                            <core:Item key="EA" text="EA (Each)" />
+                                                            <core:Item key="PC" text="PC (Piece)" />
+                                                            <core:Item key="SET" text="SET (Set)" />
+                                                            <core:Item key="PAK"
+                                                                text="PAK (Package)" />
+                                                            <core:Item key="BOX" text="BOX (Box)" />
+                                                            <core:Item key="BAG" text="BAG (Bag)" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_amount}"
+                                                        class="sapUiTinyMarginEnd" editable="false" />
+                                                    <ComboBox items="{currenciesMdl>/}"
+                                                        selectedKey="AED" showSecondaryValues="true"
+                                                        editable="false"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <core:ListItem key="{currenciesMdl>code}"
+                                                            text="{currenciesMdl>code}"
+                                                            additionalText="{currenciesMdl>value}" />
+                                                    </ComboBox>
+                                                </HBox>
+                                                <Text
+                                                    text="{equipmentDemandDetailsMdl>process_completion}"
+                                                    liveChange="onProgressChange" editable="false" />
+                                                <HBox justifyContent="Start"
+                                                    class="sapUiTinyMarginBeginEnd">
+                                                    <Button icon="sap-icon://comment"
+                                                        class="sapUiTinyMarginEnd"
+                                                        press="onCommentPress" />
+                                                </HBox>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.Comments"
+                                    type="XML" />
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.TotalAmounts"
+                                    type="XML" binding="{equipmentDemandDetailsMdl>/total_previous}" />
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Current to Date">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <Table items="{equipmentDemandDetailsMdl>/current_to_date}"
+                                    mode="SingleSelectMaster">
+                                    <columns>
+                                        <Column>
+                                            <Text text="Item" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Product" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Quantity" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Total Net Value" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Current Period Quantity" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Current Period Amount" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="% Progress Completion" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Remarks" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{equipmentDemandDetailsMdl>item_id}" />
+                                                <Text text="{equipmentDemandDetailsMdl>product_id}" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>quantity}"
+                                                    unit="EA" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>total_netvalue}"
+                                                    unit="AED" />
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_qty}"
+                                                        editable="{visible>/edit}"
+                                                        class="sapUiTinyMarginEnd" />
+                                                    <ComboBox selectedKey="EA"
+                                                        editable="{visible>/edit}"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <core:Item key="M3" text="M3 (Each)" />
+                                                        <core:Item key="EA" text="EA (Each)" />
+                                                        <core:Item key="PC" text="PC (Piece)" />
+                                                        <core:Item key="SET" text="SET (Set)" />
+                                                        <core:Item key="PAK" text="PAK (Package)" />
+                                                        <core:Item key="BOX" text="BOX (Box)" />
+                                                        <core:Item key="BAG" text="BAG (Bag)" />
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_amount}"
+                                                        class="sapUiTinyMarginEnd"
+                                                        editable="{visible>/edit}" />
+                                                    <ComboBox items="{currenciesMdl>/}"
+                                                        selectedKey="AED" showSecondaryValues="true"
+                                                        editable="{visible>/edit}"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <core:ListItem key="{currenciesMdl>code}"
+                                                            text="{currenciesMdl>code}"
+                                                            additionalText="{currenciesMdl>value}" />
+                                                    </ComboBox>
+                                                </HBox>
+                                                <Input
+                                                    value="{equipmentDemandDetailsMdl>process_completion}"
+                                                    liveChange="onProgressChange"
+                                                    editable="{visible>/edit}" />
+                                                <HBox justifyContent="Start"
+                                                    class="sapUiTinyMarginBeginEnd">
+                                                    <Button icon="sap-icon://comment"
+                                                        class="sapUiTinyMarginEnd"
+                                                        press="onCommentPress" />
+                                                    <Button icon="sap-icon://upload"
+                                                        class="sapUiTinyMarginEnd"
+                                                        press="onAttachmentListPress" />
+                                                    <Button icon="sap-icon://inspection"
+                                                        tooltip="Revision"
+                                                        class="sapUiTinyMarginEnd" />
+                                                </HBox>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.Comments"
+                                    type="XML" />
+                                <core:Fragment id="currentDateUploadFrag"
+                                    fragmentName="com.ecui.payment_applications.fragments.AttachmentList"
+                                    type="XML" binding="{equipmentDemandDetailsMdl>/files}" />
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.TotalAmounts"
+                                    type="XML"
+                                    binding="{equipmentDemandDetailsMdl>/total_current_to_date}" />
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Current Period" id="opsCurrentPeriod">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <Table items="{equipmentDemandDetailsMdl>/current_period}"
+                                    mode="SingleSelectLeft">
+                                    <columns>
+                                        <Column>
+                                            <Text text="Item" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Product" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Quantity" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Total NetValue" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Current Period Quantity" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Current Period Amount" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="% Progress Completion" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Remarks" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{equipmentDemandDetailsMdl>item_id}" />
+                                                <Text text="{equipmentDemandDetailsMdl>product_id}" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>quantity}"
+                                                    unit="EA" />
+                                                <ObjectNumber
+                                                    number="{equipmentDemandDetailsMdl>total_netvalue}"
+                                                    unit="AED" />
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_qty}"
+                                                        class="sapUiTinyMarginEnd"
+                                                        editable="{visible>/current_period_edit}" />
+                                                    <ComboBox selectedKey="EA"
+                                                        editable="{visible>/current_period_edit}"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <core:Item key="M3" text="M3 (Each)" />
+                                                        <core:Item key="EA" text="EA (Each)" />
+                                                        <core:Item key="PC" text="PC (Piece)" />
+                                                        <core:Item key="SET" text="SET (Set)" />
+                                                        <core:Item key="PAK" text="PAK (Package)" />
+                                                        <core:Item key="BOX" text="BOX (Box)" />
+                                                        <core:Item key="BAG" text="BAG (Bag)" />
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox>
+                                                    <Input
+                                                        value="{equipmentDemandDetailsMdl>current_period_amount}"
+                                                        class="sapUiTinyMarginEnd"
+                                                        editable="{visible>/current_period_edit}" />
+                                                    <ComboBox items="{currenciesMdl>/}"
+                                                        selectedKey="AED" showSecondaryValues="true"
+                                                        editable="{visible>/current_period_edit}"
+                                                        class="sapUiTinyMarginBegin">
+                                                        <core:ListItem key="{currenciesMdl>code}"
+                                                            text="{currenciesMdl>code}"
+                                                            additionalText="{currenciesMdl>value}" />
+                                                    </ComboBox>
+                                                </HBox>
+                                                <Input
+                                                    value="{equipmentDemandDetailsMdl>process_completion}"
+                                                    liveChange="onProgressChange"
+                                                    editable="{visible>/current_period_edit}" />
+                                                <HBox justifyContent="Start"
+                                                    class="sapUiTinyMarginBeginEnd">
+                                                    <Button icon="sap-icon://comment"
+                                                        class="sapUiTinyMarginEnd"
+                                                        press="onCommentPress" />
+                                                    <Button icon="sap-icon://upload"
+                                                        class="sapUiTinyMarginEnd"
+                                                        press="onAttachmentListPress" />
+                                                    <Button icon="sap-icon://inspection"
+                                                        tooltip="Revision"
+                                                        class="sapUiTinyMarginEnd" />
+                                                </HBox>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.Comments"
+                                    type="XML" />
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.AttachmentList"
+                                    type="XML" binding="{equipmentDemandDetailsMdl>/files}" />
+                                <core:Fragment
+                                    fragmentName="com.ecui.payment_applications.fragments.TotalAmounts"
+                                    type="XML"
+                                    binding="{equipmentDemandDetailsMdl>/total_current_period}" />
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Notes" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <VBox backgroundDesign="Translucent" class="sapUiSmallMargin">
+                            <Label text="Description:" design="Bold"
+                                class="sapUiTinyMarginBottom sapUiTinyMarginBegin" />
+                            <TextArea id="id_NoteDescription" rows="6" width="100%"
+                                editable="{visible>/edit}" />
+                            <Table id="tableNotes" inset="false" editable="{visible>/edit}"
+                                items="{equipmentDemandDetailsMdl>/notes}" mode="SingleSelectLeft"
+                                sticky="ColumnHeaders,HeaderToolbar"
+                                selectionChange="onNoteSelectionChange">
+                                <infoToolbar>
+                                    <Toolbar>
+                                        <ToolbarSpacer />
+                                        <Button type="Emphasized" enabled="{visible>/edit}"
+                                            text="Add Row" press="onPressAddRow" />
+                                        <Button type="Emphasized" enabled="{visible>/edit}"
+                                            text="Delete" press="onPressDelete" />
+                                    </Toolbar>
+                                </infoToolbar>
+                                <columns>
+                                    <Column>
+                                        <Text text="Note Type" />
+                                    </Column>
+                                    <!-- <Column>
+                                        <Text text="Language" />
+                                    </Column> -->
+                                    <Column>
+                                        <Text text="Created By" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Created On" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <ComboBox
+                                                selectedKey="{equipmentDemandDetailsMdl>notes_type}"
+                                                editable="{visible>/edit}" width="100%">
+                                                <items>
+                                                    <core:Item key="1"
+                                                        text="Additional External Comment" />
+                                                    <core:Item key="2" text="Approval Note" />
+                                                    <core:Item key="3" text="Body Text" />
+                                                    <core:Item key="4" text="Detailed Description" />
+                                                    <core:Item key="5" text="Error Symptom" />
+                                                    <core:Item key="6" text="Internal Comment" />
+                                                    <core:Item key="7" text="Purchasing Note" />
+                                                    <core:Item key="8" text="Reason" />
+                                                    <core:Item key="9" text="Rejection Reason" />
+                                                    <core:Item key="10" text="Sales Note" />
+                                                    <core:Item key="11" text="Work Description" />
+                                                </items>
+                                            </ComboBox>
+                                            <!--  <ComboBox
+                                            selectedKey="{equipmentDemandDetailsMdl>language}"
+                                            editable="{visible>/edit}">
+                                                <items>
+                                                    <core:Item key="1" text="English" />
+                                                    <core:Item key="2" text="Arabic" />
+                                                    <core:Item key="3" text="Spanish" />
+                                                    <core:Item key="4" text="German" />
+                                                    <core:Item key="5" text="Armenian" />
+                                                </items>
+                                            </ComboBox> -->
+                                            <Text text="{equipmentDemandDetailsMdl>created_by}" />
+                                            <Text text="{equipmentDemandDetailsMdl>created_on}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Attachments" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection mode="Expanded">
+                        <core:Fragment
+                            fragmentName="com.ecui.payment_applications.fragments.Attachment"
+                            type="XML" />
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Save" width="70px" press="onPressSave" />
+                <Button type="Emphasized" text="Submit" width="70px" press="onPressSave" />
+                <Button type="Emphasized" text="Rework" width="70px" press="onPressSave" />
+                <Button type="Ghost" text="Discard" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+
+</mvc:View>

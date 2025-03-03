@@ -1,1 +1,165 @@
 /* Enter your custom styles here */
+.login_background {
+  background-image: url("../images/3.png");
+  background-size: contain !important;
+  background-position: top !important;
+  background-repeat: no-repeat;
+}
+
+/* Portrait and Landscape */
+@media (max-width: 700px) {
+  .copyright {
+    font-size: smaller;
+    position: relative;
+    top: 50px;
+  }
+}
+
+@media (min-width: 700px) {
+  .copyright {
+    font-size: smaller;
+    position: relative;
+    top: 100px;
+  }
+}
+
+.FormLabel .sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanM12)>.sapMLabel {
+  text-align: start !important;
+}
+
+.loginError.sapMMsgStripInformation .sapMMsgStripIcon {
+  color: #f83434 !important;
+}
+
+.sapUxAPBlockContainer {
+  background: transparent !important;
+}
+
+.sapUiGlobalBackgroundImage {
+  background-size: auto !important;
+  background-position: top !important;
+}
+
+.tileLayout {
+  float: left !important;
+}
+
+/* @font-face {
+  font-family: "BusinessSuiteInAppSymbols"; 
+  src: url("sap/ushell/themes/base/fonts/") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+} */
+
+.voyages .sapMNCIconImage {
+  font-size: 3rem;
+}
+
+.sapMGTHdrTxt>.sapMText {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.sapMNCLargeFontSize:not(.sapMNCIconImage) {
+  font-size: 2.25rem;
+  font-weight: bold;
+}
+
+.formPadding .sapUiFormCLContainer {
+  padding: 0rem 0.75rem 0rem 0.75rem;
+}
+
+.sapUiFormResGrid>div {
+  padding: 1rem 0.75rem !important;
+  box-sizing: border-box;
+}
+
+/* .sapUiFormLblColon td:not(.sapUiGridLabelFull).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont>:not(.sapUiRespGridSpanS12).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont>:not(.sapUiRespGridSpanM12).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont>:not(.sapUiRespGridSpanL12).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont>:not(.sapUiRespGridSpanXL12).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiFormResLayout .sapUiRFLRow:first-child>.sapUiRFLContainer:first-child:not(.sapUiRFLFullLength)>.sapUiRFLContainerContent.sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiFormCL.sapUiFormCLSmallColumns :not(.sapUiFormCLCellsS12).sapUiFormElementLbl>.sapMLabel,
+.sapUiFormLblColon .sapUiFormCL.sapUiFormCLWideColumns :not(.sapUiFormCLCellsL12).sapUiFormElementLbl>.sapMLabel {
+  text-align: start !important;
+} */
+
+.sapTntInfoLabel .sapTntInfoLabelInner {
+  text-transform: capitalize !important;
+}
+
+.bussinessIcon .sapTntNavLIItem .sapTntNavLIGroupIcon {
+  font-size: 1.6rem !important;
+}
+
+.appCardBackground_1 {
+  background-color: #0056d2;
+}
+
+.appCardBackground_2 {
+  background-color: #df1277;
+}
+
+.appCardBackground_3 {
+  background-color: #c25600;
+}
+
+.appCardBackground_4 {
+  background-color: #7800a4;
+}
+
+.appCardBackground_5 {
+  background-color: #08aa16;
+}
+
+.appCardBackground_6 {
+  background-color: #aa2708;
+}
+
+.appCardBackground_7 {
+  background-color: #088390;
+}
+
+.appCardBackground_8 {
+  background-color: #c32929;
+}
+
+/* .sapMBtnInner{
+  color: #0854a0;
+  border: 0.0625rem solid #0854a0 !important;
+  background: transparent;
+} */
+
+/* #__bar2-btnClear-inner {
+  color: #0854a0;
+  border: 0.0625rem solid #0854a0 !important;
+  background: transparent;
+}
+
+#__bar2-btnFilters-inner {
+  color: #0854a0;
+  border: 0.0625rem solid #0854a0 !important;
+  background: transparent;
+} */
+
+.customHeaderPadding .sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+  padding: 1rem 2rem 1rem 2rem;
+  box-shadow: 0 .125rem .125rem 0 rgba(0, 0, 0, 0.05), inset 0 -0.0625rem 0 0 #d9d9d9;
+}
+
+.cutomObjectNumber .sapMObjectNumberInner {
+  font-size: large !important;
+}
+
+.appTitle .sapMObjectIdentifierTitle .sapMText {
+  color: #fff !important;
+}
+
+.customFormPadding .sapUiFormCLContainer {
+  padding: 0 !important;
+}
+
+.sapMListInsetBG {
+  padding: 0rem;
+}

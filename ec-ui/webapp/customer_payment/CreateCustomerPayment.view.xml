@@ -1,0 +1,171 @@
+<mvc:View controllerName="com.ecui.customer_payment.CreateCustomerPayment"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:u="sap.uxap" displayBlock="true" height="100%" busyIndicatorDelay="0"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <uxap:ObjectPageLayout id="page_payment_app" showHeaderContent="true" useIconTabBar="false" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false" showFooter="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title text="New Customer Payment"/>
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <Title text="New Customer Payment"/>
+                </uxap:snappedHeading>
+                <uxap:navigationActions>
+                    <!-- <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null}"/>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{parts:['/actionButtonsInfo/midColumn/exitFullScreen', 'navigationMdl>/item'], formatter:'.formatter.showHideFullScreen'}"/> -->
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="Close end column" visible="true"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <HBox justifyContent="SpaceBetween">
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Processing Status"/>
+                    <ObjectStatus text="Created" state="Warning"/>
+
+                    <ObjectIdentifier title="Project Responsible" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="ZIA"/>
+
+                    <ObjectIdentifier title="Customer Name" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="ABC Corp"/>
+
+                    <ObjectIdentifier title="Customer PO No." class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="PO123432"/>
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Project" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="EC Tower 1 E.00.001"/>
+
+                    <ObjectIdentifier title="WBS Element " class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="Super Structure (E.01.001.02)"/>
+
+                    <ObjectIdentifier title="Company" class="sapUiTinyMarginTop"/>
+                    <ObjectStatus text="Inflexion Tech"/>
+
+                </layout:VerticalLayout>
+
+                <HBox justifyContent="SpaceBetween">
+                    <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                        <ObjectIdentifier title="Contract Amount"/>
+                        <ObjectNumber number="120,000.00" unit="AED"/>
+
+                        <ObjectIdentifier title="Variation Order Amount" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="5,000.00" unit="AED"/>
+
+                        <ObjectIdentifier title="Project Amount" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="125,000.00" unit="AED"/>
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                        <ObjectIdentifier title="Customer Advance"/>
+                        <ObjectNumber number="20,000.00" unit="AED"/>
+
+                        <ObjectIdentifier title="Customer Retention" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="6,000" unit="AED"/>
+
+                        <ObjectIdentifier title="Suppliers Advance" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="20,000.00" unit="AED"/>
+
+                        <ObjectIdentifier title="Suppliers Retention" class="sapUiTinyMarginTop"/>
+                        <ObjectNumber number="6,000" unit="AED"/>
+                    </layout:VerticalLayout>
+                </HBox>
+            </HBox>
+        </uxap:headerContent>
+
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Payment Details" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Payment Information" titleUppercase="false">
+                        <VBox>
+                            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
+                                <form:content>
+                                    <Label text="Start And Finish Date" />
+                                    <DatePicker valueFormat="dd-MM-yyyy" value="{paymentMdl>/startDate}"/>
+                                    <DatePicker valueFormat="dd-MM-yyyy" value="{paymentMdl>/dueDate}"/>
+                                    <Label text="Application Start And End Date" />
+                                    <DatePicker valueFormat="dd-MM-yyyy" value="{paymentMdl>/paStart}"/>
+                                    <DatePicker valueFormat="dd-MM-yyyy" value="{paymentMdl>/paEnd}"/>
+                                </form:content>
+                            </form:SimpleForm>
+                            <!-- <Button text="Search" press="onAdvancedSearchPress" /> -->
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+
+            <uxap:ObjectPageSection title="Sales Orders" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <Table id="id_PurchaseOrders" inset="false" items="{paymentMdl>/purchase_order}" mode="MultiSelect" itemPress="onSalesOrderPress" sticky="ColumnHeaders,HeaderToolbar">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button type="Transparent" icon="sap-icon://add" press="onAddSalesOrder"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="Sales Orders" />
+                                </Column>
+                                <Column>
+                                    <Text text="Sold-to Party" />
+                                </Column>
+                                <Column>
+                                    <Text text="Ship-to Party" />
+                                </Column>
+                                <Column>
+                                    <Text text="Status" />
+                                </Column>
+                                <Column>
+                                    <Text text="Net Amount" />
+                                </Column>
+                               
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle" type="Navigation">
+                                    <cells>
+                                        <Text text="{paymentMdl>sales_order}" />
+                                        <Text text="{paymentMdl>sold_to_party}" />
+                                        <Text text="{paymentMdl>ship_to_party}" />
+                                        <Text text="{paymentMdl>overall_status}" state="Warning"/>
+                                        <Text text="{paymentMdl>net_value}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+
+        </uxap:sections>
+
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Save" width="70px" press="onPressSave" />
+                <Button type="Emphasized" text="Submit" width="70px" press="onPressSave" />
+                <!-- <Button type="Emphasized" text="Rework" width="70px" press="onPressSave" /> -->
+                <Button type="Ghost" text="Discard" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

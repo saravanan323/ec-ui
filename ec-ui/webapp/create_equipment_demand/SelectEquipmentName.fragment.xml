@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:table="sap.ui.table">
+    <Dialog resizable="true" title=" Equipments">
+        <content>
+            <fb:FilterBar id="sel_equipmentName" persistencyKey="myPersKey" useToolbar="false" search="advancedFilterEquipmentName" showClearOnFB="true" clear="clearAllEquipmentNameFilters" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                 <fb:filterItems>
+                    <fb:FilterItem name="A" label="Search">
+                        <fb:control>
+                            <Input placeholder="Search" value="{advancedFilterMdl>/TechnicalObject}"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+
+            <Table id= "table_SelectEquipmentName" items="{selectionMdl>/equipments}" mode="SingleSelectLeft" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="sapUiSmallMarginTop">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="Items({= ${selectionMdl>/equipments}.length})" visible="{= ${selectionMdl>/equipments}.length>=0}" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Resource" />
+                    </Column>
+                    <Column>
+                        <Text text="Description" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text= "{selectionMdl>TechnicalObject}" />
+                            <Text text= "{selectionMdl>TechnicalObjectDescription}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>btn_Select}" type="Emphasized" press="selectedeEquipmentName"/>
+                    <Button text="{i18n>btn_Close}" type="Ghost" press="valueHelpEquipmentNameClose"/>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+
+</core:FragmentDefinition>

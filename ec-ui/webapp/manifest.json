@@ -1,19 +1,30 @@
 {
-    "_version": "1.65.0",
+    "_version": "1.42.0",
     "sap.app": {
         "id": "com.ecui",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
-            "version": "0.0.1"
+            "version": "1.0.0"
         },
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
             "id": "@sap/generator-fiori:basic",
-            "version": "1.16.5",
-            "toolsId": "5e838f0e-7664-450a-8c4f-456ac1f022e3"
+            "version": "1.7.4",
+            "toolsId": "bbd1d01d-ed27-41d4-89f1-692b77885b36"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
         }
     },
     "sap.ui": {
@@ -35,10 +46,16 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.133.0",
+            "minUI5Version": "1.102.1",
             "libs": {
                 "sap.m": {},
-                "sap.ui.core": {}
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
             }
         },
         "contentDensities": {
@@ -51,6 +68,11 @@
                 "settings": {
                     "bundleName": "com.ecui.i18n.i18n"
                 }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
             }
         },
         "resources": {
@@ -62,36 +84,454 @@
         },
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.ecui",
                 "controlAggregation": "pages",
                 "controlId": "app",
+                "clearControlAggregation": false,
                 "transition": "slide",
-                "type": "View",
-                "viewType": "XML",
-                "path": "com.ecui.view",
-                "async": true,
-                "viewPath": "com.ecui.view"
+                "bypassed": {
+                    "target": "NotFound"
+                }
             },
             "routes": [
                 {
-                    "name": "RouteView1",
-                    "pattern": ":?query:",
+                    "name": "login",
+                    "pattern": "login",
                     "target": [
-                        "TargetView1"
+                        "Login"
+                    ]
+                },
+                {
+                    "name": "dashboard",
+                    "pattern": "",
+                    "target": [
+                        "Dashboard"
+                    ]
+                },
+                {
+                    "name": "equipment-demands",
+                    "pattern": "equipment-demands",
+                    "target": [
+                        "EquipmentDemands",
+                        "CreateEquipmentDemand"
+                    ]
+                },
+                {
+                    "name": "edit-equipment-demand",
+                    "pattern": "edit-equipment-demand/{id}/{layout}",
+                    "target": [
+                        "EquipmentDemands",
+                        "CreateEquipmentDemand"
+                    ]
+                },
+                {
+                    "name": "create-equipment-demand",
+                    "pattern": "create-equipment-demand/{layout}",
+                    "target": [
+                        "CreateEquipmentDemand"
+                    ]
+                },
+                {
+                    "name": "confirm-equipment-utilization",
+                    "pattern": "confirm-equipment-utilization",
+                    "target": [
+                        "ConfirmEquipmentUtilization",
+                        "EquipmentUtilizationDetails"
+                    ]
+                },
+                {
+                    "name": "equipment-utilization-details",
+                    "pattern": "equipment-utilization-details/{id}/{layout}",
+                    "target": [
+                        "ConfirmEquipmentUtilization",
+                        "EquipmentUtilizationDetails"
+                    ]
+                },
+                {
+                    "name": "manage-projects",
+                    "pattern": "manage-projects",
+                    "target": [
+                        "ManageProjects"
+                    ]
+                },
+                {
+                    "name": "create-project",
+                    "pattern": "create-project/{layout}",
+                    "target": [
+                        "CreateProject"
+                    ]
+                },
+                {
+                    "name": "project-details",
+                    "pattern": "project-details/{id}/{layout}",
+                    "target": [
+                        "ProjectDetails"
+                    ]
+                },
+                {
+                    "name": "manage-boq",
+                    "pattern": "manage-boq",
+                    "target": [
+                        "ManageBoq"
+                    ]
+                },
+                {
+                    "name": "create-boq",
+                    "pattern": "create-boq/{layout}",
+                    "target": [
+                        "CreateBoq"
+                    ]
+                },
+                {
+                    "name": "boq-details",
+                    "pattern": "boq-details/{id}/{layout}",
+                    "target": [
+                        "BoqDetails"
+                    ]
+                },
+                {
+                    "name": "project-sales-order-details",
+                    "pattern": "project-sales-order-details/{project}/{id}/{layout}",
+                    "target": [
+                        "ProjectDetails",
+                        "PR_SalesOrderDetails"
+                    ]
+                },
+                {
+                    "name": "project-purchase-order-details",
+                    "pattern": "project-purchase-order-details/{project}/{id}/{layout}",
+                    "target": [
+                        "ProjectDetails",
+                        "PR_PurchaseOrderDetails"
+                    ]
+                },
+                {
+                    "name": "payment-purchase-order-details",
+                    "pattern": "payment-purchase-order-details/{id}/{layout}",
+                    "target": [
+                        "CreatePaymentApplication",
+                        "PY_PurchaseOrderDetails"
+                    ]
+                },
+                {
+                    "name": "payment-applications",
+                    "pattern": "payment-applications",
+                    "target": [
+                        "PaymentApplications"
+                    ]
+                },
+                {
+                    "name": "payment-applications-detail",
+                    "pattern": "payment-applications-detail/{id}/{layout}",
+                    "target": [
+                        "PaymentApplicationsDetails"
+                    ]
+                },
+                {
+                    "name": "create-payment-application",
+                    "pattern": "create-payment-application/{layout}",
+                    "target": [
+                        "CreatePaymentApplication"
+                    ]
+                },
+                {
+                    "name": "customer-payment",
+                    "pattern": "customer-payment",
+                    "target": [
+                        "CustomerPayment"
+                    ]
+                },
+                {
+                    "name": "customer-payment-detail",
+                    "pattern": "customer-payment-detail/{id}/{layout}",
+                    "target": [
+                        "CustomerPaymentDetails"
+                    ]
+                },
+                {
+                    "name": "create-customer-payment",
+                    "pattern": "create-customer-payment/{layout}",
+                    "target": [
+                        "CreateCustomerPayment"
+                    ]
+                },
+                {
+                    "name": "payment-sales-order-details",
+                    "pattern": "payment-sales-order-details/{id}/{layout}",
+                    "target": [
+                        "CreateCustomerPayment",
+                        "PY_SalesOrderDetails"
+                    ]
+                },
+                {
+                    "name": "manage-payment-certifcate",
+                    "pattern": "manage-payment-certifcate",
+                    "target": [
+                        "PaymentCertifcate"
+                    ]
+                },
+                {
+                    "name": "payment-certifcate-details",
+                    "pattern": "payment-certifcate-details/{id}/{layout}",
+                    "target": [
+                        "PaymentCertifcateDetails"
                     ]
                 }
             ],
             "targets": {
-                "TargetView1": {
-                    "id": "View1",
-                    "name": "View1"
+                "AppUnified": {
+                    "viewName": "view.AppUnified"
+                },
+                "NotFound": {
+                    "viewName": "view.NotFound"
+                },
+                "Login": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "Login",
+                    "viewName": "view.Login"
+                },
+                "Dashboard": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "Dashboard",
+                    "viewName": "view.Dashboard"
+                },
+                "MockScreen": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "MockScreen",
+                    "viewName": "view.MockScreen",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "MockScreenDetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "MockScreenDetail",
+                    "viewName": "view.MockScreenDetail",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "EquipmentDemands": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "EquipmentDemands",
+                    "viewName": "equipment_demands.EquipmentDemands",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "EquipmentDemandDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "EquipmentDemandDetails",
+                    "viewName": "equipment_demands.EquipmentDemandDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "CreateEquipmentDemand": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "CreatePropertyObjectHierarchy",
+                    "viewName": "create_equipment_demand.CreateEquipmentDemand",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "ConfirmEquipmentUtilization": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "ConfirmEquipmentUtilization",
+                    "viewName": "confirm_equipment.ConfirmEquipmentUtilization",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "EquipmentUtilizationDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "EquipmentUtilizationDetails",
+                    "viewName": "confirm_equipment.EquipmentUtilizationDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "ManageProjects": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "ManageProjects",
+                    "viewName": "projects.ManageProjects",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "CreateProject": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "CreateProject",
+                    "viewName": "projects.CreateProject",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "ProjectDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "ProjectDetails",
+                    "viewName": "projects.ProjectDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "PR_SalesOrderDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PR_SalesOrderDetails",
+                    "viewName": "projects.PR_SalesOrderDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "PR_PurchaseOrderDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PR_PurchaseOrderDetails",
+                    "viewName": "projects.PR_PurchaseOrderDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "PY_PurchaseOrderDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PY_PurchaseOrderDetails",
+                    "viewName": "payment_applications.PY_PurchaseOrderDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
+                },
+                "PaymentApplications": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PaymentApplications",
+                    "viewName": "payment_applications.PaymentApplications",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "PaymentCertifcate": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PaymentCertifcate",
+                    "viewName": "payment_certifcate.PaymentCertifcate",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "PaymentCertifcateDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PaymentCertifcateDetails",
+                    "viewName": "payment_certifcate.PaymentCertifcateDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "PaymentApplicationsDetails": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "PaymentApplicationsDetails",
+                    "viewName": "payment_applications.PaymentApplicationsDetails",
+                    "controlAggregation": "midColumnPages",
+                    "controlId": "fcl",
+                    "parent": "AppUnified"
+                },
+                "CreatePaymentApplication": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "CreatePaymentApplication",
+                    "viewName": "payment_applications.CreatePaymentApplication",
+                    "controlAggregation": "beginColumnPages",
+                    "controlId": "fcl",
+                    "parent": "AppUnified"
+                },
+                "ManageBoq": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "ManageBoq",
+                    "viewName": "boq.ManageBoq",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "CreateBoq": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "CreateBoq",
+                    "viewName": "boq.CreateBoq",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "BoqDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "BoqDetails",
+                    "viewName": "boq.BoqDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "CustomerPayment": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "CustomerPayment",
+                    "viewName": "customer_payment.CustomerPayment",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "CustomerPaymentDetails": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "CustomerPaymentDetails",
+                    "viewName": "customer_payment.CustomerPaymentDetails",
+                    "controlAggregation": "midColumnPages",
+                    "controlId": "fcl",
+                    "parent": "AppUnified"
+                },
+                "CreateCustomerPayment": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "CreateCustomerPayment",
+                    "viewName": "customer_payment.CreateCustomerPayment",
+                    "controlAggregation": "beginColumnPages",
+                    "controlId": "fcl",
+                    "parent": "AppUnified"
+                },
+                "PY_SalesOrderDetails": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "PY_SalesOrderDetails",
+                    "viewName": "customer_payment.PY_SalesOrderDetails",
+                    "parent": "AppUnified",
+                    "controlId": "fcl",
+                    "controlAggregation": "midColumnPages"
                 }
             }
         },
         "rootView": {
             "viewName": "com.ecui.view.App",
             "type": "XML",
-            "id": "App"
+            "async": true,
+            "id": "app"
         }
     }
 }

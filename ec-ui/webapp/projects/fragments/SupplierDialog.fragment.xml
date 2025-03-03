@@ -1,0 +1,18 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog
+        noDataText="No Supplier Found"
+        title="Select Supplier"
+        contentHeight="50%"
+        search="onCustomerSearchSupplier"
+        confirm="onDialogSupplierClose"
+        cancel=".onDialogSuppliercancel"
+        items="{masterMdl>/supplier}">
+
+        <StandardListItem
+            title="{masterMdl>supplier}"
+            description="{masterMdl>supplierFullName}"
+            info="{masterMdl>supplierAccountGroup}"
+            type="Active" />
+    </SelectDialog>
+</c:FragmentDefinition>

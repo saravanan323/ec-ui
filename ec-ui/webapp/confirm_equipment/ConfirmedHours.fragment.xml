@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+    <Dialog title="Confirm Hours - 10001" contentWidth="400px">
+        <content>
+            <Table items="{addConfrimationMdl>/confirmedDatesHours}">
+                <columns>
+                    <Column width="10em">
+                        <Text text="Date" />
+                    </Column>
+                    <Column width="10em" minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Hours" />
+                    </Column>
+                    <Column width="5em" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                    <Button type="Transparent" icon="sap-icon://add" press="onPressAddInViewMore"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <DatePicker value="{addConfrimationMdl>date}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"></DatePicker>
+                            <StepInput value="{addConfrimationMdl>hours}" displayValuePrecision="1" min="0" max="24" width="200px" step="0.5" description="hrs" fieldWidth="70%" />
+
+                            <!-- <TimePicker value="12:00" valueFormat="HH:mm" displayFormat="HH:mm"/> -->
+                            <HBox justifyContent="End">
+                                <!-- <Button type="Transparent" icon="sap-icon://edit" press="onPressAddInViewMore"/> -->
+                                <Button type="Transparent" icon="sap-icon://delete" press="onPressDeleteInViewMore"/>
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="Close" press="._closeViewDialog" ariaHasPopup="Dialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

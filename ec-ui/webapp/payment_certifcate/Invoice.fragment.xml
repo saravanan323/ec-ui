@@ -1,0 +1,10 @@
+<SelectDialog
+    title="Project"
+    items="{projectModel>/ProjectCollection}"
+    search="_handleValueHelpSearch"
+    confirm="_handleValueHelpClose"
+    cancel="_handleValueHelpClose">
+    <StandardListItem
+        title="{projectModel>project}"
+        description="{projectModel>project_id}" />
+</SelectDialog>

@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+    <Dialog id="dialog_AddItem" title="Sales Orders" contentWidth="50%">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
+                    <form:content>
+                        <Label text="Sales Orders" />
+                        <Input value="{paymentMdl>/purchaseOrder}" />
+                        
+                        <Label text="Sold-to Party" />
+                        <Input value="{paymentMdl>/vendor}" />
+                        
+                        <Label text="Ship-to Part" />
+                        <Input value="{paymentMdl>/vendor}" />
+                        
+                        <Label text="Status" />
+                        <Input value="{paymentMdl>/paValue}" />
+                        
+                        <Label text="Net Amount" />
+                        <Input value="{paymentMdl>/invoice}" />
+                        
+                      
+                    </form:content>
+                </form:SimpleForm>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="Add" type="Transparent" press="onSubmitPurchaseOrder" />
+                    <Button text="{i18n>cpa_cancel}" type="Transparent" press="onCloseDialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

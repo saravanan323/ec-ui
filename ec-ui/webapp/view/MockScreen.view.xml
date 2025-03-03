@@ -1,0 +1,94 @@
+<mvc:View controllerName="com.ecui.controller.MockScreen"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput">
+    <f:DynamicPage headerExpanded="true">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Master Page" />
+                    <!--  <vm:VariantManagement showSetAsDefault="false" standardItemText="VM Filter"
+                    select="onSearch" id="varianId">
+                        <vm:variantItems>
+                            <vm:VariantItem text="Active" key="1" />
+                            <vm:VariantItem text="Inactive" key="2" />
+                        </vm:variantItems>
+                    </vm:VariantManagement> -->
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <fb:FilterBar id="filterbar" showFilterConfiguration="false"
+                        filterBarExpanded="true" clear="onReset" search="onSearch"
+                        useToolbar="false" showGoOnFB="true" showClearOnFB="true">
+                        <fb:filterItems>
+                            <fb:FilterItem name="A" label="Filter Name">
+                                <fb:control>
+                                    <Input />
+                                </fb:control>
+                            </fb:FilterItem>
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <!-- DynamicPage Content -->
+        <f:content>
+            <NavContainer id="navCon">
+                <Page id="p1" showHeader="false">
+                    <Table id="tableId" inset="false" items="{mockData>/Products}" mode="None">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Label design="Bold" text="Products(0)" />
+                                    <ToolbarSpacer />
+                                    <Button text="Create" press="onPressNavCreate" />
+                                    <Button type="Transparent" icon="sap-icon://excel-attachment"
+                                        tooltip="Export To Excel" press="onPressExport" />
+                                    <Button type="Transparent" press="onPressRefresh"
+                                        icon="sap-icon://reset" tooltip="Reset" enabled="true" />
+                                    <Button type="Transparent" icon="sap-icon://settings"
+                                        tooltip="Advanced Filter Settings" press="onPressAFSettings" />
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="12em">
+                                <Text text="Name" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                <Text text="Quantity" />
+                            </Column>
+                            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Text text="Price" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem vAlign="Middle" type="Navigation"
+                                press=".onListItemPress">
+                                <cells>
+                                    <ObjectIdentifier title="{mockData>Name}" />
+                                    <Text text="{mockData>Quantity}" />
+                                    <Text text="{mockData>Price}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Page>
+            </NavContainer>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

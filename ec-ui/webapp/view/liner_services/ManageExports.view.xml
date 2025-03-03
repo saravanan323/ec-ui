@@ -1,0 +1,154 @@
+<mvc:View controllerName="com.ecui.controller.liner_services.ManageExports"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" height="100%">
+    <f:DynamicPage id="page_Exports" headerExpanded="true">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Exports" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <fb:FilterBar showFilterConfiguration="true" filterBarExpanded="true"
+                        clear="onReset" search="onSearch" useToolbar="false" showGoOnFB="true"
+                        showClearOnFB="true">
+                        <fb:filterItems>
+                            <fb:FilterItem name="A" label="B/L Number">
+                                <fb:control>
+                                    <Input />
+                                </fb:control>
+                            </fb:FilterItem>
+                            <fb:FilterItem name="B" label="Shipment Number">
+                                <fb:control>
+                                    <Input />
+                                </fb:control>
+                            </fb:FilterItem>
+                            <fb:FilterItem name="C" label="Shipping Line">
+                                <fb:control>
+                                    <MultiComboBox>
+                                        <core:Item key="1" text="Hopag Lloyd" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterItem>
+                            <fb:FilterItem name="D " label="Voyage Index">
+                                <fb:control>
+                                    <Input />
+                                </fb:control>
+                            </fb:FilterItem>
+                            <fb:FilterItem name="E" label="Vessel ETA">
+                                <fb:control>
+                                    <DateRangeSelection showCurrentDateButton="true"
+                                        showFooter="false" placeholder=" " change="handleChange" />
+                                </fb:control>
+                            </fb:FilterItem>
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <!-- DynamicPage Content -->
+        <f:content>
+            <Table id="table_Exports" items="{mngExportsMdl>/}" mode="None"
+                sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallMarginTop">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="Items({=${mngExportsMdl>/}.length})" />
+                            <ToolbarSpacer />
+                            <Button text="Create" press="onPressNavCreate" />
+                            <ToolbarSeparator />
+                            <OverflowToolbarButton type="Transparent" tooltip="Bulk Upload"
+                                icon="sap-icon://upload" press="handleBulkUpload" />
+                            <OverflowToolbarButton type="Transparent"
+                                icon="sap-icon://excel-attachment" tooltip="Export To Excel"
+                                press="onPressExport" />
+                            <ToolbarSeparator />
+                            <OverflowToolbarButton type="Transparent" tooltip="Sort"
+                                icon="sap-icon://sort" press="handleSortButtonPressed" />
+                            <OverflowToolbarButton type="Transparent" tooltip="Group"
+                                icon="sap-icon://group-2" press="handleGroupButtonPressed" />
+                            <OverflowToolbarButton type="Transparent" icon="sap-icon://settings"
+                                tooltip="Settings" press="onPressAFSettings" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column hAlign="Center">
+                        <Text text="Shipment No." />
+                    </Column>
+                    <Column width="12em" hAlign="Center">
+                        <Text text="B/L Number" />
+                    </Column>
+                    <Column hAlign="Begin" minScreenWidth="Desktop" popinDisplay="Inline"
+                        demandPopin="true">
+                        <Text text="Shipping Line" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+                        hAlign="Center">
+                        <Text text="Voyage Index" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+                        hAlign="Begin">
+                        <Text text="Vessel Name" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+                        hAlign="Center">
+                        <Text text="Vessel ETA" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+                        hAlign="Center">
+                        <Text text="Vessel ETS" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline"
+                        hAlign="Begin">
+                        <Text text="PoL" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Status" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle" type="Navigation"
+                        navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'mngExportsMdl>voyageIndex'
+						],
+						formatter: '.formatter.isNavigated'
+					}"
+                        press=".onListItemPress">
+                        <cells>
+                            <ObjectIdentifier title="{mngExportsMdl>shipmentNo}" />
+                            <Text text="{mngExportsMdl>blNo}" />
+                            <Text text="{mngExportsMdl>shippingLine}" />
+                            <Text text="{mngExportsMdl>voyageIndex}" />
+                            <Text text="{mngExportsMdl>vesselName}" />
+                            <Text text="{mngExportsMdl>vesselETA}" />
+                            <Text text="{mngExportsMdl>vesselETS}" />
+                            <Text text="{mngExportsMdl>pod}" />
+                            <tnt:InfoLabel
+                                text="{= ${mngExportsMdl>status}===0?'Active':'Corrections'}"
+                                renderMode="Narrow"
+                                colorScheme="{= ${mngExportsMdl>status}===0?8:2}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

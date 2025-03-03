@@ -1,0 +1,203 @@
+<mvc:View controllerName="com.ecui.confirm_equipment.ConfirmEquipmentUtilization"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <f:DynamicPage  headerExpanded="true"
+        showFooter="{=!!${errors>/}.length}">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                <Title text="{i18n>cequ_confirmEquipmentUtilization}" />
+                    <!-- <vm:VariantManagement id="vm_POH" standardItemText="Standard"
+                        defaultVariantKey="1" save="onSaveVM" manage="onManageVM"
+                        showExecuteOnSelection="true" items="{variantsMdl>/}">
+                        <vm:VariantItem key="{variantsMdl>key}" text="{variantsMdl>text}" />
+                    </vm:VariantManagement> -->
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <fb:FilterBar id="filterbar" showFilterConfiguration="true"
+                        filterBarExpanded="true" filterChange="handleFilterChange"
+                        showRestoreOnFB="false" reset="onResetAdaptFilter" clear="clearSearchFilter"
+                        search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true">
+                        <fb:filterItems>
+                            <fb:FilterGroupItem name="A" label="Search" groupName="main"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input value="{advancedSearchMdl>/demand_name}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="B" label="{i18n>eqd_WBSElement}"
+                                groupName="main" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input class="sapUiSmallMarginEnd" type="Text"
+                                        value="{advancedSearchMdl>/wbs_element_id_and_text}"
+                                        placeholder="Please select WBS element" showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="valueHelpDialogWBSElement" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="C" label="{i18n>eqd_activity}"
+                                groupName="main" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input class="sapUiSmallMarginEnd" type="Text"
+                                        value="{advancedSearchMdl>/activity_type_id_and_text}"
+                                        placeholder="Please select activity type"
+                                        showValueHelp="true" valueHelpOnly="true"
+                                        valueHelpRequest="valueHelpDialogActivityType" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="D" label="{i18n>eqd_costCener}"
+                                groupName="main" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input id="costCenterId" class="sapUiSmallMarginEnd" type="Text"
+                                        value="{advancedSearchMdl>/cost_centre_id_and_text}"
+                                        placeholder="Please select cost center" showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="valueHelpDialogCostCenter" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <!-- <fb:FilterGroupItem name="E" label="{i18n>ceq_demandStatus}"
+                                groupName="main" visibleInFilterBar="true">
+                                <fb:control>
+                                    <ComboBox selectedKey="{advancedSearchMdl>/demand_status}"
+                                        placeholder="Please select demand status">
+                                        <core:Item
+                                        key="1" text="Created" />
+                                        <core:Item key="2" text="Requested" enabled="false" />
+                                        <core:Item key="3" text="Closed"
+                                            enabled="false" />
+                                    </ComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem> -->
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="table_equipment_demand" inset="false"
+                items="{equipmentDemandsMdl>/utilization}" mode="MultiSelect"
+                sticky="ColumnHeaders,HeaderToolbar">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="{=${equipmentDemandsMdl>/utilization}.length ? ${i18n>cequ_confirmEquipmentUtilization} + ' (' + ${equipmentDemandsMdl>/utilization}.length + ')' : ${i18n>cequ_confirmEquipmentUtilization}}" />
+                            <ToolbarSpacer />
+                            <!-- <MenuButton text="{i18n>eqd_changeDemandStatus}"
+                                menuPosition="RightBottom">
+                                <menu>
+                                    <Menu itemSelected="onPressChangeDemandStatus">
+                                        <MenuItem text="Created" />
+                                        <MenuItem text="Release" press="onPressChangeStatus" />
+                                        <MenuItem text="Close" press="onPressChangeStatus" />
+                                    </Menu>
+                                </menu>
+                            </MenuButton>
+                            <Button text="Create" press="onPressNavCreateEqupment" />
+                            <ToolbarSeparator /> -->
+                            <!-- <Button icon="sap-icon://upload" press="onPressNavCreate" /> -->
+                            <Button icon="sap-icon://download" press="onPressNavCreate" />
+                            <ToolbarSeparator />
+                            <Button type="Transparent" press="handleExport"
+                                icon="sap-icon://excel-attachment" tooltip="Export To Excel"
+                                enabled="false" />
+                            <ToolbarSeparator />
+                            <Button type="Transparent" press="clearSearchFilter"
+                                icon="sap-icon://refresh" tooltip="Refresh" enabled="true" />
+
+                            <Button type="Transparent" press="handleSortButtonPressed"
+                                icon="sap-icon://sort" tooltip="Sort" enabled="true" />
+                            <!--  <Button type="Transparent" press="handleGroupButtonPressed"
+                            icon="sap-icon://group-2" tooltip="Group" enabled="true" /> -->
+                            <Button type="Transparent" press="handlePersoButtonPressed"
+                                icon="sap-icon://action-settings" tooltip="Personalization"
+                                enabled="true" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <noData>
+                    <Text id="txt_noData"
+                        text="To start, set the relevant filters and choose &quot;Go&quot;." />
+                </noData>
+                <columns>
+                    <Column hAlign="Begin">
+                        <Text text="{i18n>eqd_demand}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>eqd_demandStatus}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+                        <Text text="{i18n>eqd_activityType}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Begin">
+                        <Text text="{i18n>eqd_costCener}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Begin">
+                        <Text text="{i18n>eqd_plannedStaffedActual}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle" type="Navigation"
+                        navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'equipmentDemandsMdl>id'
+						],
+						formatter: '.formatter.isNavigated'
+					}"
+                        press=".onListItemPress">
+                        <cells>
+                            <ObjectIdentifier title="{equipmentDemandsMdl>demand_name}" />
+                            <Text
+                                text="{path: 'equipmentDemandsMdl>demand_status',formatter: '.formatter.getStatusText'}" />
+                            <Text text="{equipmentDemandsMdl>activity_type_text}" />
+                            <Text text="{equipmentDemandsMdl>cost_centre_text}" />
+                            <micro:ComparisonMicroChart size="S" scale=" " press="press">
+                                <micro:data>
+                                    <micro:ComparisonMicroChartData title="Planned Effort"
+                                        value="{equipmentDemandsMdl>planned_effor}" color="Neutral" />
+                                    <micro:ComparisonMicroChartData title="Actual Effort"
+                                        value="{equipmentDemandsMdl>actual_effort}" color="Neutral" />
+                                    <micro:ComparisonMicroChartData title="Remaining Effort"
+                                        value="{equipmentDemandsMdl>remaining_effort}"
+                                        color="Neutral" />
+
+                                </micro:data>
+                            </micro:ComparisonMicroChart>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+        <f:footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="btnErr_equpmentDemand" class="sapUiTinyMarginTop"
+                        visible="{=!!${errors>/}.length}" icon="sap-icon://error" type="Negative"
+                        text="Error" press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
+                </contentLeft>
+            </Bar>
+
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

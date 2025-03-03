@@ -1,0 +1,175 @@
+<mvc:View controllerName="com.ecui.create_equipment_demand.CreateEquipmentDemand"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:field="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <uxap:ObjectPageLayout id="page_cqd_id" showHeaderContent="false" useIconTabBar="false" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false" showFooter="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+
+                <uxap:expandedHeading>
+                    <Title text="{= ${navigationMdl>/item} ? ${demandMdl>/demand_name} : ${i18n>ceq_newDemand}}"/>
+
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <Title text="{= ${navigationMdl>/item} ? ${demandMdl>/demand_name} : ${i18n>ceq_newDemand}}"/>
+                </uxap:snappedHeading>
+
+                <uxap:snappedTitleOnMobile>
+                   <Title text="{= ${navigationMdl>/item} ? ${demandMdl>/demand_name} : ${i18n>ceq_newDemand}}"/>
+                </uxap:snappedTitleOnMobile>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null}"/>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{parts:['/actionButtonsInfo/midColumn/exitFullScreen', 'navigationMdl>/item'], formatter:'.formatter.showHideFullScreen'}"/>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="Close end column" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="{i18n>cqd_demand}" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>cqd_demand}" titleUppercase="false">
+                        <form:SimpleForm id="sf_cqd" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+                            <form:content>
+                                <Label text="{i18n>ceq_demandName}" />
+                                <Input value="{demandMdl>/demand_name}" placeholder="Please enter demand name" />
+                                <Label required="true" text="{i18n>ceq_demandId}"/>
+                                <Input value="{demandMdl>/demand_id}" placeholder="Please enter demand id" field:type="Input" field:validate="required"/>
+                                <Label required="true" text="{i18n>ceq_wbsElement}"/>
+                                <Input class="sapUiSmallMarginEnd" type="Text" value="{demandMdl>/wbs_element_id_and_text}" placeholder="Please select WBS element" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="valueHelpDialogWBSElement" field:type="Input" field:validate="required"/>
+                                <Label text="{i18n>ceq_activityType}" />
+                                <Input class="sapUiSmallMarginEnd" type="Text" value="{demandMdl>/activity_type_id_and_text}" placeholder="Please select activity type" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="valueHelpDialogActivityType"/>
+                                <Label text="{i18n>ceq_plannedEffort}"/>
+                                <Input value="{demandMdl>/planned_effor}" type="Number" placeholder="Please enter planned effort"/>
+                                <Text text="Hrs"/>
+                                <Label text="{i18n>ceq_costCenter}" />
+                                <Input id="costCenterId" class="sapUiSmallMarginEnd" type="Text" value="{demandMdl>/cost_centre_id_and_text}" placeholder="Please select cost center" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="valueHelpDialogCostCenter"/>
+
+                                <Label text="{i18n>ceq_dateAlignment}" />
+                                <ComboBox selectedKey="{demandMdl>/date_alignment_id}" placeholder="Please select date alignment" selectionChange="onChangeDateAlignment">
+                                    <core:Item key="1" text="Align with WBS Element Start &amp; End Date" />
+                                    <core:Item key="2" text="No Alignment" />
+                                </ComboBox>
+                                <Label text="{i18n>ceq_demandStartDate}" />
+                                <DatePicker value="{demandMdl>/demand_start_date}" editable="{=${demandMdl>/date_alignment_id} === '2' ? true : false}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"/>
+                                <Label text="{i18n>ceq_demandEndDate}" />
+                                <DatePicker value="{demandMdl>/deman_end_date}" editable="{=${demandMdl>/date_alignment_id} === '2' ? true : false}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"/>
+                                <Label text="{i18n>ceq_demandStatus}" />
+                                <ComboBox selectedKey="{demandMdl>/demand_status}" placeholder="Please select demand status">
+                                    <core:Item key="1" text="Created" />
+                                    <core:Item key="2" text="Requested" enabled="false"/>
+                                    <core:Item key="3" text="Closed" enabled="false"/>
+                                </ComboBox>
+                            </form:content>
+                        </form:SimpleForm>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>ceq_description}" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>ceq_description}" titleUppercase="false">
+                        <TextArea value="{demandMdl>/demand_description}" maxLength="40" width="100%" rows="5" />
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>ceq_assignments}" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>ceq_assignments}" titleUppercase="false">
+                        <Table id="tablePropertyObject" inset="false" items="{demandMdl>/equipmentDemandAssignments}" mode="MultiSelect" sticky="ColumnHeaders,HeaderToolbar">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <Label design="Bold" text="{i18n>ceq_equipmentAssignments}" />
+                                        <ToolbarSpacer />
+                                        <Button text="{i18n>btn_create}" press="onPressCreate"/>
+                                        <Button text="{i18n>btn_confirm}" press="onPressConfirm"/>
+
+                                        <Button text="{i18n>btn_delete}" press="onPressDelete"/>
+
+                                        <ToolbarSeparator />
+                                        <Button type="Transparent" press="handleExport" icon="sap-icon://excel-attachment" tooltip="Export To Excel" enabled="false" />
+                                        <ToolbarSeparator />
+
+                                        <Button type="Transparent" press="handlePersoButtonPressed" icon="sap-icon://action-settings" tooltip="Personalization" enabled="true" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <noData>
+                                <Text id="txt_noData" text="To start, set the relevant filters and choose &quot;Go&quot;."/>
+                            </noData>
+                            <columns>
+                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="{i18n>ceq_name}" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="{i18n>ceq_description}" />
+                                </Column>
+                                <Column width="18rem" minScreenWidth="Desktop" demandPopin="true">
+                                    <Text text="{i18n>ceq_effort}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle" type="Active" press=".onListItemPress">
+                                    <cells>
+                                        <Input class="sapUiSmallMarginEnd" type="Text" value="{demandMdl>equipment_id}" placeholder="Please select equipment name" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="valueHelpDialogEquipmentName"/>
+                                        <Text text="{demandMdl>equipment_description}" />
+                                        <HBox >
+                                            <Input value="{demandMdl>effort}" type="Number"/>
+                                            <Text class="sapUiTinyMarginTop sapUiTinyMarginBegin" text="   Hrs" />
+                                        </HBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>ceq_addministration}" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>ceq_addministration}" titleUppercase="false">
+                        <form:SimpleForm id="sf_basicDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+                            <form:content>
+                                <Label text="{i18n>com_createdBy}" />
+                                <Text text="{demandMdl>created_by}" />
+                                <Label text="{i18n>com_createdOn}" />
+                                <Text text="{demandMdl>created_on}"/>
+                                <Label text="{i18n>com_updatedBy}" />
+                                <Text text="{demandMdl>modified_by}" />
+                                <Label text="{i18n>com_updatedOn}" />
+                                <Text text="{demandMdl>modified_on}"/>
+                            </form:content>
+                        </form:SimpleForm>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>ceq_changeDocuments}" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>ceq_changeDocuments}" titleUppercase="false">
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar>
+                <Button id="btn_cdq_error" visible="{=!!${errors>/}.length}" icon="sap-icon://error" type="Negative" text="Error" press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="{i18n>btn_save}" width="70px" press="onPressSave" />
+                <Button type="Ghost" text="{i18n>btn_discard}" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

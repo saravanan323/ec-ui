@@ -1,0 +1,254 @@
+<mvc:View controllerName="com.ecui.projects.ManageProjects"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:plugins="sap.m.plugins"
+	xmlns:columnmenu="sap.m.table.columnmenu"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" displayBlock="true"
+	height="100%" busyIndicatorDelay="0">
+	<f:DynamicPage preserveHeaderStateOnScroll="true" showTitleInHeaderContent="true"
+		headerExpanded="true" toggleHeaderOnTitleClick="true" fitContent="true"
+		class="sapUiContentPadding">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Projects" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<fb:FilterBar id="filter_projects" search=".onSearch" showClearOnFB="true"
+						clear="onClear" filterChange=".onFilterChange" useToolbar="false"
+						showGoOnFB="true">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem name="J" label="" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<SearchField search="onProjectFilter" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="A" label="Project" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="inputProject" value="{advancedFilterMdl>/project}"
+										showValueHelp="true"
+										valueHelpRequest="onValueHelpRequestProject"
+										showSuggestion="true" suggestionItems="{projectsMdl>/}">
+										<suggestionItems>
+											<core:Item text="{projectsMdl>project}" />
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<!-- <fb:FilterGroupItem name="B" label="Customer" groupName="Group1"
+							visibleInFilterBar="true">
+								<fb:control>
+									<Input id="inputCustomer" value="{advancedFilterMdl>/customer}" showValueHelp="true"
+							valueHelpRequest="onValueHelpRequestCustomer" showSuggestion="true"
+							suggestionItems="{projectsMdl>/}">
+										<suggestionItems>
+											<core:Item text="{projectsMdl>customer}" />
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="C" label="Project Manager" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="inputProjectManager" value="{advancedFilterMdl>/project_manager}" showValueHelp="true"
+							valueHelpRequest="onValueHelpRequestProjectManager"
+							showSuggestion="true" suggestionItems="{projectsMdl>/}">
+										<suggestionItems>
+											<core:Item text="{projectsMdl>project_manager}" />
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem> -->
+							<fb:FilterGroupItem name="H" label="Project Type" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<ComboBox
+										selectedKey="{advancedFilterMdl>/enterpriseProjectType}">
+										<core:Item key="1" text="Customer Project" />
+										<core:Item key="2" text="Engineering Construction " />
+										<core:Item key="3" text="Internal Project" />
+										<core:Item key="4" text="General Type" />
+										<core:Item key="5" text="Professional service" />
+									</ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem name="D" label="Processing Status"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<ComboBox items="{masterDataMdl>/processingStatus}"
+										selectedKey="{advancedFilterMdl>/processingStatus}">
+										<core:Item key="{masterDataMdl>ProcessingStatus}"
+											text="{masterDataMdl>ProcessingStatusText}" />
+									</ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="E" label="Planned Start" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker placeholder=" " change=".onDateChange"
+										valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+										value="{advancedFilterMdl>/projectStartDate}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="F" label="Planned Finish" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker placeholder=" " change=".onDateChange"
+										valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+										value="{advancedFilterMdl>/projectEndDate}" />
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="G" label="Currency" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<ComboBox items="{masterMdl>/currencies}"
+										selectedKey="{advancedFilterMdl>/projectCurrency}"
+										showSecondaryValues="true">
+										<core:ListItem key="{masterMdl>code}"
+											text="{masterMdl>value}"
+											additionalText="{masterMdl>Currency}" />
+									</ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table id="table_projects" mode="SingleSelectMaster" itemPress="onListItemPress"
+				items="{projectsMdl>/}" class="sapFDynamicPageAlignContent" autoPopinMode="true"
+				contextualWidth="Auto" sticky="ColumnHeaders" growing="true" growingThreshold="20"
+				growingScrollToLoad="true" updateFinished=".onUpdateFinished"
+				selectionChange=".onSelectionChange" visibleRowCountMode="Auto">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+
+							<ToolbarSpacer />
+
+							<!-- <Button text="Create" press="onPressNavCreate"/>-->
+							<Button type="Transparent" press="handleExport"
+								icon="sap-icon://excel-attachment" tooltip="Export To Excel"
+								enabled="false" />
+							<ToolbarSeparator />
+							<Button type="Transparent" press="clearSearchFilter"
+								icon="sap-icon://refresh" tooltip="Refresh" enabled="true" />
+
+							<Button type="Transparent" press="handleSortButtonPressed"
+								icon="sap-icon://sort" tooltip="Sort" enabled="true" />
+							<!--  <Button type="Transparent" press="handleGroupButtonPressed"
+							icon="sap-icon://group-2" tooltip="Group" enabled="true" /> -->
+							<Button type="Transparent" press="handlePersoButtonPressed"
+								icon="sap-icon://action-settings" tooltip="Personalization"
+								enabled="true" />
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar>
+						<Label design="Bold"
+							text="{=${projectsMdl>/}.length ? 'Projects' + ' (' + ${projectsMdl>/}.length + ')' : 'Projects'}" />
+					</Toolbar>
+				</infoToolbar>
+				<noData>
+					<Text id="txt_noData"
+						text="To start, set the relevant filters and choose &quot;Go&quot;." />
+				</noData>
+				<dependents>
+					<plugins:ColumnResizer columnResize="onColumnResize" />
+					<columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
+						<columnmenu:QuickSort change="onSort">
+							<columnmenu:items>
+								<columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+							</columnmenu:items>
+						</columnmenu:QuickSort>
+						<columnmenu:QuickGroup change="onGroup">
+							<columnmenu:items>
+								<columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
+							</columnmenu:items>
+						</columnmenu:QuickGroup>
+
+					</columnmenu:Menu>
+				</dependents>
+				<columns>
+					<Column app:p13nKey="project_col" headerMenu="menu" hAlign="Left"
+						importance="High">
+						<Text text="Project" />
+					</Column>
+
+					<!-- <Column app:p13nKey="company_col" importance="Medium" visible="false"
+					headerMenu="menu">
+						<Text text="Company" />
+					</Column> -->
+
+					<Column app:p13nKey="project_type_col" importance="Medium" headerMenu="menu">
+						<Text text="Project Type" />
+					</Column>
+					<Column app:p13nKey="planned_start_col" importance="Low" headerMenu="menu">
+						<Text text="Planned Start" />
+					</Column>
+					<Column app:p13nKey="planned_finish_col" importance="Low" headerMenu="menu">
+						<Text text="Planned Finish" />
+					</Column>
+					<Column app:p13nKey="currency_col" importance="Low" hAlign="Left"
+						headerMenu="menu">
+						<Text text="Currency" />
+					</Column>
+
+					<Column app:p13nKey="process_status_col" importance="Medium" headerMenu="menu">
+						<Text text="Processing Status" />
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier
+								title="{projectsMdl>projectDescription} ({projectsMdl>project})" />
+							<!-- <Text text="{projectsMdl>companyCode}"/> -->
+							<Text
+								text="{parts: [{path: 'projectsMdl>enterpriseProjectType'}, {path: 'masterDataMdl>/project_types'}],formatter: '.projectTypeText'}" />
+							<Text
+								text="{path:'projectsMdl>projectStartDate', formatter:'.formatter.convertSAPDate'}" />
+							<Text
+								text="{path:'projectsMdl>projectEndDate', formatter:'.formatter.convertSAPDate'}" />
+							<Text text="{projectsMdl>projectCurrency}" />
+							<ObjectStatus
+								text="{
+        parts: [
+            { path: 'projectsMdl>processingStatus' }
+        ],
+        formatter: '.processingStatusText'
+    }"
+								state="{projectsMdl>StatusState}" />
+
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button type="Accept" text="{i18n>ms_accept}" />
+				<Button type="Reject" text="{i18n>ms_reject}" />
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,220 @@
+<!-- <core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+xmlns:form="sap.ui.layout.form"
+xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"><Dialog
+showHeader="true" contentHeight="50%" contentWidth="50%" title="User Settings"
+titleAlignment="Center" class="sapUiSizeCompact"><SplitContainer
+id="userSettingsSplitContainer"><detailPages><Page id="pageAppearance" backgroundDesign="Solid"
+class="sapUiStdPage" showHeader="false"><List itemPress=".onThemSelect" mode="SingleSelect"
+headerText="Themes" id="listThemes"><items><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Belieze"
+/></VBox></HBox></CustomListItem><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Belize HCB"
+/></VBox></HBox></CustomListItem><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Belize Plus"
+/></VBox></HBox></CustomListItem><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Blue Crystal"
+/></VBox></HBox></CustomListItem><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Horizon"
+/></VBox></HBox></CustomListItem><CustomListItem><HBox alignItems="Center"><VBox
+class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text text="SAP Evening Horizon"
+/></VBox></HBox></CustomListItem></items></List></Page><Page id="pageLanguage"
+backgroundDesign="Solid" class="sapUiStdPage" showHeader="false"><form:SimpleForm class="FormLabel"
+editable="true" layout="ResponsiveGridLayout" title="Language 	&#38; Region" labelSpanXL="3"
+labelSpanL="3" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+singleContainerFullSize="false"><form:content><Label text="Language" /><ComboBox items=""
+selectedKey="1"><core:Item key="1" text="English" /><core:Item key="2" text="Arabic"
+/></ComboBox><Label text="Date Format" /><DatePicker placeholder="Enter Date" change="handleChange"
+class="sapUiSmallMarginBottom"/><Label text="Time Format" /><SegmentedButton
+selectedKey="12hrs"><items><SegmentedButtonItem text="12 hrs" key="12hrs" /><SegmentedButtonItem
+text="24 hrs" key="24hrs" /></items></SegmentedButton></form:content></form:SimpleForm></Page><Page
+id="pageCurrency" backgroundDesign= "Solid" class="sapUiStdPage" showHeader="false"><form:SimpleForm
+editable="true" layout="ResponsiveGridLayout" title="Currency" labelSpanXL="3" labelSpanL="3"
+labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4"
+emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+singleContainerFullSize="false"><form:content><Label text="Currency" /><ComboBox items=""
+selectedKey="1"><core:Item key="1" text="EUR" /><core:Item key="2" text="USD" /><core:Item key="2"
+text="AED" /></ComboBox></form:content></form:SimpleForm></Page><Page id="pagePassword"
+backgroundDesign="Solid" class="sapUiStdPage" showHeader="false"><form:SimpleForm class="FormLabel"
+editable="true" layout="ResponsiveGridLayout" title="Change Password" labelSpanXL="3" labelSpanL="3"
+labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4"
+emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+singleContainerFullSize="false"><form:content><Label text="Email" /><Input type="Email" /><Label
+text="Mobile" /><Input type="Phone" /><Label text="Old Password" /><Input type="Password" /><Label
+text="New Password" /><Input type="Password" /><Label text="Confirm New Password" /><Input
+type="Password" /></form:content></form:SimpleForm></Page></detailPages><masterPages><Page
+showHeader="false" backgroundDesign="List" class="sapUiStdPage"><List
+itemPress=".onListItemPress"><items><CustomListItem type="Active" custom:to="pageAppearance"><HBox
+class="sapUiSmallMarginBegin" alignItems="Center"><core:Icon src="sap-icon://palette"
+color="#758ca4" /><VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text
+text="Appearance" /></VBox></HBox></CustomListItem><CustomListItem type="Active"
+custom:to="pageLanguage"><HBox class="sapUiSmallMarginBegin" alignItems="Center"><core:Icon
+src="sap-icon://globe" color="#758ca4" /><VBox class="sapUiSmallMarginBegin
+sapUiSmallMarginTopBottom"><Text text="Language 	&#38; Region"
+/></VBox></HBox></CustomListItem><CustomListItem type="Active" custom:to="pageCurrency"><HBox
+class="sapUiSmallMarginBegin" alignItems="Center"><core:Icon src="sap-icon://lead"
+color="#758ca4"/><VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"><Text
+text="Currency"/></VBox></HBox></CustomListItem><CustomListItem type="Active"
+custom:to="pagePassword"><HBox class="sapUiSmallMarginBegin" alignItems="Center"><core:Icon
+src="sap-icon://key" color="#758ca4" /><VBox class="sapUiSmallMarginBegin
+sapUiSmallMarginTopBottom"><Text text="Update Profile"
+/></VBox></HBox></CustomListItem></items></List></Page></masterPages></SplitContainer><beginButton><Button
+text="Save" type="Ghost" press="onPressSaveSettings" /></beginButton><endButton><Button text="Close"
+type="Ghost" press="onCloseUserSetting" /></endButton></Dialog></core:FragmentDefinition> -->
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog showHeader="true" contentHeight="50%" contentWidth="50%" titleAlignment="Center"
+        class="sapUiSizeCompact">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://menu2" press="onPressUserDialogMenu"
+                        visible="{device>/system/phone}" />
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Settings" />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <SplitContainer id="userSettingsSplitContainer">
+            <detailPages>
+                <Page id="pageAppearance" backgroundDesign="Solid" class="sapUiStdPage"
+                    showHeader="false">
+                    <List items="{/themes}" selectionChange=".onThemSelect" mode="SingleSelect"
+                        headerText="Themes" id="dg_listThemes">
+                        <items>
+                            <CustomListItem>
+                                <HBox alignItems="Center">
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                        <Text text="{name}" />
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </items>
+                    </List>
+                </Page>
+                <Page id="pageLanguage" backgroundDesign="Solid" class="sapUiStdPage"
+                    showHeader="false">
+                    <form:SimpleForm class="FormLabel" editable="true" layout="ResponsiveGridLayout"
+                        title="Language 	&#38; Region" labelSpanXL="3" labelSpanL="3" labelSpanM="2"
+                        labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+                        emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+                        singleContainerFullSize="false">
+                        <form:content>
+                            <Label text="Language" />
+                            <ComboBox items="{/language}" selectedKey="{/userSettings/language}"
+                                selectionChange="onChangeLanguage">
+                                <core:Item key="{key}" text="{name}" />
+                            </ComboBox>
+
+                            <Label text="Date Format" />
+                            <ComboBox items="{/dateFormat}"
+                                selectedKey="{/userSettings/dateFormatKey}"
+                                selectionChange="onChangeApplicationDate">
+                                <core:Item key="{key}" text="{name}" />
+                            </ComboBox>
+                            <DatePicker editable="false" value="{/userSettings/currentDate}"
+                                displayFormat="{/userSettings/dateFormat}" valueFormat="DD-MM-YYYY" />
+
+                            <Label text="Time Format" />
+                            <ComboBox items="{/timeFormat}"
+                                selectedKey="{/userSettings/timeFormatKey}"
+                                selectionChange="onChangeApplicationTime">
+                                <core:Item key="{key}" text="{name}" />
+                            </ComboBox>
+                            <Input editable="false" value="{/userSettings/currentTime}" />
+
+                            <!-- <TimePicker editable="false" value="{/userSettings/currentTime}"/> -->
+                        </form:content>
+                    </form:SimpleForm>
+                </Page>
+                <!--   <Page id="pageCurrency" backgroundDesign= "Solid" class="sapUiStdPage"
+                showHeader="false">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Currency" labelSpanXL="3"
+                labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+                emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+                columnsL="1" columnsM="1" singleContainerFullSize="false">
+                        <form:content>
+                            <Label text="Currency" />
+                            <ComboBox items="" selectedKey="1">
+                                <core:Item key="1" text="EUR" />
+                                <core:Item key="2" text="USD" />
+                                <core:Item key="2" text="AED" />
+                            </ComboBox>
+                        </form:content>
+                    </form:SimpleForm>
+                </Page> -->
+                <Page id="pagePassword" backgroundDesign="Solid" class="sapUiStdPage"
+                    showHeader="false">
+                    <form:SimpleForm class="FormLabel" editable="true" layout="ResponsiveGridLayout"
+                        title="Change Password" labelSpanXL="3" labelSpanL="3" labelSpanM="4"
+                        labelSpanS="12" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="2"
+                        emptySpanM="2" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+                        singleContainerFullSize="false">
+                        <form:content>
+                            <Label text="Email" />
+                            <Input type="Email" placeholder="Please Enter the Email" />
+                            <Label text="Mobile" />
+                            <Input type="Phone" placeholder="Please Enter the Mobile Number" />
+                            <Label text="Old Password" />
+                            <Input type="Password" placeholder="Please Enter the Old Password" />
+                            <Label text="New Password" />
+                            <Input type="Password" placeholder="Please Enter the New Password" />
+                            <Label text="Confirm New Password" />
+                            <Input type="Password" placeholder="Confirm the New Password" />
+                        </form:content>
+                    </form:SimpleForm>
+                </Page>
+            </detailPages>
+            <masterPages>
+                <Page showHeader="false" backgroundDesign="List" class="sapUiStdPage">
+                    <List itemPress=".onListItemPress">
+                        <items>
+                            <CustomListItem type="Active" custom:to="pageAppearance">
+                                <HBox class="sapUiSmallMarginBegin" alignItems="Center">
+                                    <core:Icon src="sap-icon://palette" color="#758ca4" />
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                        <Text text="Appearance" />
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                            <CustomListItem type="Active" custom:to="pageLanguage">
+                                <HBox class="sapUiSmallMarginBegin" alignItems="Center">
+                                    <core:Icon src="sap-icon://globe" color="#758ca4" />
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                        <Text text="Language 	&#38; Region" />
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                            <!-- <CustomListItem type="Active" custom:to="pageCurrency">
+                                <HBox class="sapUiSmallMarginBegin" alignItems="Center">
+                                    <core:Icon src="sap-icon://lead" color="#758ca4"/>
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                        <Text text="Currency"/>
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem> -->
+                            <CustomListItem type="Active" custom:to="pagePassword">
+                                <HBox class="sapUiSmallMarginBegin" alignItems="Center">
+                                    <core:Icon src="sap-icon://key" color="#758ca4" />
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                        <Text text="Update Profile" />
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </items>
+                    </List>
+                </Page>
+            </masterPages>
+        </SplitContainer>
+        <beginButton>
+            <Button text="Save" type="Ghost" press="onPressSaveSettings" />
+        </beginButton>
+        <endButton>
+            <Button text="Close" type="Ghost" press="onCloseUserSetting" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog title="Add a Link">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm editable="true" layout="ColumnLayout">
+                    <f:content>
+                        <Label text="URL" />
+                        <Input value="{/url}" liveChange="onChangeUrl" valueState="{/valueStateUrl}" />
+                        <Label text="Description" />
+                        <Input value="{/description}" valueState="{/valueStateDes}" />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button type="Emphasized" text="Save" press="onPressAddLink" />
+                    <Button text="Close" type="Ghost" press="_closeDialog" ariaHasPopup="Dialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

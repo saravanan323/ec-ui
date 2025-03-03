@@ -1,0 +1,35 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+
+    <VBox visible="{visible>/toggleCommentVisible}">
+        <Label text="Comment:" design="Bold" class="sapUiTinyMarginTop"></Label>
+        <TextArea width="100%" editable="{visible>/edit}"></TextArea>
+        <Table inset="false">
+            <infoToolbar>
+                <Toolbar>
+                    <Label design="Bold" text="Items (1)"></Label>
+                </Toolbar>
+            </infoToolbar>
+            <columns>
+                <Column width="12em">
+                    <Text text="Date" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true">
+                    <Text text="User" />
+                </Column>
+                <Column>
+                    <Text text="Comments" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <ObjectIdentifier text="14-02-2025:16:05:00" />
+                        <Text text="Ranveer Kapoor" />
+                        <Text text="Payment application changed by kapoor" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+</c:FragmentDefinition>

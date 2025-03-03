@@ -1,0 +1,435 @@
+<mvc:View controllerName="com.ecui.projects.ProjectDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:m="sap.m"
+    xmlns:u="sap.uxap" displayBlock="true" height="100%" busyIndicatorDelay="0">
+    <u:ObjectPageLayout showTitleInHeaderContent="true" useIconTabBar="true"
+        upperCaseAnchorBar="false" showFooter="false">
+        <u:headerTitle>
+            <u:ObjectPageDynamicHeaderTitle>
+                <u:expandedHeading>
+                    <Title text="{projectMdl>/projectDescription}" wrapping="true" />
+                </u:expandedHeading>
+
+                <u:snappedHeading>
+
+                    <m:FlexBox fitContainer="true" alignItems="Center">
+                        <m:Avatar src="sap-icon://capital-projects" backgroundColor="Random"
+                            class="sapUiTinyMarginEnd" />
+                        <Title text="{projectMdl>/projectDescription}" wrapping="true" />
+                    </m:FlexBox>
+                </u:snappedHeading>
+
+                <u:expandedContent>
+                    <Text text="{projectMdl>/project}" />
+                </u:expandedContent>
+
+                <u:snappedContent>
+                    <Text text="{projectMdl>/project}" />
+                </u:snappedContent>
+
+                <u:snappedTitleOnMobile>
+                    <Title text="{projectMdl>/project}" />
+                </u:snappedTitleOnMobile>
+
+                <u:actions>
+                    <!-- <Button text="Edit" type="Emphasized"/> -->
+                </u:actions>
+
+                <u:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="{i18n>ms_enterFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="{i18n>ms_exitFullScreenMode}"
+                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="{i18n>ms_closeMiddleColumn}" visible="true" />
+                </u:navigationActions>
+            </u:ObjectPageDynamicHeaderTitle>
+        </u:headerTitle>
+
+        <u:headerContent>
+
+            <m:FlexBox wrap="Wrap">
+                <m:Avatar src="sap-icon://capital-projects" backgroundColor="Random" displaySize="L"
+                    class="sapUiTinyMarginEnd" />
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Start Date" text="01-01-2025 End Date : 01-12-2025" />
+
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Manager" text="Mohamed ziyaul Haq (10002)" />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Company" text="Best Run LLC. (1000)" />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Currency" text="United Arab Emirates Dirham (AED)" />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Profile" text="Project with Revenue" />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Stock" text="Yes" />
+                </layout:VerticalLayout>
+
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Priority" text="High" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Type" text="Engineering Construction (EC)" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <ObjectIdentifier title="Status" />
+                    <ObjectStatus text="{projectMdl>/StatusText}" state="{projectMdl>/StatusState}" />
+                </layout:VerticalLayout>
+            </m:FlexBox>
+
+
+        </u:headerContent>
+
+        <u:sections>
+            <u:ObjectPageSection titleUppercase="false" title="Sales Orders">
+                <u:subSections>
+                    <u:ObjectPageSubSection>
+                        <VBox backgroundDesign="Translucent">
+                            <VBox class="sapUiSmallMargin">
+                                <fb:FilterBar search=".onSearch" showClearOnFB="true"
+                                    clear="onClear" filterChange=".onFilterChange"
+                                    useToolbar="false" showGoOnFB="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem name="J" label="" groupName="Group1"
+                                            visibleInFilterBar="true">
+                                            <fb:control>
+                                                <SearchField search="onSalesOrdersFilter" />
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="A" label="Sold-to Party"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input id="inputSTParty"
+                                                    value="{advancedFilterSalesOrderMdl>/soldToParty}"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelpRequestCustomer"
+                                                    showSuggestion="true"
+                                                    suggestionItems="{projectsMdl>/}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{projectsMdl>customer}" />
+                                                    </suggestionItems>
+                                                </Input>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="B" label="Customer Reference"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input id="inputCustomer"
+                                                    value="{advancedFilterSalesOrderMdl>/customer}"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelpRequestCustomerReference"
+                                                    showSuggestion="true"
+                                                    suggestionItems="{projectsMdl>/}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{projectsMdl>customer}" />
+                                                    </suggestionItems>
+                                                </Input>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="D" label="Overall Status"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <ComboBox
+                                                    items="{masterDataMdl>/sales_order_status}"
+                                                    selectedKey="{advancedFilterSalesOrderMdl>/overallSDProcessStatus}">
+                                                    <core:Item key="{masterDataMdl>key}"
+                                                        text="{masterDataMdl>text}" />
+                                                </ComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="I" label="Net Value"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input
+                                                    value="{advancedFilterSalesOrderMdl>/net_value}" />
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="G" label="Currency"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <ComboBox items="{masterMdl>/currencies}"
+                                                    selectedKey="{advancedFilterSalesOrderMdl>/projectCurrency}"
+                                                    showSecondaryValues="true">
+                                                    <core:ListItem key="{masterMdl>code}"
+                                                        text="{masterMdl>value}"
+                                                        additionalText="{masterMdl>code}" />
+                                                </ComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <Table sticky="ColumnHeaders,HeaderToolbar"
+                                    items="{projectMdl>/salesOrders}" itemPress="onSalesOrderPress"
+                                    busy="{projectMdl>/tableSalesOrderBusy}">
+                                    <infoToolbar>
+                                        <Toolbar>
+                                            <Label
+                                                text="Items ({= ${projectMdl>/salesOrders}.length})"></Label>
+                                        </Toolbar>
+                                    </infoToolbar>
+                                    <columns>
+                                        <Column width="10rem">
+                                            <Text text="ID" />
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="Sold-to Party" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Customer Reference" />
+                                        </Column>
+
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Requested Delivery Date" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Billing Date" />
+                                        </Column>
+
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Overall Status" />
+                                        </Column>
+                                        <!-- <Column>
+                                            <Text text="Customer Contract Mapping" />
+                                        </Column> -->
+                                        <Column hAlign="End">
+                                            <Text text="Net Value" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle" type="Navigation">
+                                            <cells>
+                                                <ObjectIdentifier title="{projectMdl>SalesOrder}" />
+                                                <Text text="{projectMdl>Sold-toParty}" />
+                                                <Text text="{projectMdl>CustomerReference}" />
+                                                <Text text="{projectMdl>RequestedDeliveryDate}" />
+                                                <Text text="{projectMdl>BillingDate}" />
+                                                <ObjectStatus text="{projectMdl>OverallStatus}"
+                                                    state="Information" />
+                                                <ObjectNumber number="{projectMdl>NetValue}"
+                                                    unit="{projectMdl>Currency}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </VBox>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+
+            <u:ObjectPageSection titleUppercase="false" title="Purchase Orders">
+                <u:subSections>
+                    <u:ObjectPageSubSection title="Purchasing Orders">
+                        <VBox backgroundDesign="Translucent">
+                            <VBox class="sapUiSmallMargin">
+                                <fb:FilterBar search=".onSearchPurchasingOrders"
+                                    showClearOnFB="true" clear="onClearPurchasingOrder"
+                                    filterChange=".onFilterChange" useToolbar="false"
+                                    showGoOnFB="true">
+                                    <fb:filterGroupItems>
+                                        <fb:FilterGroupItem name="A" label="" groupName="Group1"
+                                            visibleInFilterBar="true">
+                                            <fb:control>
+                                                <SearchField search="onPurchasingOrdersFilter" />
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="B" label="Supplier"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input id="inputPOCustomer"
+                                                    value="{advancedFilterPurchaseOrderMdl>/supplier}"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelpRequestSupplier"
+                                                    showSuggestion="true"
+                                                    suggestionItems="{projectsMdl>/}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{projectsMdl>customer}" />
+                                                    </suggestionItems>
+                                                </Input>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+
+                                        <fb:FilterGroupItem name="C" label="Company"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input id="inputPOCompany"
+                                                    value="{advancedFilterPurchaseOrderMdl>/companyCode}"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelpRequestCompany"
+                                                    showSuggestion="true"
+                                                    suggestionItems="{projectsMdl>/}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{projectsMdl>company}" />
+                                                    </suggestionItems>
+                                                </Input>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="D" label="Overall Status"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <ComboBox
+                                                    items="{masterDataMdl>/purchase_order_status}"
+                                                    selectedKey="{advancedFilterPurchaseOrderMdl>/purchasingProcessingStatus}">
+                                                    <core:Item key="{masterDataMdl>key}"
+                                                        text="{masterDataMdl>text}" />
+                                                </ComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="E" label="Net Value"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <Input
+                                                    value="{advancedFilterPurchaseOrderMdl>/net_value}" />
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                        <fb:FilterGroupItem name="G" label="Currency"
+                                            groupName="Group1" visibleInFilterBar="true">
+                                            <fb:control>
+                                                <ComboBox items="{masterMdl>/currencies}"
+                                                    selectedKey="{advancedFilterPurchaseOrderMdl>/projectCurrency}"
+                                                    showSecondaryValues="true">
+                                                    <core:ListItem key="{masterMdl>code}"
+                                                        text="{masterMdl>value}"
+                                                        additionalText="{masterMdl>code}" />
+                                                </ComboBox>
+                                            </fb:control>
+                                        </fb:FilterGroupItem>
+                                    </fb:filterGroupItems>
+                                </fb:FilterBar>
+                                <Table sticky="ColumnHeaders,HeaderToolbar"
+                                    items="{projectMdl>/purchaseOrders}"
+                                    itemPress="onPurchaseOrderPress"
+                                    busy="{projectMdl>/tablePurchaseOrderBusy}">
+                                    <infoToolbar>
+                                        <Toolbar>
+                                            <Label
+                                                text="Items ({= ${projectMdl>/purchaseOrders}.length})"></Label>
+                                        </Toolbar>
+                                    </infoToolbar>
+                                    <columns>
+                                        <Column width="10rem">
+                                            <Text text="ID" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Purchase Order Date" />
+                                        </Column>
+                                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                            <Text text="Supplier" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Company" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Status" />
+                                        </Column>
+                                        <Column hAlign="End">
+                                            <Text text="Net Order Value" />
+                                        </Column>
+                                        <Column hAlign="End">
+                                            <Text text="Created By" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true">
+                                            <Text text="Customer Contract Mapping" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle" type="Navigation">
+                                            <cells>
+                                                <ObjectIdentifier title="{projectMdl>PurchaseOrder}" />
+                                                <Text text="{projectMdl>PurchaseOrderDate}" />
+                                                <Text text="{projectMdl>Supplier}" />
+                                                <Text text="{projectMdl>CompanyCode}" />
+                                                <!-- <ObjectStatus
+                                                text="{projectMdl>purchasingProcessingStatus}"
+                                                state="Warning"/> -->
+                                                <ObjectStatus text="{projectMdl>Status}"
+                                                    state="{projectMdl>StatusState}" />
+                                                <ObjectNumber number="{projectMdl>NetOrderValue}"
+                                                    unit="{projectMdl>Currency}" />
+                                                <Text text="{projectMdl>CreatedBy}" />
+                                                <CheckBox
+                                                    selected="{projectMdl>customer_contract_mapping}"
+                                                    enabled="false"></CheckBox>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </VBox>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+
+
+            <!--    <u:ObjectPageSection titleUppercase="false" title="BOM">
+                <u:subSections>
+                    <u:ObjectPageSubSection >
+                        <u:blocks>
+                            <Table sticky="ColumnHeaders,HeaderToolbar">
+
+                                <columns>
+                                    <Column >
+                                        <Text text="Item" />
+                                    </Column>
+                                    <Column minScreenWidth="Tablet" demandPopin="true">
+                                        <Text text="Product" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <Text text="PO Quantity" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Net Price" />
+                                    </Column>
+                                    <Column >
+                                        <Text text="WBS Element" />
+                                    </Column>
+
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" type="None" press="onListItemPress">
+                                        <cells>
+                                            <ObjectIdentifier title="10"/>
+                                            <Text text="Excavatin(EC001)" />
+                                            <Text text="450.00 M3" />
+                                            <ObjectNumber number="11250.00 AED "/>
+                                            <Text text="EC Tower1(E.01.001)" />
+
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </u:blocks>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection> -->
+        </u:sections>
+        <u:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer></ToolbarSpacer>
+                <Button type="Emphasized" text="{i18n>btn_save}" width="70px" press="onPressSave" />
+                <Button type="Ghost" text="{i18n>btn_discard}" width="70px" press="handleClose" />
+            </OverflowToolbar>
+        </u:footer>
+    </u:ObjectPageLayout>
+
+</mvc:View>

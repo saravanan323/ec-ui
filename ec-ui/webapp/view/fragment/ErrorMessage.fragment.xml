@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <MessagePopover placement="Top" items="{errors>/}" activeTitlePress="onActiveTitlePress">
+        <items>
+            <MessageItem activeTitle="{errors>active}" title="{errors>title}"
+                subtitle="{errors>subtitle}" type="{errors>type}" />
+        </items>
+    </MessagePopover>
+</core:FragmentDefinition>

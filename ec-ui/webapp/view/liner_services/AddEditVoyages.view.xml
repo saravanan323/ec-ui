@@ -1,0 +1,230 @@
+<mvc:View controllerName="com.ecui.controller.liner_services.AddEditVoyages"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:upload="sap.m.upload"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput" height="100%">
+    <uxap:ObjectPageLayout id="page_AddEditVoyages" showTitleInHeaderContent="true"
+        showHeaderContent="{=${VoyageMdl>/item}!==null}" alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true"
+        upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <Title
+                        text="{= ${VoyageMdl>/item}?'Voyage Index: '+${VoyageMdl>/item}:'New Voyage'}"
+                        wrapping="true" class="sapUiSmallMarginEnd" />
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center"
+                            class="sapUiTinyMarginEnd">
+                            <Title
+                                text="{= ${VoyageMdl>/item}?'Voyage Index: '+${VoyageMdl>/item}:'New Voyage'}"
+                                wrapping="true" class="sapUiSmallMarginEnd" />
+                        </FlexBox>
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:actions>
+                    <Button visible="{= ${VoyageMdl>/item} ? true : false}" type="Emphasized"
+                        text="Upload Manifest" />
+                    <Button type="Emphasized" text="Save" />
+                    <Button type="Transparent" text="Save and Close" />
+                    <Button type="Transparent" text="Close" press="handleClose" />
+                </uxap:actions>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="Enter Full Screen Mode"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null}" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="Exit Full Screen Mode"
+                        visible="{parts:['/actionButtonsInfo/midColumn/exitFullScreen', 'VoyageMdl>/item'], formatter:'.formatter.showHideFullScreen'}" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="Close end column"
+                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <layout:HorizontalLayout allowWrapping="true">
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <ObjectAttribute title="Created By" text="Samuel" />
+                    <ObjectAttribute title="Created On" text="01-Aug-2022" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout>
+                    <Text title="" />
+                    <ObjectAttribute title="Last Updated On" text="03-Aug-2022" />
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection titleUppercase="false" title="General">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin" backgroundDesign="Transparent">
+                            <form:SimpleForm class="sapUiNoContentPadding formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Voyage Type" />
+                                    <ComboBox>
+                                        <core:Item key="1" text="Container" />
+                                    </ComboBox>
+                                    <Label text="Vessel Name" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm class="sapUiNoContentPadding formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Voyage In" />
+                                    <Input />
+                                    <Label text="Voyage Out" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm
+                                class="sapUiNoContentPadding sapUiSmallMarginBottom formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Vessel ETA" />
+                                    <DateTimePicker displayFormat="dd-MM-yyyy HH:mm:ss"
+                                        valueFormat="yyyy-MM-dd HH:mm:ss" placeholder=" "
+                                        change="handleChange" />
+                                    <Label text="Vessel ETS" />
+                                    <DateTimePicker displayFormat="dd-MM-yyyy HH:mm:ss"
+                                        valueFormat="yyyy-MM-dd HH:mm:ss" placeholder=" "
+                                        change="handleChange" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Port Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin" backgroundDesign="Transparent">
+                            <form:SimpleForm class="sapUiNoContentPadding formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Last Port" />
+                                    <Input />
+
+                                    <Label text="Next Port" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm
+                                class="sapUiNoContentPadding sapUiSmallMarginBottom formPadding"
+                                editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4"
+                                labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Destination Port In" />
+                                    <Input />
+
+                                    <Label text="Destination Port Out" />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Bayan Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <VBox class="sapUiSmallMargin" backgroundDesign="Transparent">
+                            <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4"
+                                labelSpanL="4" labelSpanM="12" labelSpanS="12"
+                                adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+                                emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+                                columnsM="2" singleContainerFullSize="false">
+                                <form:content>
+                                    <Label text="Master Name" class="label" />
+                                    <Input />
+                                    <Label text="Nationality" />
+                                    <Input />
+                                    <Label text="CAR No." />
+                                    <Input />
+                                    <Label text="Manifest No." />
+                                    <Input />
+                                </form:content>
+                            </form:SimpleForm>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection titleUppercase="false" title="Attachments">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <upload:UploadSet id="UploadSet" instantUpload="true" showIcons="true"
+                            uploadEnabled="true" terminationEnabled="true" fileTypes="txt,doc,png"
+                            maxFileNameLength="30" maxFileSize="200"
+                            mediaTypes="text/plain,application/msword,image/png"
+                            uploadUrl="../../../../upload"
+                            items="{path: '/items', templateShareable: false}" mode="MultiSelect"
+                            selectionChanged="onSelectionChange" uploadCompleted="onUploadCompleted"
+                            afterItemRemoved="onAfterItemRemoved">
+                            <upload:toolbar>
+                                <OverflowToolbar>
+                                    <Label id="lb_attachmentCount" design="Bold" text="Items(0)" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add Link" press="onAddLinkDialog" />
+                                    <upload:UploadSetToolbarPlaceholder />
+                                </OverflowToolbar>
+                            </upload:toolbar>
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}"
+                                    url="{url}" thumbnailUrl="{thumbnailUrl}"
+                                    markers="{path: 'markers', templateShareable: false}"
+                                    statuses="{path: 'statuses', templateShareable: false}"
+                                    uploadState="{uploadState}">
+                                    <upload:markers>
+                                        <ObjectMarker type="{type}" visibility="{visibility}" />
+                                    </upload:markers>
+                                    <upload:statuses>
+                                        <ObjectStatus title="{title}" text="{text}" state="{state}"
+                                            icon="{icon}" active="{active}" />
+                                    </upload:statuses>
+                                </upload:UploadSetItem>
+                            </upload:items>
+                        </upload:UploadSet>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

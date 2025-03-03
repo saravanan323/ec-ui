@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+    <Dialog id="dialog_AddItem" title="Purchase Orders" contentWidth="50%">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2"
+                    columnsXL="4">
+                    <form:content>
+                        <Label text="{i18n>cpa_PurchaseOrder}" />
+                        <Input value="{paymentMdl>/purchaseOrder}" />
+
+                        <Label text="{i18n>cpa_Vendor}" />
+                        <Input value="{paymentMdl>/vendor}" />
+
+                        <Label text="{i18n>cpa_Status}" />
+                        <ComboBox items="{masterdataMdl>/status}"
+                            selectedKeys="{paymentMdl>/status}">
+                            <core:Item key="{masterdataMdl>key}" text="{masterdataMdl>text}" />
+                        </ComboBox>
+
+                        <Label text="PA Value" />
+                        <Input value="{paymentMdl>/paValue}" />
+
+                        <Label text="{i18n>cpa_Invoice}" />
+                        <Input value="{paymentMdl>/invoice}" />
+
+                        <Label text="{i18n>cpa_PaidValue}" />
+                        <Input value="{paymentMdl>/paidValue}" />
+
+                        <Label text="{i18n>cpa_SubmittedDate}" />
+                        <DatePicker valueFormat="dd-MM-yyyy" value="{paymentMdl>/submittedDate}" />
+                        <Label text="{i18n>cpa_History}" />
+                        <Input value="{paymentMdl>/History}" />
+                    </form:content>
+                </form:SimpleForm>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="Add" type="Transparent" press="onSubmitPurchaseOrder" />
+                    <Button text="{i18n>cpa_cancel}" type="Transparent" press="onCloseDialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

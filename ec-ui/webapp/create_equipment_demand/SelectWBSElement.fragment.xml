@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:table="sap.ui.table">
+    <Dialog resizable="true" title=" {i18n>ceq_wbsElement}">
+        <content>
+            <fb:FilterBar id="sel_wbsElement" persistencyKey="myPersKey" useToolbar="false" search="advancedFilterWBSElement" showClearOnFB="true" clear="clearAllWBSElementFilters" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                <fb:filterItems>
+                    <fb:FilterItem name="A" label="Search">
+                        <fb:control>
+                            <Input placeholder="Search" value="{advancedFilterMdl>/WBSElementInternalID}"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+            <Table id= "table_SelectWBSElement" items="{selectionMdl>/wbsElement}" mode="SingleSelectLeft" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="sapUiSmallMarginTop">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="Items({= ${selectionMdl>/wbsElement}.length})" visible="{= ${selectionMdl>/wbsElement}.length>=0}" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="WBS Element" />
+                    </Column>
+                     <Column>
+                        <Text text="Description" />
+                    </Column>
+                    <Column>
+                        <Text text="Start Date" />
+                    </Column>
+                    <Column>
+                        <Text text="End Date" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <!-- <Text text= "{selectionMdl>WBSElementInternalID}" /> -->
+                            <Text text= "{selectionMdl>WBSElementShortID}" />
+                            
+                            <Text text= "{selectionMdl>WBSDescription}" />
+                            <Text text= "{path: 'selectionMdl>BasicStartDate'}" />
+                            <Text text= "{path: 'selectionMdl>BasicEndDate'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>btn_Select}" type="Emphasized" press="selectedWBSElement"/>
+                    <Button text="{i18n>btn_Close}" type="Ghost" press="valueHelpWBSElementClose"/>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:table="sap.ui.table">
+    <Dialog resizable="true" title=" {i18n>ceq_costCenter}">
+        <content>
+            <fb:FilterBar id="sel_costCenter" persistencyKey="myPersKey" useToolbar="false" search="advancedFilterCostCenter" showClearOnFB="true" clear="clearAllCostCenterFilters" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+               <fb:filterItems>
+                    <fb:FilterItem name="A" label="Search">
+                        <fb:control>
+                            <Input placeholder="Search" value="{advancedFilterMdl>/costCenter}"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+            <Table id= "table_SelectCostCenter" items="{selectionMdl>/costCenter}" mode="SingleSelectLeft" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="sapUiSmallMarginTop">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="Items({= ${selectionMdl>/costCenter}.length})" visible="{= ${selectionMdl>/costCenter}.length>=0}" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Cost Center" />
+                    </Column>
+                    <Column>
+                        <Text text="Cost Center Name"/>
+                    </Column>
+                    <Column>
+                        <Text text="Start Date" />
+                    </Column>
+                    <Column>
+                        <Text text="End Date" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text= "{selectionMdl>CostCenter}" />
+                            <Text text= "{selectionMdl>CostCenterName}" />
+                            <Text text= "{path: 'selectionMdl>ValidityStartDate'}" />
+                            <Text text= "{path: 'selectionMdl>ValidityEndDate'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>btn_Select}" type="Emphasized" press="selectedCostCenter"/>
+                    <Button text="{i18n>btn_Close}" type="Ghost" press="valueHelpCostCenterClose"/>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+
+</core:FragmentDefinition>

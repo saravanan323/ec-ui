@@ -1,0 +1,107 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:upload="sap.m.upload"
+    xmlns:plugins="sap.m.plugins">
+
+    <m:Dialog id="myPopover" title="Attachments"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        contentWidth="800px" contentHeight="210px" initialFocus="email">
+
+        <m:content>
+            <m:Table id="table-uploadSet"
+                sticky="ColumnHeaders,HeaderToolbar"
+                width="auto"
+                height="auto"
+                mode="None"
+                fixedLayout="false"
+                inset="true"
+                autoPopinMode="true"
+                hiddenInPopin="None"
+                items="{path: 'PaymentUploadMdl>/', templateShareable: false}"
+                selectionChange="onSelectionChange">
+
+
+                <m:columns>
+                    <m:Column id="fileName" importance="High">
+                        <m:header>
+                            <m:Label text="File Name" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="id">
+                        <m:header>
+                            <m:Label text="ID" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="revision">
+                        <m:header>
+                            <m:Label text="Revision" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="status">
+                        <m:header>
+                            <m:Label text="Status" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="fileSize">
+                        <m:header>
+                            <m:Label text="File Size" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="lastModified">
+                        <m:header>
+                            <m:Label text="Last Modified" />
+                        </m:header>
+                    </m:Column>
+                    <m:Column id="actionButton" importance="High" />
+                </m:columns>
+
+                <m:items>
+                    <m:ColumnListItem
+                        highlight="{= ${PaymentUploadMdl>uploadState} === 'Complete' ? 'Indication05' : null }">
+                        <m:cells>
+                            <m:HBox>
+                                <!-- <m:Image src="{PaymentUploadMdl>url}"
+                                         class="sapMUSTItemImage sapMUSTItemIcon"
+                                         visible="{= ${PaymentUploadMdl>url} !== undefined}"/> -->
+                                <core:Icon
+                                    src="{parts: ['PaymentUploadMdl>mediaType', 'PaymentUploadMdl>fileName'], formatter: '.getIconSrc' }"
+                                    color="white"
+                                    visible="{= ${PaymentUploadMdl>url} === undefined || ${PaymentUploadMdl>url} === '' }"
+                                    class="sapMUSTItemImage sapMUSTItemIcon" />
+                                <m:VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+                                    <m:Link text="{PaymentUploadMdl>fileName}" press="openPreview"
+                                        class="sapUiTinyMarginBottom" />
+                                    <m:Text text="{PaymentUploadMdl>documentType}" />
+                                </m:VBox>
+                            </m:HBox>
+                            <m:Text text="{PaymentUploadMdl>id}" />
+                            <m:Link text="{PaymentUploadMdl>revision}" />
+                            <m:Text text="{PaymentUploadMdl>status}" />
+                            <m:Text
+                                text="{parts: ['PaymentUploadMdl>fileSize'], formatter: '.getFileSizeWithUnits'}" />
+                            <m:VBox>
+                                <m:Text text="{PaymentUploadMdl>lastModifiedBy}" />
+                                <m:Text class="sapUiTinyMarginTop"
+                                    text="{PaymentUploadMdl>lastmodified}" />
+                            </m:VBox>
+                            <!-- <m:Button class="sapUiTinyMarginBegin"
+                                      type="Transparent"
+                                      icon="sap-icon://decline"
+                                      press="onRemoveHandler"/> -->
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </m:content>
+        <m:footer>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+
+                <m:Button id="bt_CLose" text="Close" press="onCloseDialog" />
+            </m:OverflowToolbar>
+        </m:footer>
+    </m:Dialog>
+</core:FragmentDefinition>

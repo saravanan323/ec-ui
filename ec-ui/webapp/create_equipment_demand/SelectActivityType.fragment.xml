@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:table="sap.ui.table">
+    <Dialog resizable="true" title=" {i18n>ceq_activityType}">
+        <content>
+            <fb:FilterBar id="sel_activityType" persistencyKey="myPersKey" useToolbar="false" search="advancedFilterActivityType" showClearOnFB="true" clear="clearAllActivityTypeFilters" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                 <fb:filterItems>
+                    <fb:FilterItem name="A" label="Search">
+                        <fb:control>
+                            <Input placeholder="Search" value="{advancedFilterMdl>/CostCtrActivityType}"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+
+            <Table id= "table_SelectActivityType" items="{selectionMdl>/activityType}" mode="SingleSelectLeft" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="sapUiSmallMarginTop">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Label design="Bold" text="Items({= ${selectionMdl>/activityType}.length})" visible="{= ${selectionMdl>/activityType}.length>=0}" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Activity Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Activity Type Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Start Date" />
+                    </Column>
+                    <Column>
+                        <Text text="End Date" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text= "{selectionMdl>CostCtrActivityType}" />
+                            <Text text= "{selectionMdl>CostCtrActivityTypeName}" />
+                            <Text text= "{path: 'selectionMdl>ValidityStartDate'}" />
+                            <Text text= "{path: 'selectionMdl>ValidityEndDate'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>btn_Select}" type="Emphasized" press="selectedActivityType"/>
+                    <Button text="{i18n>btn_Close}" type="Ghost" press="valueHelpActivityTypeClose"/>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+
+</core:FragmentDefinition>

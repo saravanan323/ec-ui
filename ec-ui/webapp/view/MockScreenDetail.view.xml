@@ -1,0 +1,113 @@
+<mvc:View controllerName="com.ecui.controller.MockScreenDetail"
+    xmlns:uxap="sap.uxap"
+    xmlns:table="sap.ui.table"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput">
+
+    <uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <!--  <uxap:heading>
+                    <Title text="Detail Page"/>
+                </uxap:heading> -->
+                <uxap:expandedHeading>
+                    <HBox>
+                        <Title text="Header Title" wrapping="true" />
+                        <ObjectMarker type="Favorite" class="sapUiTinyMarginBegin" />
+                    </HBox>
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <FlexBox fitContainer="true" alignItems="Center">
+                        <Avatar src="sap-icon://customer" class="sapUiTinyMarginEnd" />
+                        <Title text="Header Title" wrapping="true" />
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:expandedContent>
+                    <Text text="Header Description" />
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <Text text="Header Description" />
+                </uxap:snappedContent>
+
+                <uxap:snappedTitleOnMobile>
+                    <Title text="Header Description" />
+                </uxap:snappedTitleOnMobile>
+
+                <uxap:actions>
+                    <Button type="Emphasized" text="Save" />
+                    <Button type="Transparent" text="Save and Close" />
+                    <Button type="Transparent" text="Close" />
+
+                </uxap:actions>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+                        press="handleFullScreen" id="enterFullScreenBtn"
+                        tooltip="Enter Full Screen Mode"
+                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen" id="exitFullScreenBtn"
+                        tooltip="Exit Full Screen Mode"
+                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+                    <OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+                        press="handleClose" tooltip="Close end column"
+                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <FlexBox wrap="Wrap">
+                <Avatar class="sapUiSmallMarginEnd" src="sap-icon://customer" displaySize="L" />
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <Link text="Aditional details 1" />
+                </layout:VerticalLayout>
+
+                <layout:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+                    <Text text="Aditional details 2"></Text>
+                </layout:HorizontalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <Text text="Aditional details 3"></Text>
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <Text text="Aditional details 4"></Text>
+                </layout:VerticalLayout>
+            </FlexBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="General Information">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <form:SimpleForm maxContainerCols="2" editable="false"
+                                layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12"
+                                emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+                                <form:content>
+                                    <Label text="Product ID" />
+                                    <Label text="Description" />
+                                    <Label text="Supplier" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+
+    </uxap:ObjectPageLayout>
+</mvc:View>

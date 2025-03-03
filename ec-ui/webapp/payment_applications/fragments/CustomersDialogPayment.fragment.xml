@@ -1,0 +1,17 @@
+<c:FragmentDefinition xmlns="sap.m"
+	xmlns:c="sap.ui.core">
+	 <SelectDialog 
+    noDataText="No Customer Found" 
+    title="Select Customer" 
+    contentHeight="50%" 
+    search=".onCustomerSearch" 
+    confirm=".onDialogCustomerClose" 
+    cancel=".onDialogClose" 
+    items="{customersMdl>/}">
+    
+    <StandardListItem 
+        title="{customersMdl>CustomerName}" 
+        info="{customersMdl>Customer}"
+        type="Active" />
+</SelectDialog>
+</c:FragmentDefinition>

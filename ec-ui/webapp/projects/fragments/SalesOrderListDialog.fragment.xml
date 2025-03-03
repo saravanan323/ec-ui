@@ -1,0 +1,18 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core">
+    <SelectDialog noDataText="No Projects Found"
+        title="Select Order"
+        contentHeight="50%"
+        search=".onSearch"
+        confirm=".onDialogSalesOrderClose"
+        cancel=".onDialogClose"
+        items="{salesOrderMdl>/sales_orders}">
+
+        <StandardListItem title="{salesOrderMdl>salesOrder}"
+            description="{salesOrderMdl>purchaseOrderByCustomer}"
+            info="{salesOrderMdl>overallSDProcessStatus}"
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+
+    </SelectDialog>
+</c:FragmentDefinition>

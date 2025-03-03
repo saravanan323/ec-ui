@@ -1,0 +1,17 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog
+        noDataText="No WBS Element Found"
+        title="Select WBS Element"
+        contentHeight="50%"
+        search="onWbsElementSearch"
+        confirm=".onDialogWBSClose"
+        cancel=".onDialogWBSCancel"
+        items="{wbsElementMdl>/}">
+
+        <StandardListItem
+            title="{wbsElementMdl>WBSDescription}"
+            info="{wbsElementMdl>WBSElementInternalID}"
+            type="Active" />
+    </SelectDialog>
+</c:FragmentDefinition>

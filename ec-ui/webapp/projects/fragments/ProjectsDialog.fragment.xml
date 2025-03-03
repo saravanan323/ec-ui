@@ -1,0 +1,19 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog
+        noDataText="No Projects Found"
+        title="Select Project"
+        contentHeight="50%"
+        search="onProjectSearch"
+        confirm=".onDialogProjectClose"
+        cancel=".onDialogProjectcancel"
+        items="{masterMdl>/projects}">
+
+        <StandardListItem
+            title="{masterMdl>project}"
+            description="{masterMdl>projectDescription}"
+            info="{masterMdl>project}"
+            type="Active" />
+    </SelectDialog>
+
+</c:FragmentDefinition>

@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+    <Dialog id="mainDialog" title="Confirm Hours - 10001">
+        <content>
+            <f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
+                <f:content>
+                    <Label text="Date" />
+                    <DatePicker value="{addConfrimationMdl>/date}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"></DatePicker>
+                    <Label text="Hours" />
+
+                    <!-- <Input value="{addConfrimationMdl>/hours}" type="Number"/> -->
+                    <StepInput value="{addConfrimationMdl>/hours}" displayValuePrecision="1" min="0" max="24" width="200px" step="0.5" description="hrs" fieldWidth="70%" />
+                    <!-- <TimePicker value="{addConfrimationMdl>/hours}" valueFormat="HH:mm" displayFormat="HH:mm"></TimePicker> -->
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="Submit" press="confirmDate" />
+                    <Button text="Cancel" press="._closeDialog" ariaHasPopup="Dialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

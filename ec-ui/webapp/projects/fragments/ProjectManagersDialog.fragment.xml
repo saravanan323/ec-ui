@@ -1,0 +1,18 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <SelectDialog
+        noDataText="No Project Manager Found"
+        title="Select Project Manager"
+        contentHeight="50%"
+        search="onCustomerSearch"
+        confirm=".onDialogProjectManagerClose"
+        cancel=".onDialogProjectManagerCancel"
+        items="{masterMdl>/customers}">
+
+        <StandardListItem
+            title="{masterMdl>customer}"
+            description="{masterMdl>customerFullName}"
+            info="{masterMdl>customerAccountGroup}"
+            type="Active" />
+    </SelectDialog>
+</c:FragmentDefinition>

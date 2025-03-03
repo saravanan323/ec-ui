@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:upload="sap.m.upload">
+
+    <m:Dialog id="myPopover" title="Create Application"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer" contentWidth="400px"
+        contentHeight="25%" initialFocus="email">
+
+        <!-- Payment Company Details -->
+        <form:SimpleForm id="payment_company" editable="false" layout="ColumnLayout">
+            <form:content>
+                <m:Label text="Company" class="sapUiSmallMarginBeginEnd" />
+                <m:Input id="id_Company" width="90%" value="{advancedFilterMdl>/companyCode}"
+                    class="sapUiSmallMarginBeginEnd" showValueHelp="true"
+                    valueHelpRequest="onValueHelpRequestCompany" showSuggestion="true"
+                    suggestionItems="{projectsMdl>/}">
+                    <m:suggestionItems>
+                        <core:Item text="{projectsMdl>company}" />
+                    </m:suggestionItems>
+                </m:Input>
+
+                <m:Label text="Project" class="sapUiSmallMarginBeginEnd" />
+                <m:Input id="inputProject" width="90%" value="{advancedFilterMdl>/projects}"
+                    class="sapUiSmallMarginBeginEnd" showValueHelp="true"
+                    valueHelpRequest="onValueHelpRequestProject" showSuggestion="true"
+                    suggestionItems="{projectsMdl>/}">
+                    <m:suggestionItems>
+                        <core:Item text="{projectsMdl>project}" />
+                    </m:suggestionItems>
+                </m:Input>
+
+                <m:Label text="WBS Element" class="sapUiSmallMarginBeginEnd" />
+                <m:Input id="inputWBSElement" width="90%" value="{advancedFilterMdl>/wbs_element}"
+                    class="sapUiSmallMarginBeginEnd" showValueHelp="true"
+                    valueHelpRequest="onValueHelpRequestWBS" showSuggestion="true"
+                    suggestionItems="{dummyMdl>/}">
+                    <m:suggestionItems>
+                        <core:Item text="{dummyMdl>text}" />
+                    </m:suggestionItems>
+                </m:Input>
+            </form:content>
+        </form:SimpleForm>
+
+        <m:footer>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+                <m:Button id="bt_Create" text="Next" press="onCreateApplication" />
+                <m:Button id="bt_CLose" text="Close" press="onCloseDialog" />
+            </m:OverflowToolbar>
+        </m:footer>
+    </m:Dialog>
+</core:FragmentDefinition>
